@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230068b3%22/%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%227%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3C/svg%3E">
+<title>Silicon to Supercluster</title>
+<meta name="description" content="The AI hardware supply chain in six stages — wafer, die, GPU, server, rack, data center — with what each stage is, who builds it, and what it costs.">
+<meta property="og:title" content="Silicon to Supercluster">
+<meta property="og:description" content="The AI hardware supply chain in six stages — wafer, die, GPU, server, rack, data center — with what each stage is, who builds it, and what it costs.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eaecf0;
+    --ink: #14171c;
+    --ink-dim: #5b6472;
+    --ink-faint: #8a92a0;
+    --accent: #0068b3;
+    --accent-soft: #0068b31a;
+    --copper: #a8551f;
+    --copper-soft: #a8551f1a;
+    --line: #d7dae0;
+    --line-strong: #b8bdc7;
+    --radius: 3px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10;
+      --surface: #12151b;
+      --surface-2: #1a1e26;
+      --ink: #e7ebf0;
+      --ink-dim: #8b93a3;
+      --ink-faint: #5c6472;
+      --accent: #5fc2ff;
+      --accent-soft: #5fc2ff22;
+      --copper: #f0a35f;
+      --copper-soft: #f0a35f22;
+      --line: #262b34;
+      --line-strong: #343b47;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0a0c10;
+    --surface: #12151b;
+    --surface-2: #1a1e26;
+    --ink: #e7ebf0;
+    --ink-dim: #8b93a3;
+    --ink-faint: #5c6472;
+    --accent: #5fc2ff;
+    --accent-soft: #5fc2ff22;
+    --copper: #f0a35f;
+    --copper-soft: #f0a35f22;
+    --line: #262b34;
+    --line-strong: #343b47;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .back-link {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .back-link:hover { color: var(--accent); }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* ---------- Header ---------- */
+  header.page-head {
+    margin-bottom: 56px;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+    max-width: 14ch;
+  }
+  .lede {
+    font-size: 17px;
+    color: var(--ink-dim);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Journey grid ---------- */
+  .journey {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 18px;
+  }
+  .marker-cell {
+    grid-column: 1;
+    background: linear-gradient(var(--line), var(--line)) no-repeat center / 2px 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+  }
+  .marker-cell.end { background: linear-gradient(var(--line), var(--line)) no-repeat top center / 2px 32px; }
+  .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-marker { width: 22px; height: 22px; color: var(--ink-faint); }
+
+  .content-cell { grid-column: 2; }
+
+  .stage {
+    padding-bottom: 30px;
+  }
+  .stage-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .stage-name {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .price-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--copper);
+    background: var(--copper-soft);
+    border: 1px solid var(--copper);
+    border-radius: var(--radius);
+    padding: 4px 9px;
+    white-space: nowrap;
+  }
+
+  .stage-body {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .visuals { display: flex; flex-direction: column; gap: 10px; flex: 0 0 200px; }
+  .visuals .icon-box { flex: none; }
+  .icon-box {
+    flex: 0 0 200px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 10px;
+  }
+  .icon-box svg { display: block; width: 100%; height: auto; color: var(--ink-dim); }
+  .icon-accent { fill: var(--accent); stroke: var(--accent); }
+  .icon-accent-line { stroke: var(--accent); }
+  .icon-fill-surface { fill: var(--surface); }
+  .icon-fill-2 { fill: var(--surface-2); }
+  figure.icon-box { margin: 0; }
+
+  .photo-box { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .photo-box img { display: block; width: 100%; height: 130px; object-fit: cover; }
+  .photo-box figcaption { padding: 6px 8px 8px; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ink-faint); line-height: 1.4; }
+  .photo-box figcaption a { color: var(--ink-faint); }
+
+  .compare-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 14px;
+    margin: 0 0 26px;
+  }
+  .compare-box svg { display: block; width: 100%; height: auto; color: var(--ink-dim); }
+  .compare-box figcaption {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  figcaption {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-faint);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  .stage-text { flex: 1 1 260px; min-width: 240px; }
+  .field { margin: 0 0 10px; font-size: 15px; }
+  .field:last-child { margin-bottom: 0; }
+  .field .label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .field p { margin: 0; color: var(--ink); }
+  .field .dim { color: var(--ink-dim); }
+
+  .who-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+  .wtag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .wtag-design { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
+  .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
+
+  .price-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+  .ptag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    color: var(--copper);
+    background: var(--copper-soft);
+    border: 1px solid var(--copper);
+    border-radius: var(--radius);
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+
+  .transition {
+    padding: 14px 0 22px;
+    display: flex;
+    align-items: center;
+    min-height: 22px;
+  }
+  .transition p {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    font-style: normal;
+  }
+  .transition .plus { color: var(--accent); }
+
+  /* ---------- Sections ---------- */
+  section.block { margin-top: 64px; }
+  h2 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .section-note {
+    color: var(--ink-dim);
+    font-size: 14.5px;
+    margin: 0 0 24px;
+    max-width: 64ch;
+  }
+
+  /* pricing ladder table */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+  thead th {
+    text-align: left;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--surface-2);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; color: var(--copper); white-space: nowrap; }
+  tbody td.dim { color: var(--ink-dim); }
+
+  /* who's who */
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .role {
+    background: var(--surface);
+    padding: 18px 20px;
+  }
+  .role .role-name {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .role p { margin: 0 0 8px; font-size: 13.5px; color: var(--ink-dim); }
+  .role .companies { font-size: 13.5px; color: var(--ink); }
+
+  /* rent vs buy */
+  .rvb {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .rvb-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--surface);
+  }
+  .rvb-card .unit { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 6px; }
+  .rvb-card .price { font-family: "IBM Plex Mono", monospace; font-size: 22px; font-variant-numeric: tabular-nums; color: var(--ink); margin: 0 0 4px; }
+  .rvb-card .price span { font-size: 13px; color: var(--ink-dim); font-family: "IBM Plex Sans", sans-serif; }
+  .rvb-card .sub { margin: 0; font-size: 12.5px; color: var(--ink-dim); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  footer p { margin: 0 0 10px; max-width: 68ch; }
+  footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+
+  @media (max-width: 480px) {
+    .journey { grid-template-columns: 34px 1fr; column-gap: 12px; }
+    .visuals { flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back-link mono" href="index.html">&larr; Home</a>
+
+  <header class="page-head">
+    <p class="eyebrow">Hardware supply chain, six stages</p>
+    <h1>Silicon to Supercluster</h1>
+    <p class="lede">Every AI model runs on hardware that starts as raw sand and ends as a building that draws as much power as a small city. Here's what happens at each stage between those two points &mdash; <strong>what it is, who builds it, and what it costs.</strong></p>
+  </header>
+
+  <div class="journey">
+
+    <!-- STAGE 1: WAFER -->
+    <div class="marker-cell"><div class="dot">1</div></div>
+    <div class="content-cell">
+      <div class="stage">
+        <div class="stage-head">
+          <h3 class="stage-name">Silicon wafer</h3>
+          <span class="price-tag tabular">$3,000 &ndash; $30,000 / wafer</span>
+        </div>
+        <div class="stage-body">
+          <div class="visuals">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="An ingot is sliced into thin wafer discs; one wafer is patterned into a grid of dies, with one die highlighted.">
+              <rect x="10" y="28" width="26" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+              <line x1="10" y1="42" x2="36" y2="42" stroke="currentColor" stroke-width="1"></line>
+              <line x1="10" y1="56" x2="36" y2="56" stroke="currentColor" stroke-width="1"></line>
+              <line x1="10" y1="70" x2="36" y2="70" stroke="currentColor" stroke-width="1"></line>
+              <line x1="44" y1="58" x2="72" y2="58" stroke="currentColor" stroke-width="1.3"></line>
+              <polygon points="72,58 65,54 65,62" fill="currentColor"></polygon>
+              <circle cx="130" cy="58" r="42" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+              <g stroke="currentColor" stroke-width="0.75" opacity="0.8">
+                <line x1="103" y1="30" x2="103" y2="86"></line>
+                <line x1="118" y1="20" x2="118" y2="96"></line>
+                <line x1="142" y1="20" x2="142" y2="96"></line>
+                <line x1="157" y1="30" x2="157" y2="86"></line>
+                <line x1="92" y1="43" x2="168" y2="43"></line>
+                <line x1="92" y1="58" x2="168" y2="58"></line>
+                <line x1="92" y1="73" x2="168" y2="73"></line>
+              </g>
+              <rect x="119" y="44" width="15" height="14" class="icon-accent" fill-opacity="0.18" stroke-width="1.5"></rect>
+            </svg>
+            <figcaption>An ingot is sliced into wafers; each wafer is patterned into hundreds of identical dies.</figcaption>
+          </figure>
+          <figure class="photo-box">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/12-inch_silicon_wafer.jpg" alt="Photo of a real 12-inch silicon wafer">
+            <figcaption>A real 12&ndash;inch (300mm) wafer. <a href="https://commons.wikimedia.org/wiki/File:12-inch_silicon_wafer.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+          </figure>
+          </div>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>This is the smallest, simplest thing in the whole chain &mdash; the raw material every GPU is ultimately made of. Every stage after this one is just this disc getting cut up, built on, and multiplied.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>A cylinder of ultra-pure silicon crystal, sliced into thin polished discs &mdash; 300mm across at leading fabs. This disc is the substrate every transistor on Earth gets built on.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Before it can be used as a die, the blank disc goes through hundreds of repeated steps &mdash; lithography, etching, and doping &mdash; that build transistors and wiring into it, layer by layer. Each extra step adds cost, which is why a blank wafer runs a few hundred dollars but a fully processed one can run into the tens of thousands.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-make">TSMC (TSM) &mdash; make</span>
+                <span class="wtag wtag-make">Samsung Foundry (005930.KS) &mdash; make</span>
+                <span class="wtag wtag-other">ASML (ASML) &mdash; supply</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">Blank &mdash; $200&ndash;500</span>
+                <span class="ptag">28nm node &mdash; ~$3,000</span>
+                <span class="ptag">2&ndash;3nm node &mdash; $20,000&ndash;$30,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-cell"><svg class="arrow-marker" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="18" stroke="currentColor" stroke-width="1.6"></line><polygon points="12,22 7,14 17,14" fill="currentColor"></polygon></svg></div>
+    <div class="content-cell"><div class="transition"><p><span class="plus">+</span> lithography, etch &amp; doping &mdash; hundreds of dies cut from one wafer, then tested and binned</p></div></div>
+
+    <!-- STAGE 2: DIE -->
+    <div class="marker-cell"><div class="dot">2</div></div>
+    <div class="content-cell">
+      <div class="stage">
+        <div class="stage-head">
+          <h3 class="stage-name">The chip die</h3>
+          <span class="price-tag tabular">~$100s &ndash; low $1,000s / die</span>
+        </div>
+        <div class="stage-body">
+          <div class="visuals">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="A cross-section showing the compute die stacked with HBM memory chips on a shared interposer.">
+              <rect x="30" y="80" width="140" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+              <rect x="80" y="52" width="40" height="28" class="icon-accent" fill-opacity="0.16" stroke-width="1.5"></rect>
+              <g fill="none" stroke="currentColor" stroke-width="1.3">
+                <rect x="46" y="58" width="14" height="22"></rect>
+                <rect x="62" y="58" width="14" height="22"></rect>
+                <rect x="124" y="58" width="14" height="22"></rect>
+                <rect x="140" y="58" width="14" height="22"></rect>
+              </g>
+              <g stroke="currentColor" stroke-width="0.8" opacity="0.7">
+                <line x1="60" y1="80" x2="80" y2="80"></line>
+                <line x1="76" y1="80" x2="80" y2="80"></line>
+                <line x1="120" y1="80" x2="124" y2="80"></line>
+                <line x1="138" y1="80" x2="140" y2="80"></line>
+              </g>
+              <text x="100" y="106" text-anchor="middle" class="mono" font-size="9" fill="currentColor" opacity="0.75">compute die + HBM, on an interposer</text>
+            </svg>
+            <figcaption>The bare die is only the beginning &mdash; it still needs memory and a package.</figcaption>
+          </figure>
+          <figure class="photo-box">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Silicon_die.jpg" alt="Photo of a single bare silicon die">
+            <figcaption>A single bare die. <a href="https://commons.wikimedia.org/wiki/File:Silicon_die.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+          </figure>
+          </div>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>A wafer on its own isn't useful &mdash; it gets cut into a grid of identical squares, and each square is a die. One die is the actual compute part of what eventually becomes a GPU.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>A standard 300mm wafer typically yields somewhere between 100 and 300 of these dies, depending on how large each die is and how many are lost to defects. Each square on the wafer gets etched with billions of tiny transistors, and a modern GPU die packs tens of billions of them into an area smaller than a postage stamp.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Once the wafer is fully patterned, it gets diced into individual dies, then each one is electrically tested and sorted &mdash; or "binned" &mdash; by which came out fully functional. Not every die on a wafer works, and the yield loss from the ones that fail is part of what the working dies end up costing.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+                <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+                <span class="wtag wtag-make">TSMC (TSM) &mdash; make</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">Small / older die &mdash; $100s</span>
+                <span class="ptag">Large GPU die &mdash; low $1,000s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-cell"><svg class="arrow-marker" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="18" stroke="currentColor" stroke-width="1.6"></line><polygon points="12,22 7,14 17,14" fill="currentColor"></polygon></svg></div>
+    <div class="content-cell"><div class="transition"><p><span class="plus">+</span> HBM memory stacks + advanced packaging &mdash; a bare die becomes a sellable GPU</p></div></div>
+
+    <!-- STAGE 3: GPU -->
+    <div class="marker-cell"><div class="dot">3</div></div>
+    <div class="content-cell">
+      <div class="stage">
+        <div class="stage-head">
+          <h3 class="stage-name">The GPU</h3>
+          <span class="price-tag tabular">$25,000 &ndash; $50,000 / chip</span>
+        </div>
+        <div class="stage-body">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="A packaged GPU chip shown as a large square with pin grid on its underside, labeled with a model name.">
+              <rect x="55" y="18" width="90" height="70" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+              <rect x="70" y="32" width="60" height="42" class="icon-accent" fill-opacity="0.14" stroke-width="1.4"></rect>
+              <g stroke="currentColor" stroke-width="1" opacity="0.65">
+                <line x1="55" y1="94" x2="55" y2="100"></line>
+                <line x1="65" y1="94" x2="65" y2="100"></line>
+                <line x1="75" y1="94" x2="75" y2="100"></line>
+                <line x1="85" y1="94" x2="85" y2="100"></line>
+                <line x1="95" y1="94" x2="95" y2="100"></line>
+                <line x1="105" y1="94" x2="105" y2="100"></line>
+                <line x1="115" y1="94" x2="115" y2="100"></line>
+                <line x1="125" y1="94" x2="125" y2="100"></line>
+                <line x1="135" y1="94" x2="135" y2="100"></line>
+                <line x1="145" y1="94" x2="145" y2="100"></line>
+              </g>
+              <text x="100" y="56" text-anchor="middle" class="mono" font-size="10" fill="currentColor">GPU</text>
+            </svg>
+            <figcaption>Compute die + HBM + substrate, tested and sold as one packaged part.</figcaption>
+          </figure>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>A bare die can't do anything on its own &mdash; it needs memory sitting right next to it to actually process data. Add that memory and package it up, and a die becomes what most people actually mean by "GPU": a chip you can buy, like an H100.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>Manufacturers stack High Bandwidth Memory chips next to the die on a silicon interposer and package the whole assembly &mdash; this is what turns a die into a named product like the H100, H200, or B200.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Getting from a bare die to a sellable chip means bonding the die and its HBM stacks onto a silicon interposer &mdash; advanced packaging, done mostly by TSMC &mdash; then testing and binning the finished part. Chips that clock higher or have more working memory get sorted into the pricier tiers.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+                <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+                <span class="wtag wtag-make">TSMC (TSM) &mdash; make</span>
+                <span class="wtag wtag-other">SK Hynix (000660.KS) &mdash; supply</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">H100 &mdash; $25,000&ndash;$40,000</span>
+                <span class="ptag">B200 &mdash; $30,000&ndash;$50,000</span>
+                <span class="ptag">B300 &mdash; $50,000&ndash;$60,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-cell"><svg class="arrow-marker" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="18" stroke="currentColor" stroke-width="1.6"></line><polygon points="12,22 7,14 17,14" fill="currentColor"></polygon></svg></div>
+    <div class="content-cell"><div class="transition"><p><span class="plus">+</span> &times;8 GPUs, host CPUs, and NVLink &mdash; assembled onto one board</p></div></div>
+
+    <!-- STAGE 4: SERVER -->
+    <div class="marker-cell"><div class="dot">4</div></div>
+    <div class="content-cell">
+      <div class="stage">
+        <div class="stage-head">
+          <h3 class="stage-name">The server</h3>
+          <span class="price-tag tabular">~$300,000 &ndash; $350,000 / server</span>
+        </div>
+        <div class="stage-body">
+          <div class="visuals">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="A server board holding eight GPU sockets in a row plus two CPU sockets, all interconnected by an NVLink mesh.">
+              <rect x="14" y="30" width="172" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+              <g class="icon-accent" fill-opacity="0.2" stroke-width="1.2">
+                <rect x="24" y="42" width="14" height="14"></rect>
+                <rect x="42" y="42" width="14" height="14"></rect>
+                <rect x="60" y="42" width="14" height="14"></rect>
+                <rect x="78" y="42" width="14" height="14"></rect>
+                <rect x="96" y="42" width="14" height="14"></rect>
+                <rect x="114" y="42" width="14" height="14"></rect>
+                <rect x="132" y="42" width="14" height="14"></rect>
+                <rect x="150" y="42" width="14" height="14"></rect>
+              </g>
+              <g fill="none" stroke="currentColor" stroke-width="1.2">
+                <rect x="45" y="66" width="20" height="14"></rect>
+                <rect x="118" y="66" width="20" height="14"></rect>
+              </g>
+              <g stroke="currentColor" stroke-width="0.7" opacity="0.55">
+                <line x1="31" y1="56" x2="55" y2="66"></line>
+                <line x1="49" y1="56" x2="55" y2="66"></line>
+                <line x1="67" y1="56" x2="60" y2="66"></line>
+                <line x1="85" y1="56" x2="60" y2="66"></line>
+                <line x1="103" y1="56" x2="128" y2="66"></line>
+                <line x1="121" y1="56" x2="128" y2="66"></line>
+                <line x1="139" y1="56" x2="133" y2="66"></line>
+                <line x1="157" y1="56" x2="133" y2="66"></line>
+              </g>
+            </svg>
+            <figcaption>Eight GPUs, two host CPUs, and an NVLink mesh on a single chassis.</figcaption>
+          </figure>
+          <figure class="photo-box">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mainboard_supermicro_x8da3_IMGP0593_wp.jpg" alt="Photo of a Supermicro server motherboard">
+            <figcaption>A Supermicro server board &mdash; a real OEM in this stage. (Illustrative, not the specific 8-GPU board.) <a href="https://commons.wikimedia.org/wiki/File:Mainboard_supermicro_x8da3_IMGP0593_wp.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+          </figure>
+          </div>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>One GPU isn't powerful enough on its own for today's AI models. Eight get wired together onto a single board so they can share memory at very high speed and act more like one much bigger chip.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>Eight GPUs, host CPUs (Nvidia's own Grace chip, in Nvidia's own systems), fast networking cards, and NVLink connections between every GPU are assembled onto one chassis.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Turning eight individual GPUs into one server means mounting them with host CPUs and networking cards onto a single board, wiring NVLink between every GPU pair, then running the whole assembled system through burn-in testing before it ships.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+                <span class="wtag wtag-make">Dell (DELL) &mdash; make</span>
+                <span class="wtag wtag-make">Supermicro (SMCI) &mdash; make</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">Base config &mdash; ~$300,000</span>
+                <span class="ptag">Fully loaded &mdash; up to $350,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-cell"><svg class="arrow-marker" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="18" stroke="currentColor" stroke-width="1.6"></line><polygon points="12,22 7,14 17,14" fill="currentColor"></polygon></svg></div>
+    <div class="content-cell"><div class="transition"><p><span class="plus">+</span> &times;18 trays + a switch fabric &mdash; racked so all GPUs act as one</p></div></div>
+
+    <!-- STAGE 5: RACK -->
+    <div class="marker-cell"><div class="dot">5</div></div>
+    <div class="content-cell">
+      <div class="stage">
+        <div class="stage-head">
+          <h3 class="stage-name">The rack</h3>
+          <span class="price-tag tabular">~$3M &ndash; $8.8M / rack</span>
+        </div>
+        <div class="stage-body">
+          <div class="visuals">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="A rack frame containing six stacked server trays, all connected to a vertical NVLink switch backbone running down one side.">
+              <rect x="52" y="10" width="96" height="96" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+              <g fill="none" stroke="currentColor" stroke-width="1.1">
+                <rect x="60" y="18" width="66" height="11"></rect>
+                <rect x="60" y="33" width="66" height="11"></rect>
+                <rect x="60" y="48" width="66" height="11"></rect>
+                <rect x="60" y="63" width="66" height="11"></rect>
+                <rect x="60" y="78" width="66" height="11"></rect>
+                <rect x="60" y="93" width="66" height="8"></rect>
+              </g>
+              <rect x="130" y="16" width="10" height="84" class="icon-accent" fill-opacity="0.22" stroke-width="1.3"></rect>
+              <g stroke="currentColor" stroke-width="0.7" opacity="0.6">
+                <line x1="126" y1="23" x2="130" y2="23"></line>
+                <line x1="126" y1="38" x2="130" y2="38"></line>
+                <line x1="126" y1="53" x2="130" y2="53"></line>
+                <line x1="126" y1="68" x2="130" y2="68"></line>
+                <line x1="126" y1="83" x2="130" y2="83"></line>
+              </g>
+            </svg>
+            <figcaption>Nvidia's GB200 NVL72: 72 GPUs and 36 CPUs, wired as one liquid-cooled unit.</figcaption>
+          </figure>
+          <figure class="photo-box">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Server_Rack_(54126210834).jpg" alt="Photo of a server rack">
+            <figcaption>A server rack. (Illustrative, not the specific GB200 NVL72.) <a href="https://commons.wikimedia.org/wiki/File:Server_Rack_(54126210834).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+          </figure>
+          </div>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>One server still isn't enough. Dozens of servers get stacked and wired into a rack so every GPU inside it can talk to every other GPU as if the whole rack were a single, much bigger computer.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>Multiple compute trays plus dedicated NVLink switch trays combine into one rack. Nvidia's current flagship, the GB200 NVL72, packs 72 GPUs and 36 Grace CPUs into one liquid-cooled rack.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Building a rack means slotting multiple compute trays and dedicated NVLink switch trays into one frame, wiring them together, plumbing in liquid cooling, then testing the whole assembly as a single unit before it ever reaches a data center.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+                <span class="wtag wtag-make">Dell (DELL) &mdash; make</span>
+                <span class="wtag wtag-make">Foxconn (2317.TW) &mdash; make</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">GB200 NVL72 (now) &mdash; ~$3M</span>
+                <span class="ptag">Vera Rubin NVL72 (next-gen) &mdash; up to $8.8M</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marker-cell"><svg class="arrow-marker" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="18" stroke="currentColor" stroke-width="1.6"></line><polygon points="12,22 7,14 17,14" fill="currentColor"></polygon></svg></div>
+    <div class="content-cell"><div class="transition"><p><span class="plus">+</span> &times;thousands of racks + a power substation and cooling plant</p></div></div>
+
+    <!-- STAGE 6: DATA CENTER -->
+    <div class="marker-cell end"><div class="dot">6</div></div>
+    <div class="content-cell">
+      <div class="stage" style="padding-bottom:0;">
+        <div class="stage-head">
+          <h3 class="stage-name">The data center</h3>
+          <span class="price-tag tabular">$30M &ndash; $45M / megawatt</span>
+        </div>
+        <div class="stage-body">
+          <div class="visuals">
+          <figure class="icon-box">
+            <svg viewBox="0 0 200 116" role="img" aria-label="A floor plan showing rows of rack icons filling a building, connected to a power and cooling plant on one side.">
+              <rect x="10" y="14" width="132" height="88" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+              <g class="icon-accent" fill-opacity="0.18" stroke-width="1">
+                <rect x="20" y="24" width="14" height="18"></rect>
+                <rect x="38" y="24" width="14" height="18"></rect>
+                <rect x="56" y="24" width="14" height="18"></rect>
+                <rect x="74" y="24" width="14" height="18"></rect>
+                <rect x="92" y="24" width="14" height="18"></rect>
+                <rect x="110" y="24" width="14" height="18"></rect>
+                <rect x="20" y="48" width="14" height="18"></rect>
+                <rect x="38" y="48" width="14" height="18"></rect>
+                <rect x="56" y="48" width="14" height="18"></rect>
+                <rect x="74" y="48" width="14" height="18"></rect>
+                <rect x="92" y="48" width="14" height="18"></rect>
+                <rect x="110" y="48" width="14" height="18"></rect>
+                <rect x="20" y="72" width="14" height="18"></rect>
+                <rect x="38" y="72" width="14" height="18"></rect>
+                <rect x="56" y="72" width="14" height="18"></rect>
+                <rect x="74" y="72" width="14" height="18"></rect>
+                <rect x="92" y="72" width="14" height="18"></rect>
+                <rect x="110" y="72" width="14" height="18"></rect>
+              </g>
+              <line x1="142" y1="58" x2="168" y2="58" stroke="currentColor" stroke-width="1.2"></line>
+              <rect x="168" y="42" width="24" height="32" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"></rect>
+              <text x="180" y="90" text-anchor="middle" class="mono" font-size="8.5" fill="currentColor" opacity="0.75">power +</text>
+              <text x="180" y="100" text-anchor="middle" class="mono" font-size="8.5" fill="currentColor" opacity="0.75">cooling</text>
+            </svg>
+            <figcaption>Thousands of racks, fed by dedicated substations and liquid-cooling plants.</figcaption>
+          </figure>
+          <figure class="photo-box">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cern_datacenter.jpg" alt="Photo of the inside of a real data center, showing rows of server racks">
+            <figcaption>Inside a real data center (CERN). <a href="https://commons.wikimedia.org/wiki/File:Cern_datacenter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+          </figure>
+          </div>
+          <div class="stage-text">
+            <div class="field">
+              <span class="label">Why it matters</span>
+              <p>A rack full of GPUs draws enormous power and heat. This is the final stage: thousands of racks housed in a purpose-built building with its own power and cooling &mdash; a facility that can draw as much electricity as a small city.</p>
+            </div>
+            <div class="field">
+              <span class="label">What it is</span>
+              <p>Thousands of racks installed in a purpose-built facility with dedicated power substations, liquid-cooling plants, and networking that ties every rack together &mdash; turning individual racks into one enormous compute cluster.</p>
+            </div>
+            <div class="field">
+              <span class="label">The process</span>
+              <p>Standing one up means building the facility itself, connecting it to a dedicated power substation, installing the cooling plant, then racking and cabling thousands of individual racks together. Commissioning and testing the power and cooling systems is often what takes longest before a site goes live.</p>
+            </div>
+            <div class="field">
+              <span class="label">Who</span>
+              <div class="who-tags">
+                <span class="wtag wtag-other">Microsoft (MSFT) &mdash; operate</span>
+                <span class="wtag wtag-other">Meta (META) &mdash; operate</span>
+                <span class="wtag wtag-other">CoreWeave (CRWV) &mdash; operate</span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Price</span>
+              <div class="price-tags">
+                <span class="ptag">Per megawatt &mdash; $30M&ndash;$45M</span>
+                <span class="ptag">Meta Hyperion &mdash; $50B&ndash;$60B</span>
+                <span class="ptag">MSFT Fairwater &mdash; ~$7.3B</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WHO'S WHO -->
+  <section class="block">
+    <h2>Who's who in the chain</h2>
+    <p class="section-note">The same handful of company types show up at every stage.</p>
+    <div class="roles">
+      <div class="role">
+        <p class="role-name">Fabless designers</p>
+        <p>Design the chip, never touch a factory.</p>
+        <p class="companies">Nvidia, AMD, Google TPU, AWS Trainium, Microsoft Maia</p>
+      </div>
+      <div class="role">
+        <p class="role-name">Foundries</p>
+        <p>Manufacture chips designed by others.</p>
+        <p class="companies">TSMC, Samsung Foundry, Intel Foundry, GlobalFoundries</p>
+      </div>
+      <div class="role">
+        <p class="role-name">Equipment &amp; materials</p>
+        <p>Build the machines and wafers foundries need.</p>
+        <p class="companies">ASML (lithography), Shin-Etsu, SUMCO (wafers)</p>
+      </div>
+      <div class="role">
+        <p class="role-name">Memory makers</p>
+        <p>Supply the HBM stacked next to every GPU die.</p>
+        <p class="companies">SK Hynix, Samsung, Micron</p>
+      </div>
+      <div class="role">
+        <p class="role-name">OEM integrators</p>
+        <p>Build the physical servers and racks.</p>
+        <p class="companies">Dell, Supermicro, Foxconn, Quanta, HPE</p>
+      </div>
+      <div class="role">
+        <p class="role-name">Hyperscalers &amp; neoclouds</p>
+        <p>Build or rent out the finished data centers.</p>
+        <p class="companies">Microsoft, Meta, Google, Amazon, CoreWeave, Together AI</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Tickers next to each company are for identification only, not investment advice &mdash; based on an AI investment stack mapping dated September 2026.</p>
+    <p>Pricing across the semiconductor and AI-infrastructure market moves fast and varies by contract, volume, and region &mdash; treat every figure above as a directional estimate rather than a quote, gathered from public reporting as of October 2026.</p>
+    <ul>
+      <li><a href="https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide" target="_blank" rel="noopener">Nvidia GPU pricing &mdash; IntuitionLabs</a></li>
+      <li><a href="https://www.spheron.network/blog/nvidia-gb200-nvl72-guide/" target="_blank" rel="noopener">GB200 NVL72 guide &mdash; Spheron</a></li>
+      <li><a href="https://axis-intelligence.com/ai-data-center-cost-per-mw/" target="_blank" rel="noopener">Data center cost per MW &mdash; Axis Intelligence</a></li>
+      <li><a href="https://averroes.ai/blog/top-10-semiconductor-foundries" target="_blank" rel="noopener">Top semiconductor foundries &mdash; Averroes</a></li>
+      <li><a href="https://siliconanalysts.com/data/wafer-pricing" target="_blank" rel="noopener">Wafer pricing by node &mdash; Silicon Analysts</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>

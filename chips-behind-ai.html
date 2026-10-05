@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230068b3%22/%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%227%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3C/svg%3E">
+<title>CPU, GPU, TPU, DPU: The Chips Behind AI</title>
+<meta name="description" content="Four different chips, four different jobs — what each one actually does, and how they pair up inside a real AI server.">
+<meta property="og:title" content="CPU, GPU, TPU, DPU: the chips behind AI">
+<meta property="og:description" content="Four different chips, four different jobs — what each one actually does, and how they pair up inside a real AI server.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eaecf0;
+    --ink: #14171c;
+    --ink-dim: #5b6472;
+    --ink-faint: #8a92a0;
+    --accent: #0068b3;
+    --accent-soft: #0068b31a;
+    --copper: #a8551f;
+    --copper-soft: #a8551f1a;
+    --line: #d7dae0;
+    --line-strong: #b8bdc7;
+    --radius: 3px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+      --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+      --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+      --copper: #f0a35f; --copper-soft: #f0a35f22;
+      --line: #262b34; --line-strong: #343b47;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+    --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+    --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+    --copper: #f0a35f; --copper-soft: #f0a35f22;
+    --line: #262b34; --line-strong: #343b47;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 72px; }
+
+  .back-link {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    max-width: 22ch;
+  }
+  .lede { font-size: 16px; color: var(--ink-dim); max-width: 60ch; margin: 0 0 40px; }
+
+  .section-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .chip-section { margin: 0 0 36px; }
+
+  .who-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: -18px 0 32px; }
+  .wtag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .wtag-design { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
+  .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
+
+  .compare-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 14px;
+    margin: 0 0 28px;
+  }
+  .compare-box svg { display: block; width: 100%; height: auto; color: var(--ink-dim); }
+  .icon-accent { fill: var(--accent); stroke: var(--accent); }
+  .compare-box figcaption {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  p.body-text { font-size: 15.5px; margin: 0 0 28px; max-width: 62ch; }
+  p.body-text strong { color: var(--ink); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  footer p { margin: 0 0 10px; max-width: 68ch; }
+  footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back-link mono" href="index.html">&larr; Home</a>
+
+  <p class="eyebrow">Hardware basics</p>
+  <h1>CPU, GPU, TPU, DPU: the chips behind AI</h1>
+  <p class="lede">A real AI server doesn't run on just one kind of chip. A couple of CPUs orchestrate, many GPUs &mdash; or TPUs, on Google's own stack &mdash; do the heavy math, and a DPU quietly keeps data flowing so nothing stalls. These aren't competing chips; they're teammates with very different jobs.</p>
+
+  <div class="chip-section">
+  <p class="section-label">CPU</p>
+
+  <p class="body-text">The general-purpose brain of almost every computer. It runs the operating system, handles input and output, and executes instructions one after another extremely fast &mdash; built to do any task well, including ones where each step depends on the result of the last.</p>
+
+  <p class="section-label">GPU</p>
+
+  <p class="body-text">Originally built to render graphics, which means doing the same simple calculation across millions of pixels at once. That same trick turned out to be exactly what AI needs &mdash; repeating the same math, like matrix multiplication, across huge amounts of data in parallel &mdash; which is why GPUs ended up running the field instead of graphics cards.</p>
+
+  <p class="section-label">CPU vs. GPU</p>
+
+  <p class="body-text"><strong>The real difference:</strong> a CPU is built around a handful of large, complex cores meant to handle any task well. A GPU is built around thousands of small, simple cores meant to repeat the same math across huge amounts of data at once. That's also why GPUs get ultra-fast HBM memory stacked directly on the chip: feeding thousands of cores at once takes far more bandwidth than a CPU's smaller core count ever needs.</p>
+
+  <figure class="compare-box">
+    <svg viewBox="0 0 440 152" role="img" aria-label="Side-by-side comparison: a CPU die divided into four large, complex core blocks, versus a GPU die filled with a dense grid of many small, simple core blocks.">
+      <rect x="20" y="20" width="170" height="90" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+      <g class="icon-accent" fill-opacity="0.16" stroke-width="1.2">
+        <rect x="28" y="28" width="70" height="30"></rect>
+        <rect x="106" y="28" width="70" height="30"></rect>
+        <rect x="28" y="66" width="70" height="30"></rect>
+        <rect x="106" y="66" width="70" height="30"></rect>
+      </g>
+      <text x="105" y="132" text-anchor="middle" class="mono" font-size="11" fill="currentColor">CPU die</text>
+      <text x="105" y="146" text-anchor="middle" class="mono" font-size="9" fill="currentColor" opacity="0.7">4&ndash;256 large, complex cores</text>
+
+      <line x1="220" y1="12" x2="220" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"></line>
+
+      <rect x="250" y="20" width="170" height="90" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+      <g class="icon-accent" fill-opacity="0.16" stroke-width="1">
+        <rect x="258" y="28" width="22" height="20"></rect>
+        <rect x="282" y="28" width="22" height="20"></rect>
+        <rect x="306" y="28" width="22" height="20"></rect>
+        <rect x="330" y="28" width="22" height="20"></rect>
+        <rect x="354" y="28" width="22" height="20"></rect>
+        <rect x="378" y="28" width="22" height="20"></rect>
+        <rect x="258" y="50" width="22" height="20"></rect>
+        <rect x="282" y="50" width="22" height="20"></rect>
+        <rect x="306" y="50" width="22" height="20"></rect>
+        <rect x="330" y="50" width="22" height="20"></rect>
+        <rect x="354" y="50" width="22" height="20"></rect>
+        <rect x="378" y="50" width="22" height="20"></rect>
+        <rect x="258" y="72" width="22" height="20"></rect>
+        <rect x="282" y="72" width="22" height="20"></rect>
+        <rect x="306" y="72" width="22" height="20"></rect>
+        <rect x="330" y="72" width="22" height="20"></rect>
+        <rect x="354" y="72" width="22" height="20"></rect>
+        <rect x="378" y="72" width="22" height="20"></rect>
+      </g>
+      <text x="335" y="132" text-anchor="middle" class="mono" font-size="11" fill="currentColor">GPU die</text>
+      <text x="335" y="146" text-anchor="middle" class="mono" font-size="9" fill="currentColor" opacity="0.7">thousands of small, simple cores</text>
+    </svg>
+    <figcaption>Shown schematically &mdash; a real GPU die packs thousands of these tiny cores, not eighteen. Same wafer, same manufacturing line, opposite design goal. In a real package, that difference shows up in die count too: AMD's EPYC &ldquo;Venice&rdquo; CPU is 10 dies total (8 core chiplets + 2 I/O dies, no stacked memory), while Nvidia's B200 GPU package has 70+ dies (2 compute dies + 8 HBM3e memory stacks, 8&ndash;12 layers each).</figcaption>
+  </figure>
+
+  <div class="who-tags">
+    <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+    <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+  </div>
+  </div>
+
+  <div class="chip-section">
+  <p class="section-label">TPU</p>
+  <p class="body-text">A TPU (Tensor Processing Unit) takes specialization even further than a GPU. Where a GPU is a general-purpose parallel processor that happens to be great at AI math, a TPU is an ASIC &mdash; a chip hard-wired for one job, the matrix multiplication at the core of neural networks. That trade cuts flexibility but improves efficiency per watt. TPUs are Google's own chip, used internally and rented out through Google Cloud; Ironwood (TPU v7) was built primarily for inference at scale, and Google has since split its 8th-generation TPUs into separate training (TPU 8T) and inference (TPU 8I) chips. Amazon (Trainium) and Microsoft (Maia) have since built their own equivalents, for the same reason: less dependence on Nvidia and lower cost per inference.</p>
+  <div class="who-tags">
+    <span class="wtag wtag-design">Alphabet (GOOGL) &mdash; design</span>
+    <span class="wtag wtag-design">Amazon (AMZN) &mdash; design</span>
+    <span class="wtag wtag-design">Microsoft (MSFT) &mdash; design</span>
+  </div>
+  </div>
+
+  <div class="chip-section">
+  <p class="section-label">DPU</p>
+  <p class="body-text">A DPU (Data Processing Unit) does something different from all three chips above &mdash; it doesn't do AI math at all. It's a specialized chip that offloads networking, storage, and security tasks away from the CPU. That matters in an AI cluster because training and inference move enormous amounts of data between GPUs constantly; if the CPU has to manage that network traffic itself, it becomes a bottleneck, leaving the far more expensive GPUs sitting idle waiting for data. Nvidia's BlueField is the best-known example, with AMD's Pensando as another option.</p>
+  <div class="who-tags">
+    <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+    <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+  </div>
+  </div>
+
+  <footer>
+    <p>Part of the hardware series &mdash; see <a href="silicon-to-supercluster.html">Silicon to Supercluster</a> for the full journey from wafer to data center.</p>
+    <p>Tickers next to each company are for identification only, not investment advice.</p>
+    <ul>
+      <li><a href="https://www.techradar.com/pro/google-cloud-unveils-ironwood-its-7th-gen-tpu-to-help-boost-ai-performance-and-inference" target="_blank" rel="noopener">Google's Ironwood TPU &mdash; TechRadar</a></li>
+      <li><a href="https://letsdatascience.com/news/google-unveils-tpu-8t-and-tpu-8i-chips-ee9e6834" target="_blank" rel="noopener">Google's 8th-gen TPU 8T/8I &mdash; Let's Data Science</a></li>
+      <li><a href="https://techcrunch.com/2025/12/02/amazon-releases-an-impressive-new-ai-chip-and-teases-a-nvidia-friendly-roadmap" target="_blank" rel="noopener">Amazon's Trainium3 &mdash; TechCrunch</a></li>
+      <li><a href="https://www.constellationr.com/index.php/insights/news/microsoft-launches-maia-200-custom-ai-silicon-accelerates" target="_blank" rel="noopener">Microsoft's Maia 200 &mdash; Constellation Research</a></li>
+      <li><a href="https://www.naddod.com/blog/nvidia-bluefield-4-dpu-powers-gigascale-ai-factories" target="_blank" rel="noopener">Nvidia BlueField-4 &mdash; NADDOD</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>

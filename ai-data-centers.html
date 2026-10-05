@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230068b3%22/%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%227%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3C/svg%3E">
+<title>How AI Data Centers Get Built</title>
+<meta name="description" content="What makes an AI data center physically different, who actually owns these facilities, and why they keep ending up in places you wouldn't expect.">
+<meta property="og:title" content="How AI Data Centers Get Built">
+<meta property="og:description" content="What makes an AI data center physically different, who actually owns these facilities, and why they keep ending up in places you wouldn't expect.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eaecf0;
+    --ink: #14171c;
+    --ink-dim: #5b6472;
+    --ink-faint: #8a92a0;
+    --accent: #0068b3;
+    --accent-soft: #0068b31a;
+    --copper: #a8551f;
+    --copper-soft: #a8551f1a;
+    --line: #d7dae0;
+    --line-strong: #b8bdc7;
+    --radius: 3px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+      --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+      --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+      --copper: #f0a35f; --copper-soft: #f0a35f22;
+      --line: #262b34; --line-strong: #343b47;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+    --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+    --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+    --copper: #f0a35f; --copper-soft: #f0a35f22;
+    --line: #262b34; --line-strong: #343b47;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 72px; }
+
+  .back-link {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    max-width: 20ch;
+  }
+  .lede { font-size: 16px; color: var(--ink-dim); max-width: 60ch; margin: 0 0 40px; }
+
+  .section-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .resource { margin: 0 0 32px; }
+  p.body-text { font-size: 15.5px; margin: 0 0 10px; max-width: 62ch; }
+  p.body-text strong { color: var(--ink); }
+
+  .who-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+  .wtag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .wtag-design { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
+  .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  footer p { margin: 0 0 10px; max-width: 68ch; }
+  footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back-link mono" href="index.html">&larr; Home</a>
+
+  <p class="eyebrow">Infrastructure</p>
+  <h1>How AI data centers get built</h1>
+  <p class="lede">What makes these facilities physically different, who actually owns them, and why they keep ending up in places you wouldn't expect.</p>
+
+  <div class="resource">
+    <p class="section-label">Built for AI vs. built for everything else</p>
+    <p class="body-text">A traditional enterprise server rack draws somewhere around 5&ndash;10 kilowatts. A modern AI rack running Nvidia's GB200 NVL72 draws roughly 120 kilowatts &mdash; 15 to 20 times as much in the same footprint. That jump is why liquid cooling, once a niche choice, has become close to mandatory: once a rack crosses roughly 50 kW, air alone can no longer carry the heat away fast enough. The internal networking is different too &mdash; GPUs need to talk to each other constantly during training, not just to the outside internet, which calls for a denser, faster fabric than a traditional data center ever needed.</p>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Who owns it</p>
+    <p class="body-text">Three ownership models coexist today. Hyperscalers build and own their campuses outright &mdash; Meta's Hyperion site in rural Richland Parish, Louisiana is backed by Meta's own capital and its own dedicated gas power plants, ten of them by 2026, built through Entergy specifically to supply it as the campus grew into a $40 billion-plus buildout. Colocation providers take a landlord approach instead: they build and operate the facility, then lease out rack space, power, and network connections to multiple tenant companies. A newer &ldquo;neocloud&rdquo; model skips leasing space altogether and rents out GPU compute capacity directly instead.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Meta (META) &mdash; owner</span>
+      <span class="wtag wtag-other">Equinix (EQIX) &mdash; landlord</span>
+      <span class="wtag wtag-other">Digital Realty (DLR) &mdash; landlord</span>
+      <span class="wtag wtag-other">CoreWeave (CRWV) &mdash; neocloud</span>
+    </div>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Power comes first</p>
+    <p class="body-text">For a modern AI campus, finding enough cheap, available power now matters more than almost anything else in picking a site. Meta's Hyperion campus went to a rural Louisiana parish specifically because of power availability, with Entergy building ten new gas plants to supply it; a separate large AI data center project in Cheyenne, Wyoming has grown to 2.7 gigawatts &mdash; nearly triple the state's entire current electricity use. Both were picked for power and land, not proximity to any major city.</p>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Distance works differently depending on the job</p>
+    <p class="body-text">Training and inference have different latency needs, and that shapes where each one gets built. Training workloads can tolerate delays of up to 100 milliseconds between regions since GPUs are mostly talking to each other, not to end users &mdash; which is why training campuses can sit almost anywhere power is cheap. Inference, which answers a live user prompt, is latency-sensitive by nature, so it increasingly gets pushed toward smaller facilities closer to where people actually are; with inference projected to overtake training as the majority of AI compute by 2030, that's starting to pull data center siting in two different directions at once.</p>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Climate, land, and incentives</p>
+    <p class="body-text">Cooler climates cut cooling costs and water draw, which is part of why Nordic countries have attracted large data center builds for years, pairing cold air with abundant hydroelectric power. Tax incentives can also tip the decision: Clayton County, Georgia approved a tax abatement that helped land a roughly $1 billion data center in 2025, while nearby Chesterfield County, Virginia has taken a more mixed approach &mdash; approving incentive agreements for some data center projects in 2025, then upholding a denial of a separate proposal in 2026. Land, fiber access, and tax breaks round out the calculus once power and climate have narrowed the options.</p>
+  </div>
+
+  <footer>
+    <p>Part of the hardware and infrastructure series &mdash; see <a href="silicon-to-supercluster.html">Silicon to Supercluster</a> for what's actually inside the building.</p>
+    <p>Tickers next to each company are for identification only, not investment advice.</p>
+    <ul>
+      <li><a href="https://www.nvidia.com/en-us/data-center/gb200-nvl72/" target="_blank" rel="noopener">GB200 NVL72 &mdash; NVIDIA</a></li>
+      <li><a href="https://www.datacenterdynamics.com/en/opinions/training-built-the-campuses-inference-will-choose-the-markets/" target="_blank" rel="noopener">Training vs. Inference Siting &mdash; Data Center Dynamics</a></li>
+      <li><a href="https://fortune.com/2026/03/27/meta-hyperion-10-gas-power-plants-louisiana-entergy/" target="_blank" rel="noopener">Meta's Hyperion Campus &mdash; Fortune</a></li>
+      <li><a href="https://www.wyomingpublicmedia.org/politics-government/2025-08-08/cheyenne-mayor-welcomes-1-8-gigawatt-data-center-as-cities-race-to-fuel-ai" target="_blank" rel="noopener">Cheyenne's 1.8GW Data Center &mdash; Wyoming Public Media</a></li>
+      <li><a href="https://www.ajc.com/news/2025/06/clayton-county-agency-approves-tax-break-for-1b-data-center/" target="_blank" rel="noopener">Clayton County Tax Break &mdash; AJC</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>

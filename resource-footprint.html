@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230068b3%22/%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%227%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3C/svg%3E">
+<title>What It Takes to Keep AI Running</title>
+<meta name="description" content="A high-level look at the power, water, materials, and hardware churn behind running AI at scale — and what that actually costs.">
+<meta property="og:title" content="What It Takes to Keep AI Running">
+<meta property="og:description" content="A high-level look at the power, water, materials, and hardware churn behind running AI at scale — and what that actually costs.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eaecf0;
+    --ink: #14171c;
+    --ink-dim: #5b6472;
+    --ink-faint: #8a92a0;
+    --accent: #0068b3;
+    --accent-soft: #0068b31a;
+    --copper: #a8551f;
+    --copper-soft: #a8551f1a;
+    --line: #d7dae0;
+    --line-strong: #b8bdc7;
+    --radius: 3px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+      --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+      --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+      --copper: #f0a35f; --copper-soft: #f0a35f22;
+      --line: #262b34; --line-strong: #343b47;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+    --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+    --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+    --copper: #f0a35f; --copper-soft: #f0a35f22;
+    --line: #262b34; --line-strong: #343b47;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 72px; }
+
+  .back-link {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    max-width: 20ch;
+  }
+  .lede { font-size: 16px; color: var(--ink-dim); max-width: 60ch; margin: 0 0 40px; }
+
+  .section-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .resource { margin: 0 0 32px; }
+  p.body-text { font-size: 15.5px; margin: 0 0 10px; max-width: 62ch; }
+  p.body-text strong { color: var(--ink); }
+
+  .who-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+  .wtag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .wtag-design { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
+  .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  footer p { margin: 0 0 10px; max-width: 68ch; }
+  footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back-link mono" href="index.html">&larr; Home</a>
+
+  <p class="eyebrow">Sustainability</p>
+  <h1>What it takes to keep AI running</h1>
+  <p class="lede">Every model in production depends on physical resources that rarely make it into the conversation &mdash; power, water, materials, and the hardware itself. A high-level look at what it actually takes to keep this running, and what that costs.</p>
+
+  <div class="resource">
+    <p class="section-label">Power</p>
+    <p class="body-text">A single large AI data center campus can draw several hundred megawatts to multiple gigawatts of continuous power at the largest sites &mdash; comparable to a mid-sized city, or more. Global electricity demand from data centers is on track to more than double by 2030, to roughly 945 terawatt-hours, according to the International Energy Agency. Utilities are responding by building new natural gas plants specifically to serve AI demand and, in some cases, delaying coal plant retirements to keep the grid stable.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Entergy (ETR) &mdash; utility</span>
+      <span class="wtag wtag-other">Southern Company (SO) &mdash; utility</span>
+      <span class="wtag wtag-other">Meta (META) &mdash; demand</span>
+      <span class="wtag wtag-other">Alphabet (GOOGL) &mdash; demand</span>
+    </div>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Water</p>
+    <p class="body-text">Cooling a data center takes water &mdash; a large hyperscale campus can use up to 5 million gallons a day, according to the Environmental and Energy Study Institute. Closed-loop liquid cooling reduces this on-site draw compared to traditional evaporative cooling towers, but it doesn't eliminate the water footprint: generating the electricity itself carries an indirect water cost, estimated at around 211 billion gallons in 2023 for U.S. data centers alone, since much of that power still comes from thermoelectric plants that use water to cool their own generators. Most data centers get their water from local municipal water utilities or county water authorities &mdash; not investor-owned, publicly traded companies.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Microsoft (MSFT) &mdash; consumer</span>
+      <span class="wtag wtag-other">Alphabet (GOOGL) &mdash; consumer</span>
+      <span class="wtag wtag-other">Meta (META) &mdash; consumer</span>
+      <span class="wtag wtag-other">Amazon (AMZN) &mdash; consumer</span>
+    </div>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Cabling and connectivity</p>
+    <p class="body-text">Inside and between data centers, cabling does two different jobs that call for different materials. Copper handles power delivery and the short, extremely high-speed links between GPUs and servers within a rack &mdash; a hyperscale AI campus can use up to 50,000 tons of copper for this alone, several times what a conventional data center needs, according to the Copper Development Association. Fiber optic cable handles the long-distance, high-bandwidth links between data centers and into the broader internet backbone; a 2025 Fiber Broadband Association study estimated the U.S. will need roughly 213 million additional fiber miles by 2029 just to connect the new wave of AI data centers. Rising demand from AI buildout is now a recognized driver of a global &ldquo;copper supercycle,&rdquo; with the International Energy Agency projecting AI data centers alone could consume more than 500,000 metric tons of copper a year by 2030.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-make">Corning (GLW) &mdash; make</span>
+      <span class="wtag wtag-make">Amphenol (APH) &mdash; make</span>
+    </div>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Materials and land</p>
+    <p class="body-text">Every chip in this supply chain depends on mined materials &mdash; silicon, copper, gold for connectors, and rare earth elements used in some components &mdash; extracted, refined, and shipped globally before a single transistor is etched. A single hyperscale campus can span hundreds of acres, and competition for buildable land near power and fiber infrastructure has driven up real estate and grid-connection costs in several regions.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Freeport-McMoRan (FCX) &mdash; supply</span>
+      <span class="wtag wtag-other">MP Materials (MP) &mdash; supply</span>
+    </div>
+  </div>
+
+  <div class="resource">
+    <p class="section-label">Hardware lifecycle and e-waste</p>
+    <p class="body-text">GPUs are typically replaced every two to four years as new, more efficient generations arrive, meaning the physical hardware &mdash; and everything it took to make it &mdash; gets retired quickly. Globally, only about 22% of e-waste is formally collected and recycled, according to the 2024 Global E-waste Monitor from the UN and ITU; the rest is often exported, landfilled, or informally processed in ways that recover far less of the valuable material inside. A small industry of companies now specializes in securely decommissioning retired data center hardware and recovering the components and metals inside before they're lost to landfill.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Iron Mountain (IRM) &mdash; recycle</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>Part of the hardware and infrastructure series &mdash; see <a href="silicon-to-supercluster.html">Silicon to Supercluster</a> for how this hardware gets built in the first place.</p>
+    <p>Figures above are order-of-magnitude estimates from public reporting as of October 2026, gathered here to make the resource footprint of AI infrastructure easier to think about &mdash; not to draw a conclusion for you.</p>
+    <p>Tickers next to each company are for identification only, not investment advice.</p>
+    <ul>
+      <li><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank" rel="noopener">Energy demand from AI &mdash; IEA</a></li>
+      <li><a href="https://www.eesi.org/articles/view/data-centers-and-water-consumption" target="_blank" rel="noopener">Data Centers and Water Consumption &mdash; EESI</a></li>
+      <li><a href="https://ewastemonitor.info/the-global-e-waste-monitor-2024/" target="_blank" rel="noopener">Global E-waste Monitor 2024 &mdash; UNITAR/ITU</a></li>
+      <li><a href="https://www.spglobal.com/en/research-insights/special-reports/copper-in-the-age-of-ai" target="_blank" rel="noopener">Copper in the Age of AI &mdash; S&amp;P Global</a></li>
+      <li><a href="https://broadbandbreakfast.com/study-data-centers-will-require-214m-more-fiber-miles-by-2029/" target="_blank" rel="noopener">Fiber Route-Mile Study &mdash; Broadband Breakfast</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>
