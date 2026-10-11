@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230068b3%22/%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%227%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23fff%22%20fill-opacity%3D%220.92%22/%3E%3C/svg%3E">
+<title>The AI Stack: From App to GPU</title>
+<meta name="description" content="Eight layers sit between the app you type into and the GPU that does the math. A top-to-bottom walk through application, agents, model, serving, frameworks, memory, CPU, and GPU.">
+<meta property="og:title" content="The AI Stack: From App to GPU">
+<meta property="og:description" content="Eight layers sit between the app you type into and the GPU that does the math. A top-to-bottom walk through application, agents, model, serving, frameworks, memory, CPU, and GPU.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://farzanehorak.com/ai-stack-layers.html">
+<link rel="canonical" href="https://farzanehorak.com/ai-stack-layers.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eaecf0;
+    --ink: #14171c;
+    --ink-dim: #5b6472;
+    --ink-faint: #8a92a0;
+    --accent: #0068b3;
+    --accent-soft: #0068b31a;
+    --copper: #a8551f;
+    --copper-soft: #a8551f1a;
+    --line: #d7dae0;
+    --line-strong: #b8bdc7;
+    --radius: 3px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+      --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+      --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+      --copper: #f0a35f; --copper-soft: #f0a35f22;
+      --line: #262b34; --line-strong: #343b47;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c10; --surface: #12151b; --surface-2: #1a1e26;
+    --ink: #e7ebf0; --ink-dim: #8b93a3; --ink-faint: #5c6472;
+    --accent: #5fc2ff; --accent-soft: #5fc2ff22;
+    --copper: #f0a35f; --copper-soft: #f0a35f22;
+    --line: #262b34; --line-strong: #343b47;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 72px; }
+
+  .back-link {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    max-width: 20ch;
+  }
+  .lede { font-size: 16px; color: var(--ink-dim); max-width: 60ch; margin: 0 0 40px; }
+
+  .section-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .resource { margin: 0 0 32px; }
+  p.body-text { font-size: 15.5px; margin: 0 0 10px; max-width: 62ch; }
+  p.body-text strong { color: var(--ink); }
+
+  .who-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; }
+  .wtag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .wtag-design { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
+  .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  footer p { margin: 0 0 10px; max-width: 68ch; }
+  footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+
+  .stack-fig { margin: 0 0 40px; }
+  .stack-fig svg { width: 100%; height: auto; display: block; }
+  .stack-fig figcaption { font-size: 12.5px; color: var(--ink-faint); margin-top: 10px; max-width: 62ch; }
+  .sw-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+  .hw-box { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 1.2; }
+  .bg-box { fill: var(--surface); }
+  .t-num-sw { fill: var(--accent); }
+  .t-num-hw { fill: var(--copper); }
+  .t-name { fill: var(--ink); }
+  .t-desc { fill: var(--ink-dim); }
+  .t-ex { fill: var(--ink-faint); }
+  .t-axis { fill: var(--ink-faint); }
+  .axis-line { stroke: var(--ink-faint); stroke-width: 1.5; }
+  @media (max-width: 560px) {
+    .stack-fig .t-desc, .stack-fig .t-ex { display: none; }
+    .stack-fig .t-name { font-size: 25px; transform: translateY(14px); }
+  }
+  .split-line { stroke: var(--ink-dim); stroke-width: 1; stroke-dasharray: 4 4; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a class="back-link mono" href="index.html">&larr; Home</a>
+
+  <p class="eyebrow">Infrastructure</p>
+  <h1>The AI stack: from app to GPU</h1>
+  <p class="lede">Eight layers sit between the app you type into and the GPU that does the math. Each one only works because the layer below it exists.</p>
+
+  <figure class="stack-fig">
+<svg viewBox="0 0 760 704" role="img" aria-labelledby="stk-t stk-d" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans',system-ui,sans-serif">
+<title id="stk-t">The AI stack in eight layers</title>
+<desc id="stk-d">Eight stacked layers from application at the top to GPU at the bottom: application, orchestration and agents, model, inference serving, frameworks and drivers, then memory, CPU and GPU. Software is above and hardware below.</desc>
+<defs><marker id="stk-ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" style="fill:var(--ink-faint)"/></marker></defs>
+<line class="axis-line" x1="22" y1="16" x2="22" y2="678" marker-end="url(#stk-ar)"/>
+<text class="t-axis" transform="translate(12,347.0) rotate(-90)" text-anchor="middle" font-size="10.5" font-family="'IBM Plex Mono',monospace" letter-spacing="0.8">USER  →  SILICON</text>
+<rect class="bg-box" x="56" y="8" width="704" height="76" rx="3"/>
+<rect class="sw-box" x="56" y="8" width="704" height="76" rx="3"/>
+<text class="t-num-sw" x="74" y="54" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">1</text>
+<text class="t-name" x="112" y="35" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Application</text>
+<text class="t-desc" x="112" y="55" font-size="13">What people touch: chat, coding assistant, support bot</text>
+<text class="t-ex" x="112" y="73" font-size="11.5">ChatGPT · Claude · Copilot · Cursor</text>
+<rect class="bg-box" x="56" y="94" width="704" height="76" rx="3"/>
+<rect class="sw-box" x="56" y="94" width="704" height="76" rx="3"/>
+<text class="t-num-sw" x="74" y="140" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">2</text>
+<text class="t-name" x="112" y="121" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Orchestration &amp; agents</text>
+<text class="t-desc" x="112" y="141" font-size="13">Plans steps, calls tools, loops until done</text>
+<text class="t-ex" x="112" y="159" font-size="11.5">MCP · LangGraph · agent platforms</text>
+<rect class="bg-box" x="56" y="180" width="704" height="76" rx="3"/>
+<rect class="sw-box" x="56" y="180" width="704" height="76" rx="3"/>
+<text class="t-num-sw" x="74" y="226" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">3</text>
+<text class="t-name" x="112" y="207" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Model</text>
+<text class="t-desc" x="112" y="227" font-size="13">Weights + architecture; predicts the next token</text>
+<text class="t-ex" x="112" y="245" font-size="11.5">GPT · Claude · Gemini · Llama</text>
+<rect class="bg-box" x="56" y="266" width="704" height="76" rx="3"/>
+<rect class="sw-box" x="56" y="266" width="704" height="76" rx="3"/>
+<text class="t-num-sw" x="74" y="312" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">4</text>
+<text class="t-name" x="112" y="293" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Inference serving</text>
+<text class="t-desc" x="112" y="313" font-size="13">Batches users together, manages the KV cache</text>
+<text class="t-ex" x="112" y="331" font-size="11.5">vLLM · TensorRT-LLM · SGLang</text>
+<rect class="bg-box" x="56" y="352" width="704" height="76" rx="3"/>
+<rect class="sw-box" x="56" y="352" width="704" height="76" rx="3"/>
+<text class="t-num-sw" x="74" y="398" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">5</text>
+<text class="t-name" x="112" y="379" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Frameworks &amp; drivers</text>
+<text class="t-desc" x="112" y="399" font-size="13">Turns matrix math into chip instructions</text>
+<text class="t-ex" x="112" y="417" font-size="11.5">PyTorch · JAX · CUDA · XLA</text>
+<rect class="bg-box" x="56" y="438" width="704" height="76" rx="3"/>
+<rect class="hw-box" x="56" y="438" width="704" height="76" rx="3"/>
+<text class="t-num-hw" x="74" y="484" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">6</text>
+<text class="t-name" x="112" y="465" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Memory</text>
+<text class="t-desc" x="112" y="485" font-size="13">HBM beside the GPU, then DRAM, then SSD</text>
+<text class="t-ex" x="112" y="503" font-size="11.5">SK hynix · Samsung · Micron</text>
+<rect class="bg-box" x="56" y="524" width="704" height="76" rx="3"/>
+<rect class="hw-box" x="56" y="524" width="704" height="76" rx="3"/>
+<text class="t-num-hw" x="74" y="570" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">7</text>
+<text class="t-name" x="112" y="551" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">CPU</text>
+<text class="t-desc" x="112" y="571" font-size="13">The manager: OS, networking, feeding the GPUs</text>
+<text class="t-ex" x="112" y="589" font-size="11.5">Intel · AMD · Nvidia Grace</text>
+<rect class="bg-box" x="56" y="610" width="704" height="76" rx="3"/>
+<rect class="hw-box" x="56" y="610" width="704" height="76" rx="3"/>
+<text class="t-num-hw" x="74" y="656" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">8</text>
+<text class="t-name" x="112" y="637" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">GPU / accelerator</text>
+<text class="t-desc" x="112" y="657" font-size="13">Does the matrix math, thousands of operations at once</text>
+<text class="t-ex" x="112" y="675" font-size="11.5">Nvidia · AMD · Google TPU</text>
+<line class="split-line" x1="56" y1="433.0" x2="760" y2="433.0"/>
+</svg>
+    <figcaption>Blue layers are software, copper layers are hardware. Names on each card are examples, not a complete list.</figcaption>
+  </figure>
+
+  <div class="resource">
+    <p class="section-label">1. Application</p>
+    <p class="body-text">This is what people actually touch: a chat window, a coding assistant, a support bot. Most apps do no AI math themselves. They are ordinary software that wraps your request in instructions and context, then sends it to a model over an API.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Microsoft (MSFT) &mdash; software</span>
+      <span class="wtag wtag-other">Salesforce (CRM) &mdash; software</span>
+      <span class="wtag wtag-other">Adobe (ADBE) &mdash; software</span>
+      <span class="wtag wtag-other">ServiceNow (NOW) &mdash; software</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">2. Orchestration and agents</p>
+    <p class="body-text">When a task needs more than one question and one answer, a layer in between decides which tools to call, fetches documents, remembers earlier steps, and loops until the job is done. Protocols like MCP, introduced in November 2024, let a model plug into tools and data in a standard way. One agent task can mean dozens of model calls, so this layer multiplies the compute behind every request.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Salesforce (CRM) &mdash; agents</span>
+      <span class="wtag wtag-other">Microsoft (MSFT) &mdash; agents</span>
+      <span class="wtag wtag-other">UiPath (PATH) &mdash; agents</span>
+      <span class="wtag wtag-other">IBM (IBM) &mdash; agents</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">3. The model</p>
+    <p class="body-text">A model is a very large file of numbers, called weights, plus the architecture that says how to combine them. Text is cut into tokens, and the model predicts the next one, over and over. Its parameter count decides how much memory it needs just to exist, before it does any work.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Alphabet (GOOGL) &mdash; frontier lab</span>
+      <span class="wtag wtag-other">Meta (META) &mdash; open weights</span>
+      <span class="wtag wtag-other">Alibaba (BABA) &mdash; frontier lab</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">4. Inference serving</p>
+    <p class="body-text">Serving software turns one model into something thousands of people can use at once. Each request has two phases. Prefill reads your whole prompt in parallel, which is heavy on math. Decode then writes the answer one token at a time, re-reading the model&rsquo;s weights and a running notebook of the conversation, the KV cache, for every token. Serving software mostly batches requests and manages that cache so the hardware stays busy.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-other">Amazon (AMZN) &mdash; operate</span>
+      <span class="wtag wtag-other">Microsoft (MSFT) &mdash; operate</span>
+      <span class="wtag wtag-other">Cerebras (CBRS) &mdash; inference</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">5. Frameworks and drivers</p>
+    <p class="body-text">PyTorch and JAX turn &ldquo;multiply these matrices&rdquo; into instructions a chip can run. For Nvidia, that path runs through CUDA and its libraries, which developers have written against for nearly two decades. That software, and the habit around it, is a large part of Nvidia&rsquo;s moat. Google&rsquo;s TPUs use their own compiler stack instead.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-design">Nvidia (NVDA) &mdash; CUDA</span>
+      <span class="wtag wtag-other">Alphabet (GOOGL) &mdash; JAX / XLA</span>
+      <span class="wtag wtag-other">Meta (META) &mdash; PyTorch origin</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">6. Memory</p>
+    <p class="body-text">Memory sets the speed limit. HBM, high-bandwidth memory, is stacked right beside the GPU and holds the weights and the KV cache. Larger, slower DRAM attached to the CPU holds the overflow, and SSDs hold the files at rest. Decode is limited by how fast bytes reach the compute, not by how fast the compute is. Nvidia&rsquo;s Rubin supports up to 288 GB of HBM4 and AMD&rsquo;s MI455 up to 432 GB, and Micron has said its entire 2026 HBM4 capacity is sold out.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-make">SK hynix (000660.KS) &mdash; make</span>
+      <span class="wtag wtag-make">Samsung (005930.KS) &mdash; make</span>
+      <span class="wtag wtag-make">Micron (MU) &mdash; make</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">7. CPU</p>
+    <p class="body-text">The CPU is the manager. It runs the operating system, handles networking and storage, schedules work, and feeds data to the GPUs. It does very little of the model math. Designs like Nvidia&rsquo;s Grace pair the CPU tightly with the GPU so the two can share memory quickly: a GB200 NVL72 rack holds 36 Grace CPUs alongside 72 Blackwell GPUs.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-design">Intel (INTC) &mdash; design</span>
+      <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+      <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+      <span class="wtag wtag-design">Arm (ARM) &mdash; design</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">8. GPU</p>
+    <p class="body-text">The GPU does the matrix multiplication, thousands of operations at once. Everything above it exists to keep it fed, and everything below it, from power to cooling to the building, exists to keep it running. Custom accelerators such as Google&rsquo;s TPU do the same job with a narrower design.</p>
+    <div class="who-tags">
+      <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
+      <span class="wtag wtag-design">AMD (AMD) &mdash; design</span>
+      <span class="wtag wtag-design">Broadcom (AVGO) &mdash; design</span>
+      <span class="wtag wtag-make">TSMC (TSM) &mdash; make</span>
+    </div>
+  </div>
+  <div class="resource">
+    <p class="section-label">Where the bottleneck sits</p>
+    <p class="body-text">Training reads and writes enormous amounts of data and is limited mostly by compute and by the network between GPUs. Inference is limited mostly by memory, because decode re-reads the weights for every token. That is why HBM, layer 6, has become some of the most contested silicon in the stack.</p>
+  </div>
+
+  <footer>
+    <p>Part of the hardware and infrastructure series &mdash; see <a href="chips-behind-ai.html">CPU, GPU, TPU, DPU</a> for the chips themselves and <a href="silicon-to-supercluster.html">Silicon to Supercluster</a> for how they get built.</p>
+    <p>Tickers next to each company are for identification only, not investment advice.</p>
+    <ul>
+      <li><a href="https://www.blocksandfiles.com/hci/2026/01/28/high-bandwidth-memory-v4-supply-takes-shape/4090314" target="_blank" rel="noopener">HBM4 supply &mdash; Blocks &amp; Files</a></li>
+      <li><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">Introducing MCP &mdash; Anthropic</a></li>
+      <li><a href="https://www.nvidia.com/en-us/data-center/gb200-nvl72/" target="_blank" rel="noopener">GB200 NVL72 &mdash; NVIDIA</a></li>
+      <li><a href="https://www.morphllm.com/llm-inference" target="_blank" rel="noopener">LLM Inference Guide &mdash; Morph</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>
