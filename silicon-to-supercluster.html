@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://farzanehorak.com/silicon-to-supercluster.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -30,6 +30,10 @@
     --line: #d7dae0;
     --line-strong: #b8bdc7;
     --radius: 3px;
+    --hl-yellow: #ffe45c80;
+    --hl-green: #8ee59b80;
+    --hl-pink: #ff9ccf80;
+    --hl-orange: #ffb86b80;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -46,6 +50,10 @@
       --copper-soft: #f0a35f22;
       --line: #262b34;
       --line-strong: #343b47;
+      --hl-yellow: #e6c22e4d;
+      --hl-green: #3fbf5a4d;
+      --hl-pink: #e0559d4d;
+      --hl-orange: #e8853a4d;
     }
   }
 
@@ -62,6 +70,10 @@
     --copper-soft: #f0a35f22;
     --line: #262b34;
     --line-strong: #343b47;
+    --hl-yellow: #e6c22e4d;
+    --hl-green: #3fbf5a4d;
+    --hl-pink: #e0559d4d;
+    --hl-orange: #e8853a4d;
   }
 
   * { box-sizing: border-box; }
@@ -130,6 +142,44 @@
     margin: 0;
   }
   .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Hand-drawn overview sketch ---------- */
+  .sketch { margin: -24px 0 56px; }
+  .sketch-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .sketch-svg { display: block; width: 100%; height: auto; font-family: "Caveat", "Patrick Hand", "Comic Sans MS", cursive; }
+  .sketch-tall { display: none; max-width: 420px; margin: 0 auto; }
+  @media (max-width: 560px) {
+    .sketch-wide { display: none; }
+    .sketch-tall { display: block; }
+  }
+  .sketch .sk-bg { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .sketch .sk-griddot { fill: var(--line-strong); }
+  .sketch .sk-paper { fill: var(--surface); }
+  .sketch .sk-paper-s { fill: var(--surface); stroke: var(--ink); stroke-width: 2.2; }
+  .sketch .sk-line { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-thin { fill: none; stroke: var(--ink-dim); stroke-width: 1.6; stroke-linecap: round; }
+  .sketch .sk-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+  .sketch .sk-acc-line { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 4 4; }
+  .sketch .sk-cop { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 2; }
+  .sketch .sk-cop-line { fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; }
+  .sketch .sk-dot { fill: var(--copper); }
+  .sketch .sk-cool { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-spark { fill: none; stroke: var(--copper); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-bolt { fill: var(--hl-yellow); stroke: var(--copper); stroke-width: 2.2; stroke-linejoin: round; }
+  .sketch .sk-arrow { fill: none; stroke: var(--ink-dim); stroke-width: 2.4; stroke-linecap: round; }
+  .sketch .sk-headpath { fill: none; stroke: var(--ink-dim); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-numring { fill: none; stroke: var(--accent); stroke-width: 2.2; }
+  .sketch .sk-label { fill: var(--ink); font-size: 30px; font-weight: 700; }
+  .sketch .sk-num { fill: var(--accent); font-size: 26px; font-weight: 700; }
+  .sketch .sk-price { fill: var(--ink); font-size: 27px; font-weight: 700; }
+  .sketch .sk-unit { fill: var(--ink-dim); font-size: 20px; font-weight: 500; }
+  .sketch .sk-note { fill: var(--copper); font-size: 23px; font-weight: 700; }
+  .sketch .sk-note2 { fill: var(--ink-dim); font-size: 19px; font-weight: 500; }
+  .sketch .sk-callout { fill: var(--ink-dim); font-size: 21px; font-weight: 500; }
+  .sketch .hl-y { fill: var(--hl-yellow); }
+  .sketch .hl-g { fill: var(--hl-green); }
+  .sketch .hl-p { fill: var(--hl-pink); }
+  .sketch .hl-o { fill: var(--hl-orange); }
 
   /* ---------- Journey grid ---------- */
   .journey {
@@ -414,6 +464,216 @@
     <h1>Silicon to Supercluster</h1>
     <p class="lede">Every AI model runs on hardware that starts as raw sand and ends as a building that draws as much power as a small city. Here's what happens at each stage between those two points &mdash; <strong>what it is, who builds it, and what it costs.</strong></p>
   </header>
+
+  <!-- Hand-drawn overview sketch (sample) -->
+  <figure class="sketch">
+  <svg class="sketch-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+    <pattern id="sk-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.3" class="sk-griddot"/>
+    </pattern>
+    <filter id="sk-wobble" filterUnits="userSpaceOnUse" x="-50" y="-50" width="1100" height="2000">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="sk-head" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M1 1 L10 6 L1 11" class="sk-headpath"/>
+    </marker>
+    <symbol id="sk-wafer" viewBox="0 0 140 120">
+      <circle cx="70" cy="58" r="50" class="sk-acc"/>
+      <path d="M44 58h52M48 42h44M48 74h44M56 28h28M56 88h28M54 26v64M70 10v96M86 26v64M38 42v32M102 42v32" class="sk-thin"/>
+      <path d="M70 8 C98 8 120 30 120 58 C120 84 100 106 76 108 L64 108 C40 106 20 84 20 58 C20 30 42 8 70 8 Z" class="sk-line"/>
+      <path d="M62 108 L78 108" class="sk-line"/>
+      <path d="M112 16 l4 -6 M118 22 l7 -3 M110 10 l0 -6" class="sk-spark"/>
+    </symbol>
+    <symbol id="sk-die" viewBox="0 0 140 120">
+      <rect x="40" y="28" width="60" height="60" rx="2" class="sk-acc"/>
+      <path d="M48 40h16v12h-16zM72 40h20M72 48h14M48 62h44M48 70h30M48 78h20M84 70v10h8" class="sk-thin"/>
+      <path d="M40 28 L100 28 L100 88 L40 88 Z" class="sk-line"/>
+      <path d="M48 28v-6M60 28v-6M72 28v-6M84 28v-6M92 28v-6M48 88v6M60 88v6M72 88v6M84 88v6M92 88v6" class="sk-thin"/>
+      <path d="M18 104 q6 -4 12 0 M108 104 q6 -4 12 0" class="sk-thin"/>
+    </symbol>
+    <symbol id="sk-gpu" viewBox="0 0 140 120">
+      <rect x="12" y="22" width="116" height="78" rx="4" class="sk-paper"/>
+      <path d="M12 22 L128 22 L128 100 L12 100 Z" class="sk-line"/>
+      <rect x="48" y="38" width="44" height="46" rx="2" class="sk-acc"/>
+      <path d="M48 38 L92 38 L92 84 L48 84 Z" class="sk-line"/>
+      <rect x="22" y="36" width="18" height="20" class="sk-cop"/>
+      <rect x="22" y="62" width="18" height="20" class="sk-cop"/>
+      <rect x="100" y="36" width="18" height="20" class="sk-cop"/>
+      <rect x="100" y="62" width="18" height="20" class="sk-cop"/>
+      <path d="M22 42h18M22 48h18M22 68h18M22 74h18M100 42h18M100 48h18M100 68h18M100 74h18" class="sk-cop-line"/>
+      <path d="M18 100v6M34 100v6M50 100v6M66 100v6M82 100v6M98 100v6M114 100v6" class="sk-thin"/>
+    </symbol>
+    <symbol id="sk-server" viewBox="0 0 140 120">
+      <rect x="6" y="30" width="128" height="64" rx="4" class="sk-paper"/>
+      <path d="M6 30 L134 30 L134 94 L6 94 Z" class="sk-line"/>
+      <rect x="14" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="29" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="44" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="59" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="74" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="89" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="104" y="40" width="12" height="14" class="sk-acc"/>
+      <rect x="119" y="40" width="12" height="14" class="sk-acc"/>
+      <path d="M20 54 q50 14 105 0" class="sk-acc-line"/>
+      <rect x="30" y="68" width="22" height="16" class="sk-cop"/>
+      <rect x="88" y="68" width="22" height="16" class="sk-cop"/>
+      <circle cx="70" cy="76" r="7" class="sk-paper-s"/>
+      <path d="M64 76h12M70 70v12" class="sk-thin"/>
+      <path d="M14 94v8h10v-8M116 94v8h10v-8" class="sk-thin"/>
+    </symbol>
+    <symbol id="sk-rack" viewBox="0 0 140 120">
+      <rect x="40" y="4" width="60" height="112" rx="3" class="sk-paper"/>
+      <path d="M40 4 L100 4 L100 116 L40 116 Z" class="sk-line"/>
+      <rect x="46" y="10" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="21" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="32" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="43" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="54" width="40" height="8" class="sk-cop"/>
+      <rect x="46" y="65" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="76" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="87" width="40" height="8" class="sk-acc"/>
+      <rect x="46" y="98" width="40" height="8" class="sk-acc"/>
+      <path d="M92 10 V106" class="sk-cop-line"/>
+      <circle cx="92" cy="20" r="2" class="sk-dot"/><circle cx="92" cy="48" r="2" class="sk-dot"/><circle cx="92" cy="78" r="2" class="sk-dot"/>
+      <path d="M108 30 q8 6 0 12 q-8 6 0 12 M28 70 q-8 6 0 12 q8 6 0 12" class="sk-cool"/>
+    </symbol>
+    <symbol id="sk-dc" viewBox="0 0 140 120">
+      <rect x="10" y="44" width="96" height="66" class="sk-paper"/>
+      <path d="M6 110 L134 110 M10 110 L10 44 L106 44 L106 110" class="sk-line"/>
+      <path d="M8 44 L58 22 L108 44" class="sk-line"/>
+      <rect x="18" y="54" width="12" height="44" class="sk-acc"/>
+      <rect x="34" y="54" width="12" height="44" class="sk-acc"/>
+      <rect x="50" y="54" width="12" height="44" class="sk-acc"/>
+      <rect x="66" y="54" width="12" height="44" class="sk-acc"/>
+      <rect x="82" y="54" width="12" height="44" class="sk-acc"/>
+      <path d="M18 64h12M34 64h12M50 64h12M66 64h12M82 64h12M18 76h12M34 76h12M50 76h12M66 76h12M82 76h12M18 88h12M34 88h12M50 88h12M66 88h12M82 88h12" class="sk-thin"/>
+      <path d="M118 6 L106 30 L116 30 L108 52 L128 22 L118 22 L126 6 Z" class="sk-bolt"/>
+      <circle cx="122" cy="88" r="12" class="sk-paper-s"/>
+      <path d="M122 76v24M110 88h24M114 80l16 16M130 80l-16 16" class="sk-cool"/>
+    </symbol>
+    </defs>
+  </svg>
+    <svg class="sketch-svg sketch-wide" viewBox="0 0 1000 640" role="img" aria-labelledby="sk-wide-t sk-wide-d">
+      <title id="sk-wide-t">The whole journey on one page: wafer to data center</title>
+      <desc id="sk-wide-d">Six hand-drawn stages, left to right: 1 silicon wafer, about $3K to $30K per wafer; plus lithography and etching, then diced into dies; 2 chip die, about $100s to low $1,000s per die; plus HBM memory and packaging; 3 GPU, $25K to $50K per chip; times 8 GPUs plus CPUs and NVLink; 4 server, about $300K to $350K per server; times 18 trays plus a switch fabric; 5 rack, about $3M to $8.8M per rack; times thousands of racks plus power and cooling; 6 data center, $30M to $45M per megawatt.</desc>
+      <rect x="1" y="1" width="998" height="638" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="998" height="638" rx="10" fill="url(#sk-dots)"/>
+      <text x="150" y="52" text-anchor="middle" class="sk-label"><tspan class="sk-num">1</tspan> silicon wafer</text>
+      <use href="#sk-wafer" x="80" y="64" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="93" y="190" width="114" height="30" rx="4" class="hl-y" transform="rotate(-1.5 150 205)"/>
+      <text x="150" y="214" text-anchor="middle" class="sk-price">$3K–$30K</text>
+      <text x="150" y="236" text-anchor="middle" class="sk-unit">/ wafer</text>
+      <text x="500" y="52" text-anchor="middle" class="sk-label"><tspan class="sk-num">2</tspan> chip die</text>
+      <use href="#sk-die" x="430" y="64" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="427" y="190" width="146" height="30" rx="4" class="hl-g" transform="rotate(1.2 500 205)"/>
+      <text x="500" y="214" text-anchor="middle" class="sk-price">~$100s–$1Ks</text>
+      <text x="500" y="236" text-anchor="middle" class="sk-unit">/ die</text>
+      <text x="850" y="52" text-anchor="middle" class="sk-label"><tspan class="sk-num">3</tspan> GPU</text>
+      <use href="#sk-gpu" x="780" y="64" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="788" y="190" width="124" height="30" rx="4" class="hl-p" transform="rotate(-1.0 850 205)"/>
+      <text x="850" y="214" text-anchor="middle" class="sk-price">$25K–$50K</text>
+      <text x="850" y="236" text-anchor="middle" class="sk-unit">/ chip</text>
+      <text x="150" y="374" text-anchor="middle" class="sk-label"><tspan class="sk-num">4</tspan> server</text>
+      <use href="#sk-server" x="80" y="386" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="72" y="512" width="156" height="30" rx="4" class="hl-o" transform="rotate(1.6 150 527)"/>
+      <text x="150" y="536" text-anchor="middle" class="sk-price">~$300K–$350K</text>
+      <text x="150" y="558" text-anchor="middle" class="sk-unit">/ server</text>
+      <text x="500" y="374" text-anchor="middle" class="sk-label"><tspan class="sk-num">5</tspan> rack</text>
+      <use href="#sk-rack" x="430" y="386" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="432" y="512" width="135" height="30" rx="4" class="hl-y" transform="rotate(-1.3 500 527)"/>
+      <text x="500" y="536" text-anchor="middle" class="sk-price">~$3M–$8.8M</text>
+      <text x="500" y="558" text-anchor="middle" class="sk-unit">/ rack</text>
+      <text x="850" y="374" text-anchor="middle" class="sk-label"><tspan class="sk-num">6</tspan> data center</text>
+      <use href="#sk-dc" x="780" y="386" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="788" y="512" width="124" height="30" rx="4" class="hl-g" transform="rotate(1.0 850 527)"/>
+      <text x="850" y="536" text-anchor="middle" class="sk-price">$30M–$45M</text>
+      <text x="850" y="558" text-anchor="middle" class="sk-unit">/ megawatt</text>
+      <path d="M242 130 C272 122 378 136 408 130" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="325" y="116" text-anchor="middle" class="sk-note">+ litho &amp; etch</text>
+      <text x="325" y="156" text-anchor="middle" class="sk-note2">then diced into dies</text>
+      <path d="M592 130 C622 122 728 136 758 130" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="675" y="116" text-anchor="middle" class="sk-note">+ HBM &amp; packaging</text>
+      <text x="675" y="156" text-anchor="middle" class="sk-note2">die → sellable chip</text>
+      <path d="M242 452 C272 444 378 458 408 452" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="325" y="438" text-anchor="middle" class="sk-note">×18 trays</text>
+      <text x="325" y="478" text-anchor="middle" class="sk-note2">+ switch fabric</text>
+      <path d="M592 452 C622 444 728 458 758 452" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="675" y="438" text-anchor="middle" class="sk-note">×1000s of racks</text>
+      <text x="675" y="478" text-anchor="middle" class="sk-note2">+ power &amp; cooling</text>
+      <path d="M850 262 C850 306 760 302 500 302 S150 298 150 348" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <rect x="420" y="278" width="160" height="50" rx="6" class="sk-bg"/>
+      <text x="500" y="300" text-anchor="middle" class="sk-note">×8 GPUs</text>
+      <text x="500" y="322" text-anchor="middle" class="sk-note2">+ CPUs &amp; NVLink</text>
+      <text x="985" y="626" text-anchor="end" class="sk-callout">⚡ power of a small city</text>
+    </svg>
+    <svg class="sketch-svg sketch-tall" viewBox="0 0 400 1358" role="img" aria-labelledby="sk-tall-t sk-tall-d">
+      <title id="sk-tall-t">The whole journey on one page: wafer to data center</title>
+      <desc id="sk-tall-d">Six hand-drawn stages, left to right: 1 silicon wafer, about $3K to $30K per wafer; plus lithography and etching, then diced into dies; 2 chip die, about $100s to low $1,000s per die; plus HBM memory and packaging; 3 GPU, $25K to $50K per chip; times 8 GPUs plus CPUs and NVLink; 4 server, about $300K to $350K per server; times 18 trays plus a switch fabric; 5 rack, about $3M to $8.8M per rack; times thousands of racks plus power and cooling; 6 data center, $30M to $45M per megawatt.</desc>
+      <rect x="1" y="1" width="398" height="1356" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="398" height="1356" rx="10" fill="url(#sk-dots)"/>
+      <circle cx="181" cy="59" r="14" class="sk-numring"/>
+      <text x="181" y="67" text-anchor="middle" class="sk-num">1</text>
+      <text x="202" y="68" class="sk-label">silicon wafer</text>
+      <use href="#sk-wafer" x="14" y="24" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="94" width="114" height="30" rx="4" class="hl-y" transform="rotate(-1.5 221 109)"/>
+      <text x="178" y="118" text-anchor="start" class="sk-price">$3K–$30K</text>
+      <text x="178" y="140" class="sk-unit">/ wafer</text>
+      <path d="M84 148 C78 168 90 224 84 248" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="110" y="188" class="sk-note">+ litho &amp; etch</text>
+      <text x="110" y="212" class="sk-note2">then diced into dies</text>
+      <circle cx="181" cy="291" r="14" class="sk-numring"/>
+      <text x="181" y="299" text-anchor="middle" class="sk-num">2</text>
+      <text x="202" y="300" class="sk-label">chip die</text>
+      <use href="#sk-die" x="14" y="256" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="326" width="146" height="30" rx="4" class="hl-g" transform="rotate(1.2 237 341)"/>
+      <text x="178" y="350" text-anchor="start" class="sk-price">~$100s–$1Ks</text>
+      <text x="178" y="372" class="sk-unit">/ die</text>
+      <path d="M84 380 C78 400 90 456 84 480" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="110" y="420" class="sk-note">+ HBM &amp; packaging</text>
+      <text x="110" y="444" class="sk-note2">die → sellable chip</text>
+      <circle cx="181" cy="523" r="14" class="sk-numring"/>
+      <text x="181" y="531" text-anchor="middle" class="sk-num">3</text>
+      <text x="202" y="532" class="sk-label">GPU</text>
+      <use href="#sk-gpu" x="14" y="488" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="558" width="124" height="30" rx="4" class="hl-p" transform="rotate(-1.0 226 573)"/>
+      <text x="178" y="582" text-anchor="start" class="sk-price">$25K–$50K</text>
+      <text x="178" y="604" class="sk-unit">/ chip</text>
+      <path d="M84 612 C78 632 90 688 84 712" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="110" y="652" class="sk-note">×8 GPUs</text>
+      <text x="110" y="676" class="sk-note2">+ CPUs &amp; NVLink</text>
+      <circle cx="181" cy="755" r="14" class="sk-numring"/>
+      <text x="181" y="763" text-anchor="middle" class="sk-num">4</text>
+      <text x="202" y="764" class="sk-label">server</text>
+      <use href="#sk-server" x="14" y="720" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="790" width="156" height="30" rx="4" class="hl-o" transform="rotate(1.6 242 805)"/>
+      <text x="178" y="814" text-anchor="start" class="sk-price">~$300K–$350K</text>
+      <text x="178" y="836" class="sk-unit">/ server</text>
+      <path d="M84 844 C78 864 90 920 84 944" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="110" y="884" class="sk-note">×18 trays</text>
+      <text x="110" y="908" class="sk-note2">+ switch fabric</text>
+      <circle cx="181" cy="987" r="14" class="sk-numring"/>
+      <text x="181" y="995" text-anchor="middle" class="sk-num">5</text>
+      <text x="202" y="996" class="sk-label">rack</text>
+      <use href="#sk-rack" x="14" y="952" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="1022" width="135" height="30" rx="4" class="hl-y" transform="rotate(-1.3 232 1037)"/>
+      <text x="178" y="1046" text-anchor="start" class="sk-price">~$3M–$8.8M</text>
+      <text x="178" y="1068" class="sk-unit">/ rack</text>
+      <path d="M84 1076 C78 1096 90 1152 84 1176" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
+      <text x="110" y="1116" class="sk-note">×1000s of racks</text>
+      <text x="110" y="1140" class="sk-note2">+ power &amp; cooling</text>
+      <circle cx="181" cy="1219" r="14" class="sk-numring"/>
+      <text x="181" y="1227" text-anchor="middle" class="sk-num">6</text>
+      <text x="202" y="1228" class="sk-label">data center</text>
+      <use href="#sk-dc" x="14" y="1184" width="140" height="120" filter="url(#sk-wobble)"/>
+      <rect x="164" y="1254" width="124" height="30" rx="4" class="hl-g" transform="rotate(1.0 226 1269)"/>
+      <text x="178" y="1278" text-anchor="start" class="sk-price">$30M–$45M</text>
+      <text x="178" y="1300" class="sk-unit">/ megawatt</text>
+      <text x="386" y="1346" text-anchor="end" class="sk-callout">⚡ power of a small city</text>
+    </svg>
+    <figcaption>The whole journey on one page &mdash; six stages from wafer to data center, what gets added at each step, and roughly what each one costs. Details for every stage follow below.</figcaption>
+  </figure>
 
   <div class="journey">
 
