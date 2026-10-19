@@ -204,6 +204,21 @@
   .sketch .hl-g { fill: var(--hl-green); }
   .sketch .hl-p { fill: var(--hl-pink); }
   .sketch .hl-o { fill: var(--hl-orange); }
+  /* ---------- Sketch links ---------- */
+  .sketch a.sk-link { cursor: pointer; }
+  .sketch .sk-hit { fill: transparent; stroke: none; }
+  .sketch a.sk-link:hover .sk-hit, .sketch a.sk-link:focus-visible .sk-hit { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-dasharray: 7 6; }
+  .sketch a.sk-link:focus-visible .sk-hit { stroke-width: 3; stroke-dasharray: none; }
+  .sketch a.sk-link:hover .sk-ttl, .sketch a.sk-link:focus-visible .sk-ttl { fill: var(--accent); text-decoration: underline wavy; }
+  #layer-1, #layer-2, #layer-3, #layer-4, #layer-5, #layer-6, #layer-7, #layer-8, #bottleneck { scroll-margin-top: 16px; }
+  @keyframes sk-flash {
+    from { background-color: var(--accent-soft); box-shadow: 0 0 0 10px var(--accent-soft); }
+    to { background-color: transparent; box-shadow: 0 0 0 10px transparent; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+    #layer-1:target, #layer-1:target + .body-text, #layer-2:target, #layer-2:target + .body-text, #layer-3:target, #layer-3:target + .body-text, #layer-4:target, #layer-4:target + .body-text, #layer-5:target, #layer-5:target + .body-text, #layer-6:target, #layer-6:target + .body-text, #layer-7:target, #layer-7:target + .body-text, #layer-8:target, #layer-8:target + .body-text, #bottleneck:target, #bottleneck:target + .body-text { animation: sk-flash 1.8s ease-out; border-radius: 4px; }
+  }
 </style>
 </head>
 <body>
@@ -238,80 +253,80 @@
     </marker>
     </defs>
   </svg>
-    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 730" role="img" aria-labelledby="sk-wide-t sk-wide-d">
+    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 730" role="group" aria-labelledby="sk-wide-t" aria-describedby="sk-wide-d">
       <title id="sk-wide-t">What happens when you hit Enter</title>
       <desc id="sk-wide-d">A hand-drawn trip of one prompt through the eight layers of the AI stack. You hit Enter, and the prompt goes down: 1 app wraps your prompt in instructions and context and sends it over an API; 2 agents plan steps and call tools, so one task can mean dozens of model calls; 3 the model cuts text into tokens and predicts the next one, over and over; 4 serving batches you with other users and keeps the KV cache; 5 frameworks like PyTorch and CUDA turn matrix math into chip instructions; 6 memory: HBM holds the weights and KV cache right beside the GPU; 7 the CPU, the manager, schedules work and feeds the GPUs; 8 the GPU does the matrix math, thousands of operations at once. The answer then comes back up the stack. Callout: memory sets the speed limit, because decode re-reads the weights for every token.</desc>
       <rect x="1" y="1" width="898" height="728" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="898" height="728" rx="10" fill="url(#sk-dots)"/>
-      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="250" y="18" width="190" height="52" rx="6" class="sk-paper"/><rect x="250" y="18" width="190" height="52" rx="6" class="sk-line"/><rect x="258" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="258" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="362" y="26" width="68" height="31" rx="4" class="sk-cop"/><path d="M418 34 v10 h-40 M384 38 l-6 6 l6 6" class="sk-cop-line"/><rect x="160" y="120" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="120" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="184" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="184" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="248" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="248" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="312" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="312" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="376" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="376" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="440" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="440" width="380" height="50" rx="5" class="sk-band-hw"/><rect x="160" y="504" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="504" width="380" height="50" rx="5" class="sk-band-hw"/><rect x="160" y="568" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="568" width="380" height="50" rx="5" class="sk-band-hw"/><path d="M120 96 C112 270 128 438 120 612" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M345 74 C340 90 350 100 345 116" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M555 610 C561 418 549 320 555 100 C555 50 500 44 450 48" class="sk-arrow-c" marker-end="url(#sk-head-s)"/><path d="M140 433.0 H560" class="sk-thin" stroke-dasharray="6 6"/><circle cx="502" cy="465" r="21" class="sk-paper"/><circle cx="502" cy="465" r="21" class="sk-cop" style="stroke-width:4"/><path d="M480 580 l-5 -8 M494 578 v-10 M508 580 l5 -8" class="sk-spark"/></g><g transform="translate(0 0)"><text x="240" y="40" text-anchor="end" class="sk-call-c"><tspan x="240" dy="0">you hit</tspan><tspan x="240" dy="24">Enter</tspan></text>
-      <circle cx="188" cy="145.0" r="15" class="sk-numring"/><text x="188" y="154.0" text-anchor="middle" class="sk-num">1</text>
-      <text x="216" y="154" text-anchor="start" class="sk-call"><tspan x="216" dy="0">app</tspan></text>
-      <text x="570" y="140" text-anchor="start" class="sk-small"><tspan x="570" dy="0">wraps your prompt in instructions</tspan><tspan x="570" dy="21">+ context, sends it over an API</tspan></text>
-      <circle cx="188" cy="209.0" r="15" class="sk-numring"/><text x="188" y="218.0" text-anchor="middle" class="sk-num">2</text>
-      <text x="216" y="218" text-anchor="start" class="sk-call"><tspan x="216" dy="0">agents</tspan></text>
-      <text x="570" y="204" text-anchor="start" class="sk-small"><tspan x="570" dy="0">plans steps, calls tools &#8212; one task</tspan><tspan x="570" dy="21">can mean dozens of model calls</tspan></text>
-      <circle cx="188" cy="273.0" r="15" class="sk-numring"/><text x="188" y="282.0" text-anchor="middle" class="sk-num">3</text>
-      <text x="216" y="282" text-anchor="start" class="sk-call"><tspan x="216" dy="0">model</tspan></text>
-      <text x="570" y="268" text-anchor="start" class="sk-small"><tspan x="570" dy="0">cuts text into tokens, predicts</tspan><tspan x="570" dy="21">the next one, over and over</tspan></text>
-      <circle cx="188" cy="337.0" r="15" class="sk-numring"/><text x="188" y="346.0" text-anchor="middle" class="sk-num">4</text>
-      <text x="216" y="346" text-anchor="start" class="sk-call"><tspan x="216" dy="0">serving</tspan></text>
-      <text x="570" y="332" text-anchor="start" class="sk-small"><tspan x="570" dy="0">batches you with other users,</tspan><tspan x="570" dy="21">keeps the KV cache</tspan></text>
-      <circle cx="188" cy="401.0" r="15" class="sk-numring"/><text x="188" y="410.0" text-anchor="middle" class="sk-num">5</text>
-      <text x="216" y="410" text-anchor="start" class="sk-call"><tspan x="216" dy="0">frameworks</tspan></text>
-      <text x="570" y="396" text-anchor="start" class="sk-small"><tspan x="570" dy="0">PyTorch / CUDA turn matrix math</tspan><tspan x="570" dy="21">into chip instructions</tspan></text>
-      <circle cx="188" cy="465.0" r="15" class="sk-numring"/><text x="188" y="474.0" text-anchor="middle" class="sk-num">6</text>
-      <text x="216" y="474" text-anchor="start" class="sk-call"><tspan x="216" dy="0">memory</tspan></text>
-      <rect x="570" y="440" width="314" height="28" rx="4" class="hl-o" transform="rotate(-1.2 727 454)"/><text x="578" y="462" text-anchor="start" class="sk-call">memory sets the speed limit</text>
-      <text x="570" y="486" text-anchor="start" class="sk-small"><tspan x="570" dy="0">HBM holds the weights + KV cache</tspan></text>
-      <circle cx="188" cy="529.0" r="15" class="sk-numring"/><text x="188" y="538.0" text-anchor="middle" class="sk-num">7</text>
-      <text x="216" y="538" text-anchor="start" class="sk-call"><tspan x="216" dy="0">CPU</tspan></text>
-      <text x="570" y="524" text-anchor="start" class="sk-small"><tspan x="570" dy="0">the manager: schedules work,</tspan><tspan x="570" dy="21">feeds the GPUs</tspan></text>
-      <circle cx="188" cy="593.0" r="15" class="sk-numring"/><text x="188" y="602.0" text-anchor="middle" class="sk-num">8</text>
-      <text x="216" y="602" text-anchor="start" class="sk-call"><tspan x="216" dy="0">GPU</tspan></text>
-      <text x="570" y="588" text-anchor="start" class="sk-small"><tspan x="570" dy="0">does the matrix math,</tspan><tspan x="570" dy="21">thousands of ops at once</tspan></text>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="250" y="18" width="190" height="52" rx="6" class="sk-paper"/><rect x="250" y="18" width="190" height="52" rx="6" class="sk-line"/><rect x="258" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="258" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="362" y="26" width="68" height="31" rx="4" class="sk-cop"/><path d="M418 34 v10 h-40 M384 38 l-6 6 l6 6" class="sk-cop-line"/><path d="M120 96 C112 270 128 438 120 612" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M345 74 C340 90 350 100 345 116" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M555 610 C561 418 549 320 555 100 C555 50 500 44 450 48" class="sk-arrow-c" marker-end="url(#sk-head-s)"/><path d="M140 433.0 H560" class="sk-thin" stroke-dasharray="6 6"/></g><g transform="translate(0 0)"><text x="240" y="40" text-anchor="end" class="sk-call-c"><tspan x="240" dy="0">you hit</tspan><tspan x="240" dy="24">Enter</tspan></text>
       <text x="106" y="330" text-anchor="end" class="sk-call-a"><tspan x="106" dy="0">your</tspan><tspan x="106" dy="24">prompt</tspan><tspan x="106" dy="24">goes</tspan><tspan x="106" dy="24">down</tspan></text>
       <text x="572" y="56" text-anchor="start" class="sk-call-c"><tspan x="572" dy="0">answer comes back up</tspan><tspan x="572" dy="24">(one token at a time)</tspan></text>
       <text x="152" y="425.0" text-anchor="end" class="sk-small"><tspan x="152" dy="0">software</tspan></text>
-      <text x="152" y="455.0" text-anchor="end" class="sk-small"><tspan x="152" dy="0">hardware</tspan></text>
-      <text x="502" y="472" text-anchor="middle" class="sk-call"><tspan x="502" dy="0">HBM</tspan></text>
+      <text x="152" y="455.0" text-anchor="end" class="sk-small"><tspan x="152" dy="0">hardware</tspan></text></g>
+      <a href="#layer-1" class="sk-link" aria-label="Jump to: Layer 1, Application"><title>Read about layer 1: application &#8595;</title><rect class="sk-hit" x="154" y="114" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="120" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="120" width="380" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="188" cy="145.0" r="15" class="sk-numring"/><text x="188" y="154.0" text-anchor="middle" class="sk-num">1</text>
+      <text x="216" y="154" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">app</tspan></text>
+      <text x="570" y="140" text-anchor="start" class="sk-small"><tspan x="570" dy="0">wraps your prompt in instructions</tspan><tspan x="570" dy="21">+ context, sends it over an API</tspan></text></g></a>
+      <a href="#layer-2" class="sk-link" aria-label="Jump to: Layer 2, Orchestration and agents"><title>Read about layer 2: orchestration and agents &#8595;</title><rect class="sk-hit" x="154" y="178" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="184" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="184" width="380" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="188" cy="209.0" r="15" class="sk-numring"/><text x="188" y="218.0" text-anchor="middle" class="sk-num">2</text>
+      <text x="216" y="218" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">agents</tspan></text>
+      <text x="570" y="204" text-anchor="start" class="sk-small"><tspan x="570" dy="0">plans steps, calls tools &#8212; one task</tspan><tspan x="570" dy="21">can mean dozens of model calls</tspan></text></g></a>
+      <a href="#layer-3" class="sk-link" aria-label="Jump to: Layer 3, The model"><title>Read about layer 3: the model &#8595;</title><rect class="sk-hit" x="154" y="242" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="248" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="248" width="380" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="188" cy="273.0" r="15" class="sk-numring"/><text x="188" y="282.0" text-anchor="middle" class="sk-num">3</text>
+      <text x="216" y="282" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">model</tspan></text>
+      <text x="570" y="268" text-anchor="start" class="sk-small"><tspan x="570" dy="0">cuts text into tokens, predicts</tspan><tspan x="570" dy="21">the next one, over and over</tspan></text></g></a>
+      <a href="#layer-4" class="sk-link" aria-label="Jump to: Layer 4, Inference serving"><title>Read about layer 4: inference serving &#8595;</title><rect class="sk-hit" x="154" y="306" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="312" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="312" width="380" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="188" cy="337.0" r="15" class="sk-numring"/><text x="188" y="346.0" text-anchor="middle" class="sk-num">4</text>
+      <text x="216" y="346" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">serving</tspan></text>
+      <text x="570" y="332" text-anchor="start" class="sk-small"><tspan x="570" dy="0">batches you with other users,</tspan><tspan x="570" dy="21">keeps the KV cache</tspan></text></g></a>
+      <a href="#layer-5" class="sk-link" aria-label="Jump to: Layer 5, Frameworks and drivers"><title>Read about layer 5: frameworks and drivers &#8595;</title><rect class="sk-hit" x="154" y="370" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="376" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="376" width="380" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="188" cy="401.0" r="15" class="sk-numring"/><text x="188" y="410.0" text-anchor="middle" class="sk-num">5</text>
+      <text x="216" y="410" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">frameworks</tspan></text>
+      <text x="570" y="396" text-anchor="start" class="sk-small"><tspan x="570" dy="0">PyTorch / CUDA turn matrix math</tspan><tspan x="570" dy="21">into chip instructions</tspan></text></g></a>
+      <a href="#layer-6" class="sk-link" aria-label="Jump to: Layer 6, Memory"><title>Read about layer 6: memory &#8595;</title><rect class="sk-hit" x="154" y="434" width="392" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="440" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="440" width="380" height="50" rx="5" class="sk-band-hw"/><circle cx="502" cy="465" r="21" class="sk-paper"/><circle cx="502" cy="465" r="21" class="sk-cop" style="stroke-width:4"/></g><g transform="translate(0 0)"><circle cx="188" cy="465.0" r="15" class="sk-numring"/><text x="188" y="474.0" text-anchor="middle" class="sk-num">6</text>
+      <text x="216" y="474" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">memory</tspan></text>
+      <text x="502" y="472" text-anchor="middle" class="sk-call"><tspan x="502" dy="0">HBM</tspan></text></g></a>
+      <a href="#layer-7" class="sk-link" aria-label="Jump to: Layer 7, CPU"><title>Read about layer 7: cpu &#8595;</title><rect class="sk-hit" x="154" y="498" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="504" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="504" width="380" height="50" rx="5" class="sk-band-hw"/></g><g transform="translate(0 0)"><circle cx="188" cy="529.0" r="15" class="sk-numring"/><text x="188" y="538.0" text-anchor="middle" class="sk-num">7</text>
+      <text x="216" y="538" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">CPU</tspan></text>
+      <text x="570" y="524" text-anchor="start" class="sk-small"><tspan x="570" dy="0">the manager: schedules work,</tspan><tspan x="570" dy="21">feeds the GPUs</tspan></text></g></a>
+      <a href="#layer-8" class="sk-link" aria-label="Jump to: Layer 8, GPU"><title>Read about layer 8: gpu &#8595;</title><rect class="sk-hit" x="154" y="562" width="734" height="62" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="160" y="568" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="568" width="380" height="50" rx="5" class="sk-band-hw"/><path d="M480 580 l-5 -8 M494 578 v-10 M508 580 l5 -8" class="sk-spark"/></g><g transform="translate(0 0)"><circle cx="188" cy="593.0" r="15" class="sk-numring"/><text x="188" y="602.0" text-anchor="middle" class="sk-num">8</text>
+      <text x="216" y="602" text-anchor="start" class="sk-call sk-ttl"><tspan x="216" dy="0">GPU</tspan></text>
       <text x="494" y="606" text-anchor="middle" class="sk-call-c"><tspan x="494" dy="0">busy!</tspan></text>
-      <text x="160" y="664" text-anchor="start" class="sk-small"><tspan x="160" dy="0">why? decode re-reads the weights for every token, so bytes reaching</tspan><tspan x="160" dy="21">the GPU &#8212; not raw compute &#8212; decide how fast the answer streams</tspan></text></g>
+      <text x="570" y="588" text-anchor="start" class="sk-small"><tspan x="570" dy="0">does the matrix math,</tspan><tspan x="570" dy="21">thousands of ops at once</tspan></text></g></a>
+      <a href="#bottleneck" class="sk-link" aria-label="Jump to: Where the bottleneck sits"><title>Read where the bottleneck sits &#8595;</title><rect class="sk-hit" x="554" y="434" width="340" height="62" rx="12" fill="transparent" pointer-events="all"/><rect class="sk-hit" x="150" y="638" width="600" height="56" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"></g><g transform="translate(0 0)"><rect x="570" y="440" width="314" height="28" rx="4" class="hl-o" transform="rotate(-1.2 727 454)"/><text x="578" y="462" text-anchor="start" class="sk-call sk-ttl">memory sets the speed limit</text>
+      <text x="570" y="486" text-anchor="start" class="sk-small"><tspan x="570" dy="0">HBM holds the weights + KV cache</tspan></text>
+      <text x="160" y="664" text-anchor="start" class="sk-small"><tspan x="160" dy="0">why? decode re-reads the weights for every token, so bytes reaching</tspan><tspan x="160" dy="21">the GPU &#8212; not raw compute &#8212; decide how fast the answer streams</tspan></text></g></a>
     </svg>
-    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1006" role="img" aria-labelledby="sk-tall-t sk-tall-d">
+    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1006" role="group" aria-labelledby="sk-tall-t" aria-describedby="sk-tall-d">
       <title id="sk-tall-t">What happens when you hit Enter</title>
       <desc id="sk-tall-d">A hand-drawn trip of one prompt through the eight layers of the AI stack. You hit Enter, and the prompt goes down: 1 app wraps your prompt in instructions and context and sends it over an API; 2 agents plan steps and call tools, so one task can mean dozens of model calls; 3 the model cuts text into tokens and predicts the next one, over and over; 4 serving batches you with other users and keeps the KV cache; 5 frameworks like PyTorch and CUDA turn matrix math into chip instructions; 6 memory: HBM holds the weights and KV cache right beside the GPU; 7 the CPU, the manager, schedules work and feeds the GPUs; 8 the GPU does the matrix math, thousands of operations at once. The answer then comes back up the stack. Callout: memory sets the speed limit, because decode re-reads the weights for every token.</desc>
       <rect x="1" y="1" width="438" height="1004" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="438" height="1004" rx="10" fill="url(#sk-dots)"/>
-      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="125" y="14" width="190" height="52" rx="6" class="sk-paper"/><rect x="125" y="14" width="190" height="52" rx="6" class="sk-line"/><rect x="133" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="133" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="237" y="22" width="68" height="31" rx="4" class="sk-cop"/><path d="M293 30 v10 h-40 M259 34 l-6 6 l6 6" class="sk-cop-line"/><rect x="54" y="108" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="108" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="212" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="212" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="316" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="316" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="420" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="420" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="524" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="524" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="628" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="628" width="360" height="50" rx="5" class="sk-band-hw"/><rect x="54" y="732" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="732" width="360" height="50" rx="5" class="sk-band-hw"/><rect x="54" y="836" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="836" width="360" height="50" rx="5" class="sk-band-hw"/><path d="M28 98 C22 408 34 586 28 880" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M220 70 C216 82 224 92 220 102" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M428 878 C434 586 422 408 428 72 C428 38 370 28 324 40" class="sk-arrow-c" marker-end="url(#sk-head-s)"/><circle cx="376" cy="653" r="21" class="sk-paper"/><circle cx="376" cy="653" r="21" class="sk-cop" style="stroke-width:4"/></g><g transform="translate(0 0)"><text x="114" y="38" text-anchor="end" class="sk-call-c"><tspan x="114" dy="0">you hit</tspan><tspan x="114" dy="24">Enter</tspan></text>
-      <circle cx="82" cy="133.0" r="15" class="sk-numring"/><text x="82" y="142.0" text-anchor="middle" class="sk-num">1</text>
-      <text x="110" y="142" text-anchor="start" class="sk-call"><tspan x="110" dy="0">app</tspan></text>
-      <circle cx="82" cy="237.0" r="15" class="sk-numring"/><text x="82" y="246.0" text-anchor="middle" class="sk-num">2</text>
-      <text x="110" y="246" text-anchor="start" class="sk-call"><tspan x="110" dy="0">agents</tspan></text>
-      <circle cx="82" cy="341.0" r="15" class="sk-numring"/><text x="82" y="350.0" text-anchor="middle" class="sk-num">3</text>
-      <text x="110" y="350" text-anchor="start" class="sk-call"><tspan x="110" dy="0">model</tspan></text>
-      <circle cx="82" cy="445.0" r="15" class="sk-numring"/><text x="82" y="454.0" text-anchor="middle" class="sk-num">4</text>
-      <text x="110" y="454" text-anchor="start" class="sk-call"><tspan x="110" dy="0">serving</tspan></text>
-      <circle cx="82" cy="549.0" r="15" class="sk-numring"/><text x="82" y="558.0" text-anchor="middle" class="sk-num">5</text>
-      <text x="110" y="558" text-anchor="start" class="sk-call"><tspan x="110" dy="0">frameworks</tspan></text>
-      <circle cx="82" cy="653.0" r="15" class="sk-numring"/><text x="82" y="662.0" text-anchor="middle" class="sk-num">6</text>
-      <text x="110" y="662" text-anchor="start" class="sk-call"><tspan x="110" dy="0">memory</tspan></text>
-      <circle cx="82" cy="757.0" r="15" class="sk-numring"/><text x="82" y="766.0" text-anchor="middle" class="sk-num">7</text>
-      <text x="110" y="766" text-anchor="start" class="sk-call"><tspan x="110" dy="0">CPU</tspan></text>
-      <circle cx="82" cy="861.0" r="15" class="sk-numring"/><text x="82" y="870.0" text-anchor="middle" class="sk-num">8</text>
-      <text x="110" y="870" text-anchor="start" class="sk-call"><tspan x="110" dy="0">GPU</tspan></text>
-      <text x="58" y="188" text-anchor="start" class="sk-small"><tspan x="58" dy="0">wraps your prompt, sends it to a model</tspan></text>
-      <text x="58" y="292" text-anchor="start" class="sk-small"><tspan x="58" dy="0">plans, calls tools &#8212; dozens of calls</tspan></text>
-      <text x="58" y="396" text-anchor="start" class="sk-small"><tspan x="58" dy="0">predicts the next token, again &amp; again</tspan></text>
-      <text x="58" y="500" text-anchor="start" class="sk-small"><tspan x="58" dy="0">batches users, keeps the KV cache</tspan></text>
-      <text x="58" y="604" text-anchor="start" class="sk-small"><tspan x="58" dy="0">matrix math &#8594; chip instructions</tspan></text>
-      <text x="58" y="812" text-anchor="start" class="sk-small"><tspan x="58" dy="0">the manager: feeds the GPUs</tspan></text>
-      <text x="376" y="660" text-anchor="middle" class="sk-call"><tspan x="376" dy="0">HBM</tspan></text>
-      <rect x="50" y="687" width="326" height="29" rx="4" class="hl-o" transform="rotate(-1.2 213 702)"/><text x="58" y="710" text-anchor="start" class="sk-call">memory sets the speed limit</text>
-      <text x="368" y="874" text-anchor="middle" class="sk-call-c"><tspan x="368" dy="0">busy!</tspan></text>
-      <text x="58" y="916" text-anchor="start" class="sk-small"><tspan x="58" dy="0">does the math, thousands of ops at once</tspan></text>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="125" y="14" width="190" height="52" rx="6" class="sk-paper"/><rect x="125" y="14" width="190" height="52" rx="6" class="sk-line"/><rect x="133" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="133" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="237" y="22" width="68" height="31" rx="4" class="sk-cop"/><path d="M293 30 v10 h-40 M259 34 l-6 6 l6 6" class="sk-cop-line"/><path d="M28 98 C22 408 34 586 28 880" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M220 70 C216 82 224 92 220 102" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M428 878 C434 586 422 408 428 72 C428 38 370 28 324 40" class="sk-arrow-c" marker-end="url(#sk-head-s)"/></g><g transform="translate(0 0)"><text x="114" y="38" text-anchor="end" class="sk-call-c"><tspan x="114" dy="0">you hit</tspan><tspan x="114" dy="24">Enter</tspan></text>
       <text x="220" y="952" text-anchor="middle" class="sk-small"><tspan x="220" dy="0">prompt goes down the blue arrow,</tspan><tspan x="220" dy="21">the answer comes back up the copper one</tspan></text></g>
+      <a href="#layer-1" class="sk-link" aria-label="Jump to: Layer 1, Application"><title>Read about layer 1: application &#8595;</title><rect class="sk-hit" x="46" y="102" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="108" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="108" width="360" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="82" cy="133.0" r="15" class="sk-numring"/><text x="82" y="142.0" text-anchor="middle" class="sk-num">1</text>
+      <text x="110" y="142" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">app</tspan></text>
+      <text x="58" y="188" text-anchor="start" class="sk-small"><tspan x="58" dy="0">wraps your prompt, sends it to a model</tspan></text></g></a>
+      <a href="#layer-2" class="sk-link" aria-label="Jump to: Layer 2, Orchestration and agents"><title>Read about layer 2: orchestration and agents &#8595;</title><rect class="sk-hit" x="46" y="206" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="212" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="212" width="360" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="82" cy="237.0" r="15" class="sk-numring"/><text x="82" y="246.0" text-anchor="middle" class="sk-num">2</text>
+      <text x="110" y="246" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">agents</tspan></text>
+      <text x="58" y="292" text-anchor="start" class="sk-small"><tspan x="58" dy="0">plans, calls tools &#8212; dozens of calls</tspan></text></g></a>
+      <a href="#layer-3" class="sk-link" aria-label="Jump to: Layer 3, The model"><title>Read about layer 3: the model &#8595;</title><rect class="sk-hit" x="46" y="310" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="316" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="316" width="360" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="82" cy="341.0" r="15" class="sk-numring"/><text x="82" y="350.0" text-anchor="middle" class="sk-num">3</text>
+      <text x="110" y="350" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">model</tspan></text>
+      <text x="58" y="396" text-anchor="start" class="sk-small"><tspan x="58" dy="0">predicts the next token, again &amp; again</tspan></text></g></a>
+      <a href="#layer-4" class="sk-link" aria-label="Jump to: Layer 4, Inference serving"><title>Read about layer 4: inference serving &#8595;</title><rect class="sk-hit" x="46" y="414" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="420" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="420" width="360" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="82" cy="445.0" r="15" class="sk-numring"/><text x="82" y="454.0" text-anchor="middle" class="sk-num">4</text>
+      <text x="110" y="454" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">serving</tspan></text>
+      <text x="58" y="500" text-anchor="start" class="sk-small"><tspan x="58" dy="0">batches users, keeps the KV cache</tspan></text></g></a>
+      <a href="#layer-5" class="sk-link" aria-label="Jump to: Layer 5, Frameworks and drivers"><title>Read about layer 5: frameworks and drivers &#8595;</title><rect class="sk-hit" x="46" y="518" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="524" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="524" width="360" height="50" rx="5" class="sk-band-sw"/></g><g transform="translate(0 0)"><circle cx="82" cy="549.0" r="15" class="sk-numring"/><text x="82" y="558.0" text-anchor="middle" class="sk-num">5</text>
+      <text x="110" y="558" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">frameworks</tspan></text>
+      <text x="58" y="604" text-anchor="start" class="sk-small"><tspan x="58" dy="0">matrix math &#8594; chip instructions</tspan></text></g></a>
+      <a href="#layer-6" class="sk-link" aria-label="Jump to: Layer 6, Memory"><title>Read about layer 6: memory &#8595;</title><rect class="sk-hit" x="46" y="622" width="376" height="60" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="628" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="628" width="360" height="50" rx="5" class="sk-band-hw"/><circle cx="376" cy="653" r="21" class="sk-paper"/><circle cx="376" cy="653" r="21" class="sk-cop" style="stroke-width:4"/></g><g transform="translate(0 0)"><circle cx="82" cy="653.0" r="15" class="sk-numring"/><text x="82" y="662.0" text-anchor="middle" class="sk-num">6</text>
+      <text x="110" y="662" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">memory</tspan></text>
+      <text x="376" y="660" text-anchor="middle" class="sk-call"><tspan x="376" dy="0">HBM</tspan></text></g></a>
+      <a href="#layer-7" class="sk-link" aria-label="Jump to: Layer 7, CPU"><title>Read about layer 7: cpu &#8595;</title><rect class="sk-hit" x="46" y="726" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="732" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="732" width="360" height="50" rx="5" class="sk-band-hw"/></g><g transform="translate(0 0)"><circle cx="82" cy="757.0" r="15" class="sk-numring"/><text x="82" y="766.0" text-anchor="middle" class="sk-num">7</text>
+      <text x="110" y="766" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">CPU</tspan></text>
+      <text x="58" y="812" text-anchor="start" class="sk-small"><tspan x="58" dy="0">the manager: feeds the GPUs</tspan></text></g></a>
+      <a href="#layer-8" class="sk-link" aria-label="Jump to: Layer 8, GPU"><title>Read about layer 8: gpu &#8595;</title><rect class="sk-hit" x="46" y="830" width="376" height="94" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="54" y="836" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="836" width="360" height="50" rx="5" class="sk-band-hw"/></g><g transform="translate(0 0)"><circle cx="82" cy="861.0" r="15" class="sk-numring"/><text x="82" y="870.0" text-anchor="middle" class="sk-num">8</text>
+      <text x="110" y="870" text-anchor="start" class="sk-call sk-ttl"><tspan x="110" dy="0">GPU</tspan></text>
+      <text x="58" y="916" text-anchor="start" class="sk-small"><tspan x="58" dy="0">does the math, thousands of ops at once</tspan></text>
+      <text x="368" y="874" text-anchor="middle" class="sk-call-c"><tspan x="368" dy="0">busy!</tspan></text></g></a>
+      <a href="#bottleneck" class="sk-link" aria-label="Jump to: Where the bottleneck sits"><title>Read where the bottleneck sits &#8595;</title><rect class="sk-hit" x="46" y="684" width="376" height="36" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"></g><g transform="translate(0 0)"><rect x="50" y="687" width="326" height="29" rx="4" class="hl-o" transform="rotate(-1.2 213 702)"/><text x="58" y="710" text-anchor="start" class="sk-call sk-ttl">memory sets the speed limit</text></g></a>
     </svg>
-    <figcaption>One prompt&rsquo;s trip down the eight layers and back up. The stack diagram below has the full name and examples for each layer.</figcaption>
+    <figcaption>One prompt&rsquo;s trip down the eight layers and back up. The stack diagram below has the full name and examples for each layer. Click or tap a title or picture in the sketch to jump to its section.</figcaption>
   </figure>
 
   <figure class="stack-fig">
@@ -375,7 +390,7 @@
   </figure>
 
   <div class="resource">
-    <p class="section-label">1. Application</p>
+    <p class="section-label" id="layer-1">1. Application</p>
     <p class="body-text">This is what people actually touch: a chat window, a coding assistant, a support bot. Most apps do no AI math themselves. They are ordinary software that wraps your request in instructions and context, then sends it to a model over an API.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Microsoft (MSFT) &mdash; software</span>
@@ -385,7 +400,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">2. Orchestration and agents</p>
+    <p class="section-label" id="layer-2">2. Orchestration and agents</p>
     <p class="body-text">When a task needs more than one question and one answer, a layer in between decides which tools to call, fetches documents, remembers earlier steps, and loops until the job is done. Protocols like MCP, introduced in November 2024, let a model plug into tools and data in a standard way. One agent task can mean dozens of model calls, so this layer multiplies the compute behind every request.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Salesforce (CRM) &mdash; agents</span>
@@ -395,7 +410,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">3. The model</p>
+    <p class="section-label" id="layer-3">3. The model</p>
     <p class="body-text">A model is a very large file of numbers, called weights, plus the architecture that says how to combine them. Text is cut into tokens, and the model predicts the next one, over and over. Its parameter count decides how much memory it needs just to exist, before it does any work.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Alphabet (GOOGL) &mdash; frontier lab</span>
@@ -404,7 +419,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">4. Inference serving</p>
+    <p class="section-label" id="layer-4">4. Inference serving</p>
     <p class="body-text">Serving software turns one model into something thousands of people can use at once. Each request has two phases. Prefill reads your whole prompt in parallel, which is heavy on math. Decode then writes the answer one token at a time, re-reading the model&rsquo;s weights and a running notebook of the conversation, the KV cache, for every token. Serving software mostly batches requests and manages that cache so the hardware stays busy.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Amazon (AMZN) &mdash; operate</span>
@@ -413,7 +428,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">5. Frameworks and drivers</p>
+    <p class="section-label" id="layer-5">5. Frameworks and drivers</p>
     <p class="body-text">PyTorch and JAX turn &ldquo;multiply these matrices&rdquo; into instructions a chip can run. For Nvidia, that path runs through CUDA and its libraries, which developers have written against for nearly two decades. That software, and the habit around it, is a large part of Nvidia&rsquo;s moat. Google&rsquo;s TPUs use their own compiler stack instead.</p>
     <div class="who-tags">
       <span class="wtag wtag-design">Nvidia (NVDA) &mdash; CUDA</span>
@@ -422,7 +437,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">6. Memory</p>
+    <p class="section-label" id="layer-6">6. Memory</p>
     <p class="body-text">Memory sets the speed limit. HBM, high-bandwidth memory, is stacked right beside the GPU and holds the weights and the KV cache. Larger, slower DRAM attached to the CPU holds the overflow, and SSDs hold the files at rest. Decode is limited by how fast bytes reach the compute, not by how fast the compute is. Nvidia&rsquo;s Rubin supports up to 288 GB of HBM4 and AMD&rsquo;s MI455 up to 432 GB, and Micron has said its entire 2026 HBM4 capacity is sold out.</p>
     <div class="who-tags">
       <span class="wtag wtag-make">SK hynix (000660.KS) &mdash; make</span>
@@ -431,7 +446,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">7. CPU</p>
+    <p class="section-label" id="layer-7">7. CPU</p>
     <p class="body-text">The CPU is the manager. It runs the operating system, handles networking and storage, schedules work, and feeds data to the GPUs. It does very little of the model math. Designs like Nvidia&rsquo;s Grace pair the CPU tightly with the GPU so the two can share memory quickly: a GB200 NVL72 rack holds 36 Grace CPUs alongside 72 Blackwell GPUs.</p>
     <div class="who-tags">
       <span class="wtag wtag-design">Intel (INTC) &mdash; design</span>
@@ -441,7 +456,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">8. GPU</p>
+    <p class="section-label" id="layer-8">8. GPU</p>
     <p class="body-text">The GPU does the matrix multiplication, thousands of operations at once. Everything above it exists to keep it fed, and everything below it, from power to cooling to the building, exists to keep it running. Custom accelerators such as Google&rsquo;s TPU do the same job with a narrower design.</p>
     <div class="who-tags">
       <span class="wtag wtag-design">Nvidia (NVDA) &mdash; design</span>
@@ -451,7 +466,7 @@
     </div>
   </div>
   <div class="resource">
-    <p class="section-label">Where the bottleneck sits</p>
+    <p class="section-label" id="bottleneck">Where the bottleneck sits</p>
     <p class="body-text">Training reads and writes enormous amounts of data and is limited mostly by compute and by the network between GPUs. Inference is limited mostly by memory, because decode re-reads the weights for every token. That is why HBM, layer 6, has become some of the most contested silicon in the stack.</p>
   </div>
 

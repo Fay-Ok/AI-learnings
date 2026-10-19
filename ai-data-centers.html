@@ -185,6 +185,21 @@
   .sketch .hl-g { fill: var(--hl-green); }
   .sketch .hl-p { fill: var(--hl-pink); }
   .sketch .hl-o { fill: var(--hl-orange); }
+  /* ---------- Sketch links ---------- */
+  .sketch a.sk-link { cursor: pointer; }
+  .sketch .sk-hit { fill: transparent; stroke: none; }
+  .sketch a.sk-link:hover .sk-hit, .sketch a.sk-link:focus-visible .sk-hit { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-dasharray: 7 6; }
+  .sketch a.sk-link:focus-visible .sk-hit { stroke-width: 3; stroke-dasharray: none; }
+  .sketch a.sk-link:hover .sk-ttl, .sketch a.sk-link:focus-visible .sk-ttl { fill: var(--accent); text-decoration: underline wavy; }
+  #power-first, #distance, #climate-incentives { scroll-margin-top: 16px; }
+  @keyframes sk-flash {
+    from { background-color: var(--accent-soft); box-shadow: 0 0 0 10px var(--accent-soft); }
+    to { background-color: transparent; box-shadow: 0 0 0 10px transparent; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+    #power-first:target, #power-first:target + .body-text, #distance:target, #distance:target + .body-text, #climate-incentives:target, #climate-incentives:target + .body-text { animation: sk-flash 1.8s ease-out; border-radius: 4px; }
+  }
 </style>
 </head>
 <body>
@@ -219,79 +234,79 @@
     </marker>
     </defs>
   </svg>
-    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 830" role="img" aria-labelledby="sk-wide-t sk-wide-d">
+    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 830" role="group" aria-labelledby="sk-wide-t" aria-describedby="sk-wide-d">
       <title id="sk-wide-t">How a site gets picked</title>
       <desc id="sk-wide-d">A hand-drawn decision path for picking an AI data center site, in five steps. 1 Power first, it matters most: Meta's Hyperion campus went to rural Richland Parish, Louisiana, where Entergy is building 10 gas plants to supply it. 2 Land: a project in Cheyenne, Wyoming has grown to 2.7 gigawatts, nearly triple the state's entire current electricity use, picked for power and land rather than a city. 3 Latency: training can go anywhere power is cheap, since delays up to 100 milliseconds are fine; inference answers live prompts, so it moves to smaller sites near users. 4 Climate and water: the Nordics pair cold air with hydro power, cutting cooling cost and water draw. 5 Tax incentives: Clayton County, Georgia landed a roughly $1 billion data center with a tax abatement in 2025. Fiber and land round out the decision.</desc>
       <rect x="1" y="1" width="898" height="828" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="898" height="828" rx="10" fill="url(#sk-dots)"/>
-      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="64" width="420" height="216" rx="8" class="sk-card"/><path d="M68 134 L46 178 L64 178 L52 214 L88 164 L70 164 L82 134 Z" class="sk-bolt"/><rect x="460" y="64" width="420" height="216" rx="8" class="sk-card"/><path d="M482 204 C508 184 548 196 574 180" class="sk-line"/><path d="M494 210 h70" class="sk-thin"/><path d="M518 190 v-40 l26 9 l-26 9" class="sk-cop"/><path d="M518 190 v-40" class="sk-line"/><rect x="10" y="330" width="420" height="216" rx="8" class="sk-card"/><circle cx="78" cy="440" r="34" class="sk-paper-s"/><path d="M78 440 v-22 M78 440 l15 10" class="sk-line"/><path d="M68 402 h20 M78 402 v4" class="sk-line"/><rect x="460" y="330" width="420" height="216" rx="8" class="sk-card"/><path d="M512 424 l0 -20 M512 424 l0 20 M512 424 l18 -10 M512 424 l-18 10 M512 424 l18 10 M512 424 l-18 -10" class="sk-cool"/><path d="M550 430 C536 452 540 470 554 470 C568 470 572 452 550 430 Z" class="sk-drop"/><rect x="235" y="596" width="420" height="216" rx="8" class="sk-card"/><path d="M269 686 h52 l20 22 l-20 22 h-52 z" class="sk-cop"/><circle cx="325" cy="708" r="4" class="sk-paper-s"/><path d="M283 700 l18 16 M283 716 l18 -16" class="sk-cop-line"/><path d="M432 172 C440 162 448 182 456 174" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M640 284 C600 318 300 292 240 324" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M432 438 C440 428 448 448 456 440" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M670 550 C660 580 640 584 624 600" class="sk-arrow" marker-end="url(#sk-head)"/></g><g transform="translate(0 0)"><text x="450" y="40" text-anchor="middle" class="sk-label"><tspan x="450" dy="0">how a site gets picked</tspan></text>
-      <circle cx="40" cy="96" r="15" class="sk-numring"/><text x="40" y="105" text-anchor="middle" class="sk-num">1</text>
-      <text x="64" y="106" text-anchor="start" class="sk-label"><tspan x="64" dy="0">power first</tspan></text>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"></g><g transform="translate(0 0)"><text x="450" y="40" text-anchor="middle" class="sk-label"><tspan x="450" dy="0">how a site gets picked</tspan></text></g>
+      <a href="#power-first" class="sk-link" aria-label="Jump to: Power first (Power comes first)"><title>Read: Power comes first &#8595;</title><rect class="sk-hit" x="10" y="64" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="64" width="420" height="216" rx="8" class="sk-card"/><path d="M68 134 L46 178 L64 178 L52 214 L88 164 L70 164 L82 134 Z" class="sk-bolt"/></g><g transform="translate(0 0)"><circle cx="40" cy="96" r="15" class="sk-numring"/><text x="40" y="105" text-anchor="middle" class="sk-num">1</text>
+      <text x="64" y="106" text-anchor="start" class="sk-label sk-ttl"><tspan x="64" dy="0">power first</tspan></text>
       <rect x="132" y="136" width="148" height="28" rx="4" class="hl-y" transform="rotate(-1.2 206 150)"/><text x="140" y="158" text-anchor="start" class="sk-call">matters most</text>
       <text x="140" y="188" text-anchor="start" class="sk-call2"><tspan x="140" dy="0">Meta Hyperion &#8594; rural</tspan><tspan x="140" dy="21">Richland Parish, LA:</tspan></text>
-      <text x="140" y="234" text-anchor="start" class="sk-call-c"><tspan x="140" dy="0">Entergy builds 10 gas plants</tspan></text>
-      <circle cx="490" cy="96" r="15" class="sk-numring"/><text x="490" y="105" text-anchor="middle" class="sk-num">2</text>
-      <text x="514" y="106" text-anchor="start" class="sk-label"><tspan x="514" dy="0">land</tspan></text>
+      <text x="140" y="234" text-anchor="start" class="sk-call-c"><tspan x="140" dy="0">Entergy builds 10 gas plants</tspan></text></g></a>
+      <a href="#power-first" class="sk-link" aria-label="Jump to: Land (Power comes first)"><title>Read: Power comes first &#8595;</title><rect class="sk-hit" x="460" y="64" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="460" y="64" width="420" height="216" rx="8" class="sk-card"/><path d="M482 204 C508 184 548 196 574 180" class="sk-line"/><path d="M494 210 h70" class="sk-thin"/><path d="M518 190 v-40 l26 9 l-26 9" class="sk-cop"/><path d="M518 190 v-40" class="sk-line"/></g><g transform="translate(0 0)"><circle cx="490" cy="96" r="15" class="sk-numring"/><text x="490" y="105" text-anchor="middle" class="sk-num">2</text>
+      <text x="514" y="106" text-anchor="start" class="sk-label sk-ttl"><tspan x="514" dy="0">land</tspan></text>
       <text x="590" y="154" text-anchor="start" class="sk-call2"><tspan x="590" dy="0">Cheyenne, WY:</tspan></text>
       <rect x="582" y="161" width="91" height="31" rx="4" class="hl-g" transform="rotate(-1.2 627 176)"/><text x="590" y="186" text-anchor="start" class="sk-fig">2.7 GW</text>
       <text x="590" y="214" text-anchor="start" class="sk-call2"><tspan x="590" dy="0">nearly 3&#215; the state's whole</tspan><tspan x="590" dy="21">current electricity use</tspan></text>
-      <text x="590" y="268" text-anchor="start" class="sk-small"><tspan x="590" dy="0">picked for power + land, not a city</tspan></text>
-      <circle cx="40" cy="362" r="15" class="sk-numring"/><text x="40" y="371" text-anchor="middle" class="sk-num">3</text>
-      <text x="64" y="372" text-anchor="start" class="sk-label"><tspan x="64" dy="0">latency</tspan></text>
+      <text x="590" y="268" text-anchor="start" class="sk-small"><tspan x="590" dy="0">picked for power + land, not a city</tspan></text></g></a>
+      <a href="#distance" class="sk-link" aria-label="Jump to: Latency (Distance works differently depending on the job)"><title>Read: Distance works differently depending on the job &#8595;</title><rect class="sk-hit" x="10" y="330" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="330" width="420" height="216" rx="8" class="sk-card"/><circle cx="78" cy="440" r="34" class="sk-paper-s"/><path d="M78 440 v-22 M78 440 l15 10" class="sk-line"/><path d="M68 402 h20 M78 402 v4" class="sk-line"/></g><g transform="translate(0 0)"><circle cx="40" cy="362" r="15" class="sk-numring"/><text x="40" y="371" text-anchor="middle" class="sk-num">3</text>
+      <text x="64" y="372" text-anchor="start" class="sk-label sk-ttl"><tspan x="64" dy="0">latency</tspan></text>
       <text x="140" y="418" text-anchor="start" class="sk-call-a"><tspan x="140" dy="0">training:</tspan></text>
       <text x="226" y="418" text-anchor="start" class="sk-call2"><tspan x="226" dy="0">anywhere cheap</tspan></text>
       <rect x="132" y="428" width="178" height="26" rx="4" class="hl-p" transform="rotate(-1.2 221 441)"/><text x="140" y="448" text-anchor="start" class="sk-call">&#8804; 100 ms is fine</text>
       <text x="140" y="486" text-anchor="start" class="sk-call-c"><tspan x="140" dy="0">inference:</tspan></text>
       <text x="234" y="486" text-anchor="start" class="sk-call2"><tspan x="234" dy="0">near users</tspan></text>
-      <text x="140" y="512" text-anchor="start" class="sk-small"><tspan x="140" dy="0">live prompts can't wait &#8594;</tspan><tspan x="140" dy="21">smaller sites, closer in</tspan></text>
-      <circle cx="490" cy="362" r="15" class="sk-numring"/><text x="490" y="371" text-anchor="middle" class="sk-num">4</text>
-      <text x="514" y="372" text-anchor="start" class="sk-label"><tspan x="514" dy="0">climate &amp; water</tspan></text>
+      <text x="140" y="512" text-anchor="start" class="sk-small"><tspan x="140" dy="0">live prompts can't wait &#8594;</tspan><tspan x="140" dy="21">smaller sites, closer in</tspan></text></g></a>
+      <a href="#climate-incentives" class="sk-link" aria-label="Jump to: Climate and water (Climate, land, and incentives)"><title>Read: Climate, land, and incentives &#8595;</title><rect class="sk-hit" x="460" y="330" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="460" y="330" width="420" height="216" rx="8" class="sk-card"/><path d="M512 424 l0 -20 M512 424 l0 20 M512 424 l18 -10 M512 424 l-18 10 M512 424 l18 10 M512 424 l-18 -10" class="sk-cool"/><path d="M550 430 C536 452 540 470 554 470 C568 470 572 452 550 430 Z" class="sk-drop"/></g><g transform="translate(0 0)"><circle cx="490" cy="362" r="15" class="sk-numring"/><text x="490" y="371" text-anchor="middle" class="sk-num">4</text>
+      <text x="514" y="372" text-anchor="start" class="sk-label sk-ttl"><tspan x="514" dy="0">climate &amp; water</tspan></text>
       <text x="590" y="420" text-anchor="start" class="sk-call-a"><tspan x="590" dy="0">Nordics:</tspan></text>
-      <text x="590" y="448" text-anchor="start" class="sk-call2"><tspan x="590" dy="0">cold air + hydro power</tspan><tspan x="590" dy="21">= less cooling cost</tspan><tspan x="590" dy="21">&amp; water draw</tspan></text>
-      <circle cx="265" cy="628" r="15" class="sk-numring"/><text x="265" y="637" text-anchor="middle" class="sk-num">5</text>
-      <text x="289" y="638" text-anchor="start" class="sk-label"><tspan x="289" dy="0">tax incentives</tspan></text>
+      <text x="590" y="448" text-anchor="start" class="sk-call2"><tspan x="590" dy="0">cold air + hydro power</tspan><tspan x="590" dy="21">= less cooling cost</tspan><tspan x="590" dy="21">&amp; water draw</tspan></text></g></a>
+      <a href="#climate-incentives" class="sk-link" aria-label="Jump to: Tax incentives (Climate, land, and incentives)"><title>Read: Climate, land, and incentives &#8595;</title><rect class="sk-hit" x="235" y="596" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="235" y="596" width="420" height="216" rx="8" class="sk-card"/><path d="M269 686 h52 l20 22 l-20 22 h-52 z" class="sk-cop"/><circle cx="325" cy="708" r="4" class="sk-paper-s"/><path d="M283 700 l18 16 M283 716 l18 -16" class="sk-cop-line"/></g><g transform="translate(0 0)"><circle cx="265" cy="628" r="15" class="sk-numring"/><text x="265" y="637" text-anchor="middle" class="sk-num">5</text>
+      <text x="289" y="638" text-anchor="start" class="sk-label sk-ttl"><tspan x="289" dy="0">tax incentives</tspan></text>
       <text x="365" y="686" text-anchor="start" class="sk-call2"><tspan x="365" dy="0">Clayton County, GA:</tspan></text>
       <rect x="357" y="695" width="200" height="29" rx="4" class="hl-o" transform="rotate(-1.2 457 710)"/><text x="365" y="718" text-anchor="start" class="sk-call">~$1B data center</text>
-      <text x="365" y="746" text-anchor="start" class="sk-call2"><tspan x="365" dy="0">landed with a tax</tspan><tspan x="365" dy="21">abatement (2025)</tspan></text>
-      <text x="680" y="760" text-anchor="start" class="sk-small"><tspan x="680" dy="0">then fiber + land</tspan><tspan x="680" dy="21">round it out</tspan></text></g>
+      <text x="365" y="746" text-anchor="start" class="sk-call2"><tspan x="365" dy="0">landed with a tax</tspan><tspan x="365" dy="21">abatement (2025)</tspan></text></g></a>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"><path d="M432 172 C440 162 448 182 456 174" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M640 284 C600 318 300 292 240 324" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M432 438 C440 428 448 448 456 440" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M670 550 C660 580 640 584 624 600" class="sk-arrow" marker-end="url(#sk-head)"/></g><g transform="translate(0 0)"><text x="680" y="760" text-anchor="start" class="sk-small"><tspan x="680" dy="0">then fiber + land</tspan><tspan x="680" dy="21">round it out</tspan></text></g>
     </svg>
-    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1368" role="img" aria-labelledby="sk-tall-t sk-tall-d">
+    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1368" role="group" aria-labelledby="sk-tall-t" aria-describedby="sk-tall-d">
       <title id="sk-tall-t">How a site gets picked</title>
       <desc id="sk-tall-d">A hand-drawn decision path for picking an AI data center site, in five steps. 1 Power first, it matters most: Meta's Hyperion campus went to rural Richland Parish, Louisiana, where Entergy is building 10 gas plants to supply it. 2 Land: a project in Cheyenne, Wyoming has grown to 2.7 gigawatts, nearly triple the state's entire current electricity use, picked for power and land rather than a city. 3 Latency: training can go anywhere power is cheap, since delays up to 100 milliseconds are fine; inference answers live prompts, so it moves to smaller sites near users. 4 Climate and water: the Nordics pair cold air with hydro power, cutting cooling cost and water draw. 5 Tax incentives: Clayton County, Georgia landed a roughly $1 billion data center with a tax abatement in 2025. Fiber and land round out the decision.</desc>
       <rect x="1" y="1" width="438" height="1366" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="438" height="1366" rx="10" fill="url(#sk-dots)"/>
-      <g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="62" width="420" height="216" rx="8" class="sk-card"/><path d="M64 132 L42 176 L60 176 L48 212 L84 162 L66 162 L78 132 Z" class="sk-bolt"/><path d="M220 282 C214 294 226 304 220 316" class="sk-arrow" marker-end="url(#sk-head)"/><rect x="10" y="322" width="420" height="216" rx="8" class="sk-card"/><path d="M28 462 C54 442 94 454 120 438" class="sk-line"/><path d="M40 468 h70" class="sk-thin"/><path d="M64 448 v-40 l26 9 l-26 9" class="sk-cop"/><path d="M64 448 v-40" class="sk-line"/><path d="M220 542 C214 554 226 564 220 576" class="sk-arrow" marker-end="url(#sk-head)"/><rect x="10" y="582" width="420" height="216" rx="8" class="sk-card"/><circle cx="74" cy="692" r="34" class="sk-paper-s"/><path d="M74 692 v-22 M74 692 l15 10" class="sk-line"/><path d="M64 654 h20 M74 654 v4" class="sk-line"/><path d="M220 802 C214 814 226 824 220 836" class="sk-arrow" marker-end="url(#sk-head)"/><rect x="10" y="842" width="420" height="216" rx="8" class="sk-card"/><path d="M58 936 l0 -20 M58 936 l0 20 M58 936 l18 -10 M58 936 l-18 10 M58 936 l18 10 M58 936 l-18 -10" class="sk-cool"/><path d="M96 942 C82 964 86 982 100 982 C114 982 118 964 96 942 Z" class="sk-drop"/><path d="M220 1062 C214 1074 226 1084 220 1096" class="sk-arrow" marker-end="url(#sk-head)"/><rect x="10" y="1102" width="420" height="216" rx="8" class="sk-card"/><path d="M40 1192 h52 l20 22 l-20 22 h-52 z" class="sk-cop"/><circle cx="96" cy="1214" r="4" class="sk-paper-s"/><path d="M54 1206 l18 16 M54 1222 l18 -16" class="sk-cop-line"/></g><g transform="translate(0 0)"><text x="220" y="38" text-anchor="middle" class="sk-label"><tspan x="220" dy="0">how a site gets picked</tspan></text>
-      <circle cx="36" cy="94" r="15" class="sk-numring"/><text x="36" y="103" text-anchor="middle" class="sk-num">1</text>
-      <text x="60" y="104" text-anchor="start" class="sk-label"><tspan x="60" dy="0">power first</tspan></text>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"></g><g transform="translate(0 0)"><text x="220" y="38" text-anchor="middle" class="sk-label"><tspan x="220" dy="0">how a site gets picked</tspan></text></g>
+      <a href="#power-first" class="sk-link" aria-label="Jump to: Power first (Power comes first)"><title>Read: Power comes first &#8595;</title><rect class="sk-hit" x="10" y="62" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="62" width="420" height="216" rx="8" class="sk-card"/><path d="M64 132 L42 176 L60 176 L48 212 L84 162 L66 162 L78 132 Z" class="sk-bolt"/></g><g transform="translate(0 0)"><circle cx="36" cy="94" r="15" class="sk-numring"/><text x="36" y="103" text-anchor="middle" class="sk-num">1</text>
+      <text x="60" y="104" text-anchor="start" class="sk-label sk-ttl"><tspan x="60" dy="0">power first</tspan></text>
       <rect x="128" y="134" width="148" height="28" rx="4" class="hl-y" transform="rotate(-1.2 202 148)"/><text x="136" y="156" text-anchor="start" class="sk-call">matters most</text>
       <text x="136" y="186" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">Meta Hyperion &#8594; rural</tspan><tspan x="136" dy="21">Richland Parish, LA:</tspan></text>
-      <text x="136" y="232" text-anchor="start" class="sk-call-c"><tspan x="136" dy="0">Entergy builds 10 gas plants</tspan></text>
-      <circle cx="36" cy="354" r="15" class="sk-numring"/><text x="36" y="363" text-anchor="middle" class="sk-num">2</text>
-      <text x="60" y="364" text-anchor="start" class="sk-label"><tspan x="60" dy="0">land</tspan></text>
+      <text x="136" y="232" text-anchor="start" class="sk-call-c"><tspan x="136" dy="0">Entergy builds 10 gas plants</tspan></text></g></a>
+      <a href="#power-first" class="sk-link" aria-label="Jump to: Land (Power comes first)"><title>Read: Power comes first &#8595;</title><rect class="sk-hit" x="10" y="322" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="322" width="420" height="216" rx="8" class="sk-card"/><path d="M28 462 C54 442 94 454 120 438" class="sk-line"/><path d="M40 468 h70" class="sk-thin"/><path d="M64 448 v-40 l26 9 l-26 9" class="sk-cop"/><path d="M64 448 v-40" class="sk-line"/></g><g transform="translate(0 0)"><circle cx="36" cy="354" r="15" class="sk-numring"/><text x="36" y="363" text-anchor="middle" class="sk-num">2</text>
+      <text x="60" y="364" text-anchor="start" class="sk-label sk-ttl"><tspan x="60" dy="0">land</tspan></text>
       <text x="136" y="412" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">Cheyenne, WY:</tspan></text>
       <rect x="128" y="419" width="91" height="31" rx="4" class="hl-g" transform="rotate(-1.2 173 434)"/><text x="136" y="444" text-anchor="start" class="sk-fig">2.7 GW</text>
       <text x="136" y="472" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">nearly 3&#215; the state's whole</tspan><tspan x="136" dy="21">current electricity use</tspan></text>
-      <text x="136" y="526" text-anchor="start" class="sk-small"><tspan x="136" dy="0">picked for power + land, not a city</tspan></text>
-      <circle cx="36" cy="614" r="15" class="sk-numring"/><text x="36" y="623" text-anchor="middle" class="sk-num">3</text>
-      <text x="60" y="624" text-anchor="start" class="sk-label"><tspan x="60" dy="0">latency</tspan></text>
+      <text x="136" y="526" text-anchor="start" class="sk-small"><tspan x="136" dy="0">picked for power + land, not a city</tspan></text></g></a>
+      <a href="#distance" class="sk-link" aria-label="Jump to: Latency (Distance works differently depending on the job)"><title>Read: Distance works differently depending on the job &#8595;</title><rect class="sk-hit" x="10" y="582" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="582" width="420" height="216" rx="8" class="sk-card"/><circle cx="74" cy="692" r="34" class="sk-paper-s"/><path d="M74 692 v-22 M74 692 l15 10" class="sk-line"/><path d="M64 654 h20 M74 654 v4" class="sk-line"/></g><g transform="translate(0 0)"><circle cx="36" cy="614" r="15" class="sk-numring"/><text x="36" y="623" text-anchor="middle" class="sk-num">3</text>
+      <text x="60" y="624" text-anchor="start" class="sk-label sk-ttl"><tspan x="60" dy="0">latency</tspan></text>
       <text x="136" y="670" text-anchor="start" class="sk-call-a"><tspan x="136" dy="0">training:</tspan></text>
       <text x="222" y="670" text-anchor="start" class="sk-call2"><tspan x="222" dy="0">anywhere cheap</tspan></text>
       <rect x="128" y="680" width="178" height="26" rx="4" class="hl-p" transform="rotate(-1.2 217 693)"/><text x="136" y="700" text-anchor="start" class="sk-call">&#8804; 100 ms is fine</text>
       <text x="136" y="738" text-anchor="start" class="sk-call-c"><tspan x="136" dy="0">inference:</tspan></text>
       <text x="230" y="738" text-anchor="start" class="sk-call2"><tspan x="230" dy="0">near users</tspan></text>
-      <text x="136" y="764" text-anchor="start" class="sk-small"><tspan x="136" dy="0">live prompts can't wait &#8594;</tspan><tspan x="136" dy="21">smaller sites, closer in</tspan></text>
-      <circle cx="36" cy="874" r="15" class="sk-numring"/><text x="36" y="883" text-anchor="middle" class="sk-num">4</text>
-      <text x="60" y="884" text-anchor="start" class="sk-label"><tspan x="60" dy="0">climate &amp; water</tspan></text>
+      <text x="136" y="764" text-anchor="start" class="sk-small"><tspan x="136" dy="0">live prompts can't wait &#8594;</tspan><tspan x="136" dy="21">smaller sites, closer in</tspan></text></g></a>
+      <a href="#climate-incentives" class="sk-link" aria-label="Jump to: Climate and water (Climate, land, and incentives)"><title>Read: Climate, land, and incentives &#8595;</title><rect class="sk-hit" x="10" y="842" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="842" width="420" height="216" rx="8" class="sk-card"/><path d="M58 936 l0 -20 M58 936 l0 20 M58 936 l18 -10 M58 936 l-18 10 M58 936 l18 10 M58 936 l-18 -10" class="sk-cool"/><path d="M96 942 C82 964 86 982 100 982 C114 982 118 964 96 942 Z" class="sk-drop"/></g><g transform="translate(0 0)"><circle cx="36" cy="874" r="15" class="sk-numring"/><text x="36" y="883" text-anchor="middle" class="sk-num">4</text>
+      <text x="60" y="884" text-anchor="start" class="sk-label sk-ttl"><tspan x="60" dy="0">climate &amp; water</tspan></text>
       <text x="136" y="932" text-anchor="start" class="sk-call-a"><tspan x="136" dy="0">Nordics:</tspan></text>
-      <text x="136" y="960" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">cold air + hydro power</tspan><tspan x="136" dy="21">= less cooling cost</tspan><tspan x="136" dy="21">&amp; water draw</tspan></text>
-      <circle cx="36" cy="1134" r="15" class="sk-numring"/><text x="36" y="1143" text-anchor="middle" class="sk-num">5</text>
-      <text x="60" y="1144" text-anchor="start" class="sk-label"><tspan x="60" dy="0">tax incentives</tspan></text>
+      <text x="136" y="960" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">cold air + hydro power</tspan><tspan x="136" dy="21">= less cooling cost</tspan><tspan x="136" dy="21">&amp; water draw</tspan></text></g></a>
+      <a href="#climate-incentives" class="sk-link" aria-label="Jump to: Tax incentives (Climate, land, and incentives)"><title>Read: Climate, land, and incentives &#8595;</title><rect class="sk-hit" x="10" y="1102" width="420" height="216" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"><rect x="10" y="1102" width="420" height="216" rx="8" class="sk-card"/><path d="M40 1192 h52 l20 22 l-20 22 h-52 z" class="sk-cop"/><circle cx="96" cy="1214" r="4" class="sk-paper-s"/><path d="M54 1206 l18 16 M54 1222 l18 -16" class="sk-cop-line"/></g><g transform="translate(0 0)"><circle cx="36" cy="1134" r="15" class="sk-numring"/><text x="36" y="1143" text-anchor="middle" class="sk-num">5</text>
+      <text x="60" y="1144" text-anchor="start" class="sk-label sk-ttl"><tspan x="60" dy="0">tax incentives</tspan></text>
       <text x="136" y="1192" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">Clayton County, GA:</tspan></text>
       <rect x="128" y="1201" width="200" height="29" rx="4" class="hl-o" transform="rotate(-1.2 228 1216)"/><text x="136" y="1224" text-anchor="start" class="sk-call">~$1B data center</text>
-      <text x="136" y="1252" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">landed with a tax</tspan><tspan x="136" dy="21">abatement (2025)</tspan></text>
-      <text x="220" y="1350" text-anchor="middle" class="sk-small"><tspan x="220" dy="0">then fiber + land round it out</tspan></text></g>
+      <text x="136" y="1252" text-anchor="start" class="sk-call2"><tspan x="136" dy="0">landed with a tax</tspan><tspan x="136" dy="21">abatement (2025)</tspan></text></g></a>
+      <g transform="translate(0 0)" filter="url(#sk-wobble)"><path d="M220 282 C214 294 226 304 220 316" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M220 542 C214 554 226 564 220 576" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M220 802 C214 814 226 824 220 836" class="sk-arrow" marker-end="url(#sk-head)"/><path d="M220 1062 C214 1074 226 1084 220 1096" class="sk-arrow" marker-end="url(#sk-head)"/></g><g transform="translate(0 0)"><text x="220" y="1350" text-anchor="middle" class="sk-small"><tspan x="220" dy="0">then fiber + land round it out</tspan></text></g>
     </svg>
-    <figcaption>How an AI data center site gets picked, step by step, with the examples from this page. The sections below go into each one.</figcaption>
+    <figcaption>How an AI data center site gets picked, step by step, with the examples from this page. The sections below go into each one. Click or tap a title or picture in the sketch to jump to its section.</figcaption>
   </figure>
 
   <div class="resource">
@@ -311,17 +326,17 @@
   </div>
 
   <div class="resource">
-    <p class="section-label">Power comes first</p>
+    <p class="section-label" id="power-first">Power comes first</p>
     <p class="body-text">For a modern AI campus, finding enough cheap, available power now matters more than almost anything else in picking a site. Meta's Hyperion campus went to a rural Louisiana parish specifically because of power availability, with Entergy building ten new gas plants to supply it; a separate large AI data center project in Cheyenne, Wyoming has grown to 2.7 gigawatts &mdash; nearly triple the state's entire current electricity use. Both were picked for power and land, not proximity to any major city.</p>
   </div>
 
   <div class="resource">
-    <p class="section-label">Distance works differently depending on the job</p>
+    <p class="section-label" id="distance">Distance works differently depending on the job</p>
     <p class="body-text">Training and inference have different latency needs, and that shapes where each one gets built. Training workloads can tolerate delays of up to 100 milliseconds between regions since GPUs are mostly talking to each other, not to end users &mdash; which is why training campuses can sit almost anywhere power is cheap. Inference, which answers a live user prompt, is latency-sensitive by nature, so it increasingly gets pushed toward smaller facilities closer to where people actually are; with inference projected to overtake training as the majority of AI compute by 2030, that's starting to pull data center siting in two different directions at once.</p>
   </div>
 
   <div class="resource">
-    <p class="section-label">Climate, land, and incentives</p>
+    <p class="section-label" id="climate-incentives">Climate, land, and incentives</p>
     <p class="body-text">Cooler climates cut cooling costs and water draw, which is part of why Nordic countries have attracted large data center builds for years, pairing cold air with abundant hydroelectric power. Tax incentives can also tip the decision: Clayton County, Georgia approved a tax abatement that helped land a roughly $1 billion data center in 2025, while nearby Chesterfield County, Virginia has taken a more mixed approach &mdash; approving incentive agreements for some data center projects in 2025, then upholding a denial of a separate proposal in 2026. Land, fiber access, and tax breaks round out the calculus once power and climate have narrowed the options.</p>
   </div>
 
