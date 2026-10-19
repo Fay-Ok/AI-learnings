@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://farzanehorak.com/ai-stack-layers.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -30,6 +30,7 @@
     --line: #d7dae0;
     --line-strong: #b8bdc7;
     --radius: 3px;
+    --hl-yellow: #ffe45c80; --hl-green: #8ee59b80; --hl-pink: #ff9ccf80; --hl-orange: #ffb86b80;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -38,6 +39,7 @@
       --accent: #5fc2ff; --accent-soft: #5fc2ff22;
       --copper: #f0a35f; --copper-soft: #f0a35f22;
       --line: #262b34; --line-strong: #343b47;
+      --hl-yellow: #e6c22e4d; --hl-green: #3fbf5a4d; --hl-pink: #e0559d4d; --hl-orange: #e8853a4d;
     }
   }
   :root[data-theme="dark"] {
@@ -46,6 +48,7 @@
     --accent: #5fc2ff; --accent-soft: #5fc2ff22;
     --copper: #f0a35f; --copper-soft: #f0a35f22;
     --line: #262b34; --line-strong: #343b47;
+    --hl-yellow: #e6c22e4d; --hl-green: #3fbf5a4d; --hl-pink: #e0559d4d; --hl-orange: #e8853a4d;
   }
 
   * { box-sizing: border-box; }
@@ -148,6 +151,59 @@
     .stack-fig .t-name { font-size: 25px; transform: translateY(14px); }
   }
   .split-line { stroke: var(--ink-dim); stroke-width: 1; stroke-dasharray: 4 4; }
+  /* ---------- Hand-drawn overview sketch ---------- */
+  .sketch { margin: 0 0 40px; }
+  .sketch-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .sketch-svg { display: block; width: 100%; height: auto; font-family: "Caveat", "Patrick Hand", "Comic Sans MS", cursive; }
+  .sketch-tall { display: none; max-width: 440px; margin: 0 auto; }
+  @media (max-width: 560px) {
+    .sketch-wide { display: none; }
+    .sketch-tall { display: block; }
+  }
+  .sketch figcaption { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-faint); margin-top: 10px; line-height: 1.5; max-width: 62ch; }
+  .sketch .sk-bg { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .sketch .sk-griddot { fill: var(--line-strong); }
+  .sketch .sk-paper { fill: var(--surface); }
+  .sketch .sk-paper-s { fill: var(--surface); stroke: var(--ink); stroke-width: 2.2; }
+  .sketch .sk-card { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.6; stroke-dasharray: 6 5; }
+  .sketch .sk-line { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-thin { fill: none; stroke: var(--ink-dim); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-ink { fill: var(--ink); }
+  .sketch .sk-acc-fill { fill: var(--accent-soft); stroke: none; }
+  .sketch .sk-acc-fill-s { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+  .sketch .sk-acc-stroke { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-acc-thin { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-linecap: round; opacity: 0.7; }
+  .sketch .sk-acc-dot { fill: var(--accent); }
+  .sketch .sk-cop { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 2; }
+  .sketch .sk-cop-line { fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-dot { fill: var(--copper); }
+  .sketch .sk-cool { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-spark { fill: none; stroke: var(--copper); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-heat { fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; opacity: 0.85; }
+  .sketch .sk-bolt { fill: var(--hl-yellow); stroke: var(--copper); stroke-width: 2.2; stroke-linejoin: round; }
+  .sketch .sk-drop { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .sketch .sk-band-sw { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+  .sketch .sk-band-hw { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 2; }
+  .sketch .sk-arrow { fill: none; stroke: var(--ink-dim); stroke-width: 2.4; stroke-linecap: round; }
+  .sketch .sk-arrow-a { fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; }
+  .sketch .sk-arrow-c { fill: none; stroke: var(--copper); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 7 6; }
+  .sketch .sk-headpath { fill: none; stroke: var(--ink-dim); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-headpath-s { fill: none; stroke: var(--copper); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-headpath-a { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-carrow { fill: none; stroke: var(--copper); stroke-width: 1.8; stroke-linecap: round; }
+  .sketch .sk-numring { fill: var(--surface); stroke: var(--accent); stroke-width: 2.2; }
+  .sketch .sk-num { fill: var(--accent); font-size: 25px; font-weight: 700; }
+  .sketch .sk-label { fill: var(--ink); font-size: 31px; font-weight: 700; }
+  .sketch .sk-fig { fill: var(--ink); font-size: 27px; font-weight: 700; }
+  .sketch .sk-call { fill: var(--ink); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call-a { fill: var(--accent); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call-c { fill: var(--copper); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call2 { fill: var(--ink-dim); font-size: 20px; font-weight: 500; }
+  .sketch .sk-small { fill: var(--ink-dim); font-size: 20px; font-weight: 500; }
+  .sketch .hl-y { fill: var(--hl-yellow); }
+  .sketch .hl-g { fill: var(--hl-green); }
+  .sketch .hl-p { fill: var(--hl-pink); }
+  .sketch .hl-o { fill: var(--hl-orange); }
 </style>
 </head>
 <body>
@@ -159,6 +215,114 @@
   <p class="eyebrow">Infrastructure</p>
   <h1>The AI stack: from app to GPU</h1>
   <p class="lede">Eight layers sit between the app you type into and the GPU that does the math. Each one only works because the layer below it exists.</p>
+
+  <!-- Hand-drawn overview sketch -->
+  <figure class="sketch">
+  <svg class="sketch-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+    <pattern id="sk-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.3" class="sk-griddot"/>
+    </pattern>
+    <filter id="sk-wobble" filterUnits="userSpaceOnUse" x="-50" y="-50" width="1200" height="3200">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="sk-head" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M1 1 L10 6 L1 11" class="sk-headpath"/>
+    </marker>
+    <marker id="sk-head-s" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M2 2 L10 6 L2 10" class="sk-headpath-s"/>
+    </marker>
+    <marker id="sk-head-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2 2 L10 6 L2 10" class="sk-headpath-a"/>
+    </marker>
+    <symbol id="sk-tripw" viewBox="0 0 900 730" overflow="visible"><rect x="250" y="18" width="190" height="52" rx="6" class="sk-paper"/><rect x="250" y="18" width="190" height="52" rx="6" class="sk-line"/><rect x="258" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="258" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="278" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="298" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="318" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="26" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="338" y="44" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="362" y="26" width="68" height="31" rx="4" class="sk-cop"/><path d="M418 34 v10 h-40 M384 38 l-6 6 l6 6" class="sk-cop-line"/><rect x="160" y="120" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="120" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="184" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="184" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="248" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="248" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="312" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="312" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="376" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="376" width="380" height="50" rx="5" class="sk-band-sw"/><rect x="160" y="440" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="440" width="380" height="50" rx="5" class="sk-band-hw"/><rect x="160" y="504" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="504" width="380" height="50" rx="5" class="sk-band-hw"/><rect x="160" y="568" width="380" height="50" rx="5" class="sk-paper"/><rect x="160" y="568" width="380" height="50" rx="5" class="sk-band-hw"/><path d="M120 96 C112 270 128 438 120 612" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M345 74 C340 90 350 100 345 116" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M555 610 C561 418 549 320 555 100 C555 50 500 44 450 48" class="sk-arrow-c" marker-end="url(#sk-head-s)"/><path d="M140 433.0 H560" class="sk-thin" stroke-dasharray="6 6"/><circle cx="502" cy="465" r="21" class="sk-paper"/><circle cx="502" cy="465" r="21" class="sk-cop" style="stroke-width:4"/><path d="M480 580 l-5 -8 M494 578 v-10 M508 580 l5 -8" class="sk-spark"/>
+    </symbol>
+    <symbol id="sk-tripw-c" viewBox="0 0 900 730" overflow="visible">
+      <text x="240" y="40" text-anchor="end" class="sk-call-c"><tspan x="240" dy="0">you hit</tspan><tspan x="240" dy="24">Enter</tspan></text>
+      <circle cx="188" cy="145.0" r="15" class="sk-numring"/><text x="188" y="154.0" text-anchor="middle" class="sk-num">1</text>
+      <text x="216" y="154" text-anchor="start" class="sk-call"><tspan x="216" dy="0">app</tspan></text>
+      <text x="570" y="140" text-anchor="start" class="sk-small"><tspan x="570" dy="0">wraps your prompt in instructions</tspan><tspan x="570" dy="21">+ context, sends it over an API</tspan></text>
+      <circle cx="188" cy="209.0" r="15" class="sk-numring"/><text x="188" y="218.0" text-anchor="middle" class="sk-num">2</text>
+      <text x="216" y="218" text-anchor="start" class="sk-call"><tspan x="216" dy="0">agents</tspan></text>
+      <text x="570" y="204" text-anchor="start" class="sk-small"><tspan x="570" dy="0">plans steps, calls tools &#8212; one task</tspan><tspan x="570" dy="21">can mean dozens of model calls</tspan></text>
+      <circle cx="188" cy="273.0" r="15" class="sk-numring"/><text x="188" y="282.0" text-anchor="middle" class="sk-num">3</text>
+      <text x="216" y="282" text-anchor="start" class="sk-call"><tspan x="216" dy="0">model</tspan></text>
+      <text x="570" y="268" text-anchor="start" class="sk-small"><tspan x="570" dy="0">cuts text into tokens, predicts</tspan><tspan x="570" dy="21">the next one, over and over</tspan></text>
+      <circle cx="188" cy="337.0" r="15" class="sk-numring"/><text x="188" y="346.0" text-anchor="middle" class="sk-num">4</text>
+      <text x="216" y="346" text-anchor="start" class="sk-call"><tspan x="216" dy="0">serving</tspan></text>
+      <text x="570" y="332" text-anchor="start" class="sk-small"><tspan x="570" dy="0">batches you with other users,</tspan><tspan x="570" dy="21">keeps the KV cache</tspan></text>
+      <circle cx="188" cy="401.0" r="15" class="sk-numring"/><text x="188" y="410.0" text-anchor="middle" class="sk-num">5</text>
+      <text x="216" y="410" text-anchor="start" class="sk-call"><tspan x="216" dy="0">frameworks</tspan></text>
+      <text x="570" y="396" text-anchor="start" class="sk-small"><tspan x="570" dy="0">PyTorch / CUDA turn matrix math</tspan><tspan x="570" dy="21">into chip instructions</tspan></text>
+      <circle cx="188" cy="465.0" r="15" class="sk-numring"/><text x="188" y="474.0" text-anchor="middle" class="sk-num">6</text>
+      <text x="216" y="474" text-anchor="start" class="sk-call"><tspan x="216" dy="0">memory</tspan></text>
+      <rect x="570" y="440" width="314" height="28" rx="4" class="hl-o" transform="rotate(-1.2 727 454)"/><text x="578" y="462" text-anchor="start" class="sk-call">memory sets the speed limit</text>
+      <text x="570" y="486" text-anchor="start" class="sk-small"><tspan x="570" dy="0">HBM holds the weights + KV cache</tspan></text>
+      <circle cx="188" cy="529.0" r="15" class="sk-numring"/><text x="188" y="538.0" text-anchor="middle" class="sk-num">7</text>
+      <text x="216" y="538" text-anchor="start" class="sk-call"><tspan x="216" dy="0">CPU</tspan></text>
+      <text x="570" y="524" text-anchor="start" class="sk-small"><tspan x="570" dy="0">the manager: schedules work,</tspan><tspan x="570" dy="21">feeds the GPUs</tspan></text>
+      <circle cx="188" cy="593.0" r="15" class="sk-numring"/><text x="188" y="602.0" text-anchor="middle" class="sk-num">8</text>
+      <text x="216" y="602" text-anchor="start" class="sk-call"><tspan x="216" dy="0">GPU</tspan></text>
+      <text x="570" y="588" text-anchor="start" class="sk-small"><tspan x="570" dy="0">does the matrix math,</tspan><tspan x="570" dy="21">thousands of ops at once</tspan></text>
+      <text x="106" y="330" text-anchor="end" class="sk-call-a"><tspan x="106" dy="0">your</tspan><tspan x="106" dy="24">prompt</tspan><tspan x="106" dy="24">goes</tspan><tspan x="106" dy="24">down</tspan></text>
+      <text x="572" y="56" text-anchor="start" class="sk-call-c"><tspan x="572" dy="0">answer comes back up</tspan><tspan x="572" dy="24">(one token at a time)</tspan></text>
+      <text x="152" y="425.0" text-anchor="end" class="sk-small"><tspan x="152" dy="0">software</tspan></text>
+      <text x="152" y="455.0" text-anchor="end" class="sk-small"><tspan x="152" dy="0">hardware</tspan></text>
+      <text x="502" y="472" text-anchor="middle" class="sk-call"><tspan x="502" dy="0">HBM</tspan></text>
+      <text x="494" y="606" text-anchor="middle" class="sk-call-c"><tspan x="494" dy="0">busy!</tspan></text>
+      <text x="160" y="664" text-anchor="start" class="sk-small"><tspan x="160" dy="0">why? decode re-reads the weights for every token, so bytes reaching</tspan><tspan x="160" dy="21">the GPU &#8212; not raw compute &#8212; decide how fast the answer streams</tspan></text>
+    </symbol>
+    <symbol id="sk-tript" viewBox="0 0 440 1006" overflow="visible"><rect x="125" y="14" width="190" height="52" rx="6" class="sk-paper"/><rect x="125" y="14" width="190" height="52" rx="6" class="sk-line"/><rect x="133" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="133" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="153" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="173" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="193" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="22" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="213" y="40" width="16" height="13" rx="2" class="sk-paper-s"/><rect x="237" y="22" width="68" height="31" rx="4" class="sk-cop"/><path d="M293 30 v10 h-40 M259 34 l-6 6 l6 6" class="sk-cop-line"/><rect x="54" y="108" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="108" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="212" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="212" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="316" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="316" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="420" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="420" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="524" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="524" width="360" height="50" rx="5" class="sk-band-sw"/><rect x="54" y="628" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="628" width="360" height="50" rx="5" class="sk-band-hw"/><rect x="54" y="732" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="732" width="360" height="50" rx="5" class="sk-band-hw"/><rect x="54" y="836" width="360" height="50" rx="5" class="sk-paper"/><rect x="54" y="836" width="360" height="50" rx="5" class="sk-band-hw"/><path d="M28 98 C22 408 34 586 28 880" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M220 70 C216 82 224 92 220 102" class="sk-arrow-a" marker-end="url(#sk-head-a)"/><path d="M428 878 C434 586 422 408 428 72 C428 38 370 28 324 40" class="sk-arrow-c" marker-end="url(#sk-head-s)"/><circle cx="376" cy="653" r="21" class="sk-paper"/><circle cx="376" cy="653" r="21" class="sk-cop" style="stroke-width:4"/>
+    </symbol>
+    <symbol id="sk-tript-c" viewBox="0 0 440 1006" overflow="visible">
+      <text x="114" y="38" text-anchor="end" class="sk-call-c"><tspan x="114" dy="0">you hit</tspan><tspan x="114" dy="24">Enter</tspan></text>
+      <circle cx="82" cy="133.0" r="15" class="sk-numring"/><text x="82" y="142.0" text-anchor="middle" class="sk-num">1</text>
+      <text x="110" y="142" text-anchor="start" class="sk-call"><tspan x="110" dy="0">app</tspan></text>
+      <circle cx="82" cy="237.0" r="15" class="sk-numring"/><text x="82" y="246.0" text-anchor="middle" class="sk-num">2</text>
+      <text x="110" y="246" text-anchor="start" class="sk-call"><tspan x="110" dy="0">agents</tspan></text>
+      <circle cx="82" cy="341.0" r="15" class="sk-numring"/><text x="82" y="350.0" text-anchor="middle" class="sk-num">3</text>
+      <text x="110" y="350" text-anchor="start" class="sk-call"><tspan x="110" dy="0">model</tspan></text>
+      <circle cx="82" cy="445.0" r="15" class="sk-numring"/><text x="82" y="454.0" text-anchor="middle" class="sk-num">4</text>
+      <text x="110" y="454" text-anchor="start" class="sk-call"><tspan x="110" dy="0">serving</tspan></text>
+      <circle cx="82" cy="549.0" r="15" class="sk-numring"/><text x="82" y="558.0" text-anchor="middle" class="sk-num">5</text>
+      <text x="110" y="558" text-anchor="start" class="sk-call"><tspan x="110" dy="0">frameworks</tspan></text>
+      <circle cx="82" cy="653.0" r="15" class="sk-numring"/><text x="82" y="662.0" text-anchor="middle" class="sk-num">6</text>
+      <text x="110" y="662" text-anchor="start" class="sk-call"><tspan x="110" dy="0">memory</tspan></text>
+      <circle cx="82" cy="757.0" r="15" class="sk-numring"/><text x="82" y="766.0" text-anchor="middle" class="sk-num">7</text>
+      <text x="110" y="766" text-anchor="start" class="sk-call"><tspan x="110" dy="0">CPU</tspan></text>
+      <circle cx="82" cy="861.0" r="15" class="sk-numring"/><text x="82" y="870.0" text-anchor="middle" class="sk-num">8</text>
+      <text x="110" y="870" text-anchor="start" class="sk-call"><tspan x="110" dy="0">GPU</tspan></text>
+      <text x="58" y="188" text-anchor="start" class="sk-small"><tspan x="58" dy="0">wraps your prompt, sends it to a model</tspan></text>
+      <text x="58" y="292" text-anchor="start" class="sk-small"><tspan x="58" dy="0">plans, calls tools &#8212; dozens of calls</tspan></text>
+      <text x="58" y="396" text-anchor="start" class="sk-small"><tspan x="58" dy="0">predicts the next token, again &amp; again</tspan></text>
+      <text x="58" y="500" text-anchor="start" class="sk-small"><tspan x="58" dy="0">batches users, keeps the KV cache</tspan></text>
+      <text x="58" y="604" text-anchor="start" class="sk-small"><tspan x="58" dy="0">matrix math &#8594; chip instructions</tspan></text>
+      <text x="58" y="812" text-anchor="start" class="sk-small"><tspan x="58" dy="0">the manager: feeds the GPUs</tspan></text>
+      <text x="376" y="660" text-anchor="middle" class="sk-call"><tspan x="376" dy="0">HBM</tspan></text>
+      <rect x="50" y="687" width="326" height="29" rx="4" class="hl-o" transform="rotate(-1.2 213 702)"/><text x="58" y="710" text-anchor="start" class="sk-call">memory sets the speed limit</text>
+      <text x="368" y="874" text-anchor="middle" class="sk-call-c"><tspan x="368" dy="0">busy!</tspan></text>
+      <text x="58" y="916" text-anchor="start" class="sk-small"><tspan x="58" dy="0">does the math, thousands of ops at once</tspan></text>
+      <text x="220" y="952" text-anchor="middle" class="sk-small"><tspan x="220" dy="0">prompt goes down the blue arrow,</tspan><tspan x="220" dy="21">the answer comes back up the copper one</tspan></text>
+    </symbol>
+    </defs>
+  </svg>
+    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 730" role="img" aria-labelledby="sk-wide-t sk-wide-d">
+      <title id="sk-wide-t">What happens when you hit Enter</title>
+      <desc id="sk-wide-d">A hand-drawn trip of one prompt through the eight layers of the AI stack. You hit Enter, and the prompt goes down: 1 app wraps your prompt in instructions and context and sends it over an API; 2 agents plan steps and call tools, so one task can mean dozens of model calls; 3 the model cuts text into tokens and predicts the next one, over and over; 4 serving batches you with other users and keeps the KV cache; 5 frameworks like PyTorch and CUDA turn matrix math into chip instructions; 6 memory: HBM holds the weights and KV cache right beside the GPU; 7 the CPU, the manager, schedules work and feeds the GPUs; 8 the GPU does the matrix math, thousands of operations at once. The answer then comes back up the stack. Callout: memory sets the speed limit, because decode re-reads the weights for every token.</desc>
+      <rect x="1" y="1" width="898" height="728" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="898" height="728" rx="10" fill="url(#sk-dots)"/>
+      <use href="#sk-tripw" x="0" y="0" width="900" height="730" filter="url(#sk-wobble)"/><use href="#sk-tripw-c" x="0" y="0" width="900" height="730"/>
+    </svg>
+    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1006" role="img" aria-labelledby="sk-tall-t sk-tall-d">
+      <title id="sk-tall-t">What happens when you hit Enter</title>
+      <desc id="sk-tall-d">A hand-drawn trip of one prompt through the eight layers of the AI stack. You hit Enter, and the prompt goes down: 1 app wraps your prompt in instructions and context and sends it over an API; 2 agents plan steps and call tools, so one task can mean dozens of model calls; 3 the model cuts text into tokens and predicts the next one, over and over; 4 serving batches you with other users and keeps the KV cache; 5 frameworks like PyTorch and CUDA turn matrix math into chip instructions; 6 memory: HBM holds the weights and KV cache right beside the GPU; 7 the CPU, the manager, schedules work and feeds the GPUs; 8 the GPU does the matrix math, thousands of operations at once. The answer then comes back up the stack. Callout: memory sets the speed limit, because decode re-reads the weights for every token.</desc>
+      <rect x="1" y="1" width="438" height="1004" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="438" height="1004" rx="10" fill="url(#sk-dots)"/>
+      <use href="#sk-tript" x="0" y="0" width="440" height="1006" filter="url(#sk-wobble)"/><use href="#sk-tript-c" x="0" y="0" width="440" height="1006"/>
+    </svg>
+    <figcaption>One prompt&rsquo;s trip down the eight layers and back up. The stack diagram below has the full name and examples for each layer.</figcaption>
+  </figure>
 
   <figure class="stack-fig">
 <svg viewBox="0 0 760 704" role="img" aria-labelledby="stk-t stk-d" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans',system-ui,sans-serif">
