@@ -122,6 +122,8 @@
   .wtag-make { color: var(--copper); border-color: var(--copper); background: var(--copper-soft); }
   .wtag-other { color: var(--ink-dim); border-color: var(--line-strong); background: var(--surface-2); }
 
+  .read-next { margin: 8px 0 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-size: 15px; max-width: 62ch; }
+  .read-next span { display: block; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
   footer {
     margin-top: 40px;
     padding-top: 20px;
@@ -302,7 +304,7 @@
 
   <div class="resource">
     <p class="section-label" id="power">Power</p>
-    <p class="body-text">A single large AI data center campus can draw several hundred megawatts to multiple gigawatts of continuous power at the largest sites &mdash; comparable to a mid-sized city, or more. Global electricity demand from data centers is on track to more than double by 2030, to roughly 945 terawatt-hours, according to the International Energy Agency. Utilities are responding by building new natural gas plants specifically to serve AI demand and, in some cases, delaying coal plant retirements to keep the grid stable.</p>
+    <p class="body-text">A single large AI data center campus can draw several hundred megawatts to multiple gigawatts of continuous power at the largest sites &mdash; comparable to a mid-sized city, or more. Global electricity demand from data centers is on track to more than double by 2030, to roughly 945 terawatt-hours, according to the International Energy Agency. Utilities are responding with new generation built specifically for AI campuses and, in some cases, by delaying coal plant retirements to keep the grid stable. For how that plays out at a single site, see <a href="ai-data-centers.html#power-first">Power comes first</a>.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Entergy (ETR) &mdash; utility</span>
       <span class="wtag wtag-other">Southern Company (SO) &mdash; utility</span>
@@ -332,8 +334,8 @@
   </div>
 
   <div class="resource">
-    <p class="section-label" id="materials-land">Materials and land</p>
-    <p class="body-text">Every chip in this supply chain depends on mined materials &mdash; silicon, copper, gold for connectors, and rare earth elements used in some components &mdash; extracted, refined, and shipped globally before a single transistor is etched. A single hyperscale campus can span hundreds of acres, and competition for buildable land near power and fiber infrastructure has driven up real estate and grid-connection costs in several regions.</p>
+    <p class="section-label" id="materials-land">Materials</p>
+    <p class="body-text">Every chip in this supply chain depends on mined materials &mdash; silicon, copper, gold for connectors, and rare earth elements used in some components &mdash; extracted, refined, and shipped globally before a single transistor is etched. Each campus also takes up hundreds of acres of land; why that land ends up where it does is covered in <a href="ai-data-centers.html#climate-incentives">How AI Data Centers Get Built</a>.</p>
     <div class="who-tags">
       <span class="wtag wtag-other">Freeport-McMoRan (FCX) &mdash; supply</span>
       <span class="wtag wtag-other">MP Materials (MP) &mdash; supply</span>
@@ -347,6 +349,8 @@
       <span class="wtag wtag-other">Iron Mountain (IRM) &mdash; recycle</span>
     </div>
   </div>
+
+  <p class="read-next"><span>Read next</span> <a href="ai-data-centers.html">How AI Data Centers Get Built</a> &mdash; where these campuses go, who owns them, and why.</p>
 
   <footer>
     <p>Part of the hardware and infrastructure series &mdash; see <a href="silicon-to-supercluster.html">Silicon to Supercluster</a> for how this hardware gets built in the first place.</p>
