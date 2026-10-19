@@ -469,11 +469,11 @@
     .visuals { flex-basis: 100%; }
   }
   /* ---------- Sketch links ---------- */
-  .sketch a.sk-link { cursor: pointer; }
+  .sketch .sk-link { cursor: pointer; }
   .sketch .sk-hit { fill: transparent; stroke: none; }
-  .sketch a.sk-link:hover .sk-hit, .sketch a.sk-link:focus-visible .sk-hit { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-dasharray: 7 6; }
-  .sketch a.sk-link:focus-visible .sk-hit { stroke-width: 3; stroke-dasharray: none; }
-  .sketch a.sk-link:hover .sk-ttl, .sketch a.sk-link:focus-visible .sk-ttl { fill: var(--accent); text-decoration: underline wavy; }
+  .sketch .sk-link:hover .sk-hit, .sketch .sk-link:focus-visible .sk-hit { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-dasharray: 7 6; }
+  .sketch .sk-link:focus-visible .sk-hit { stroke-width: 3; stroke-dasharray: none; }
+  .sketch .sk-link:hover .sk-ttl, .sketch .sk-link:focus-visible .sk-ttl { fill: var(--accent); text-decoration: underline wavy; }
   #wafer, #die, #gpu, #server, #rack, #data-center { scroll-margin-top: 16px; }
   @keyframes sk-flash {
     from { background-color: var(--accent-soft); box-shadow: 0 0 0 10px var(--accent-soft); }
@@ -524,7 +524,7 @@
       <desc id="sk-wide-d">Six hand-drawn stages with labeled parts. 1 Silicon wafer, $3K to $30K per wafer: one 12-inch (300mm) wafer is cut into hundreds of dies. Plus lithography and etching, then diced into dies. 2 Chip die, about $100s to low $1,000s per die: a bare die with billions of transistors that still needs memory. Plus HBM memory and packaging. 3 GPU, $25K to $50K per chip: a compute die in the middle with HBM memory stacks right next to it, on a substrate. Times 8 GPUs plus CPUs and NVLink. 4 Server, about $300K to $350K per server: a board with 8 GPUs, NVLink links between them, 2 CPUs that manage them, and a network card (NIC). Times 18 trays plus a switch fabric. 5 Rack, about $3M to $8.8M per rack: stacked compute trays plus an NVLink switch, liquid cooled, 72 GPUs acting as one. Times thousands of racks plus power and cooling. 6 Data center, $30M to $45M per megawatt: rows of racks in a building, fed by a power substation and a cooling plant.</desc>
       <rect x="1" y="1" width="1038" height="1066" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="1038" height="1066" rx="10" fill="url(#sk-dots)"/>
-      <a href="#wafer" class="sk-link" aria-label="Jump to: Silicon wafer"><title>Read about the silicon wafer &#8595;</title><rect class="sk-hit" x="14" y="18" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="40" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#wafer" aria-label="Jump to: Silicon wafer"><title>Read about the silicon wafer &#8595;</title><rect class="sk-hit" x="14" y="18" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="40" r="15" class="sk-numring"/>
       <text x="36" y="49" text-anchor="middle" class="sk-num">1</text>
       <text x="60" y="51" class="sk-label sk-ttl">silicon wafer</text>
       <rect x="299" y="27" width="126" height="30" rx="4" class="hl-y" transform="rotate(-1.5 362 42)"/>
@@ -539,8 +539,8 @@
     </g>
       <g transform="translate(20 82)">
       <text x="288" y="60" text-anchor="start" class="sk-call"><tspan x="288" dy="0">one wafer</tspan><tspan x="288" dy="21">&#8594; hundreds</tspan><tspan x="288" dy="21">of dies</tspan></text><path d="M298 112 C300 126 270 120 246 108" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="98" y="150" text-anchor="end" class="sk-call2"><tspan x="98" dy="0">12-inch</tspan><tspan x="98" dy="21">(300mm)</tspan></text><path d="M100 156 C110 156 116 150 122 142" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
-      <a href="#die" class="sk-link" aria-label="Jump to: Chip die"><title>Read about the chip die &#8595;</title><rect class="sk-hit" x="614" y="18" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="40" r="15" class="sk-numring"/>
+    </g></g>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#die" aria-label="Jump to: Chip die"><title>Read about the chip die &#8595;</title><rect class="sk-hit" x="614" y="18" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="40" r="15" class="sk-numring"/>
       <text x="636" y="49" text-anchor="middle" class="sk-num">2</text>
       <text x="660" y="51" class="sk-label sk-ttl">chip die</text>
       <rect x="858" y="27" width="166" height="30" rx="4" class="hl-g" transform="rotate(1.2 942 42)"/>
@@ -558,8 +558,8 @@
     </g>
       <g transform="translate(620 82)">
       <text x="330" y="120" text-anchor="middle" class="sk-call"><tspan x="330" dy="0">billions of</tspan><tspan x="330" dy="21">transistors</tspan></text><text x="126" y="74" text-anchor="end" class="sk-call2"><tspan x="126" dy="0">bare die:</tspan><tspan x="126" dy="21">still needs</tspan><tspan x="126" dy="21">memory!</tspan></text><path d="M118 128 C126 132 132 126 138 120" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
-      <a href="#gpu" class="sk-link" aria-label="Jump to: GPU"><title>Read about the gpu &#8595;</title><rect class="sk-hit" x="14" y="374" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="396" r="15" class="sk-numring"/>
+    </g></g>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#gpu" aria-label="Jump to: GPU"><title>Read about the gpu &#8595;</title><rect class="sk-hit" x="14" y="374" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="396" r="15" class="sk-numring"/>
       <text x="36" y="405" text-anchor="middle" class="sk-num">3</text>
       <text x="60" y="407" class="sk-label sk-ttl">GPU</text>
       <rect x="286" y="383" width="140" height="30" rx="4" class="hl-p" transform="rotate(-1.0 355 398)"/>
@@ -576,8 +576,8 @@
     </g>
       <g transform="translate(20 438)">
       <text x="200" y="22" text-anchor="middle" class="sk-call-a"><tspan x="200" dy="0">compute die</tspan></text><path d="M200 30 C206 50 196 64 200 80" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="98" y="98" text-anchor="end" class="sk-call"><tspan x="98" dy="0">HBM</tspan><tspan x="98" dy="21">memory</tspan></text><path d="M96 124 C106 128 112 124 120 118" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="302" y="92" text-anchor="start" class="sk-call2"><tspan x="302" dy="0">memory</tspan><tspan x="302" dy="21">right next</tspan><tspan x="302" dy="21">to it</tspan></text><path d="M306 140 C296 146 286 140 280 130" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="200" y="216" text-anchor="middle" class="sk-call2"><tspan x="200" dy="0">substrate</tspan></text><path d="M166 208 C152 206 146 198 144 190" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
-      <a href="#server" class="sk-link" aria-label="Jump to: Server"><title>Read about the server &#8595;</title><rect class="sk-hit" x="614" y="374" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="396" r="15" class="sk-numring"/>
+    </g></g>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#server" aria-label="Jump to: Server"><title>Read about the server &#8595;</title><rect class="sk-hit" x="614" y="374" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="396" r="15" class="sk-numring"/>
       <text x="636" y="405" text-anchor="middle" class="sk-num">4</text>
       <text x="660" y="407" class="sk-label sk-ttl">server</text>
       <rect x="845" y="383" width="180" height="30" rx="4" class="hl-o" transform="rotate(1.6 935 398)"/>
@@ -596,8 +596,8 @@
     </g>
       <g transform="translate(620 438)">
       <text x="92" y="64" text-anchor="end" class="sk-call-a"><tspan x="92" dy="0">8&#215; GPU</tspan></text><path d="M94 70 C104 74 108 70 114 64" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="306" y="34" text-anchor="start" class="sk-call"><tspan x="306" dy="0">busy!</tspan></text><path d="M354 22 l6 -6 M358 32 l8 0 M350 14 l0 -7" class="sk-spark"/><text x="306" y="92" text-anchor="start" class="sk-call-a"><tspan x="306" dy="0">NVLink</tspan></text><path d="M304 86 C298 84 294 86 288 86" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="306" y="170" text-anchor="start" class="sk-call2"><tspan x="306" dy="0">NIC</tspan><tspan x="306" dy="21">(network)</tspan></text><path d="M304 164 C298 160 294 160 288 162" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="176" y="222" text-anchor="middle" class="sk-call"><tspan x="176" dy="0">2&#215; CPU (the manager)</tspan></text><path d="M150 206 C146 198 148 190 150 184" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
-      <a href="#rack" class="sk-link" aria-label="Jump to: Rack"><title>Read about the rack &#8595;</title><rect class="sk-hit" x="14" y="730" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="752" r="15" class="sk-numring"/>
+    </g></g>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#rack" aria-label="Jump to: Rack"><title>Read about the rack &#8595;</title><rect class="sk-hit" x="14" y="730" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="36" cy="752" r="15" class="sk-numring"/>
       <text x="36" y="761" text-anchor="middle" class="sk-num">5</text>
       <text x="60" y="763" class="sk-label sk-ttl">rack</text>
       <rect x="272" y="739" width="153" height="30" rx="4" class="hl-y" transform="rotate(-1.3 348 754)"/>
@@ -613,8 +613,8 @@
     </g>
       <g transform="translate(20 794)">
       <text x="148" y="42" text-anchor="end" class="sk-call-a"><tspan x="148" dy="0">compute</tspan><tspan x="148" dy="21">trays</tspan></text><path d="M150 50 C156 52 160 48 166 42" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="148" y="150" text-anchor="end" class="sk-call2"><tspan x="148" dy="0">72 GPUs</tspan><tspan x="148" dy="21">act as one</tspan></text><text x="270" y="96" text-anchor="start" class="sk-call"><tspan x="270" dy="0">NVLink</tspan><tspan x="270" dy="21">switch</tspan></text><path d="M268 104 C254 108 246 104 236 104" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="270" y="178" text-anchor="start" class="sk-call-a"><tspan x="270" dy="0">liquid</tspan><tspan x="270" dy="21">cooling</tspan></text><path d="M268 186 C264 190 262 190 258 186" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
-      <a href="#data-center" class="sk-link" aria-label="Jump to: Data center"><title>Read about the data center &#8595;</title><rect class="sk-hit" x="614" y="730" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="752" r="15" class="sk-numring"/>
+    </g></g>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#data-center" aria-label="Jump to: Data center"><title>Read about the data center &#8595;</title><rect class="sk-hit" x="614" y="730" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="636" cy="752" r="15" class="sk-numring"/>
       <text x="636" y="761" text-anchor="middle" class="sk-num">6</text>
       <text x="660" y="763" class="sk-label sk-ttl">data center</text>
       <rect x="886" y="739" width="140" height="30" rx="4" class="hl-g" transform="rotate(1.0 955 754)"/>
@@ -639,7 +639,7 @@
     </g>
       <g transform="translate(620 794)">
       <text x="102" y="40" text-anchor="end" class="sk-call-a"><tspan x="102" dy="0">rows of</tspan><tspan x="102" dy="21">racks</tspan></text><path d="M104 52 C114 58 118 70 124 82" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="57" y="218" text-anchor="middle" class="sk-call"><tspan x="57" dy="0">substation &#9889;</tspan></text><text x="336" y="218" text-anchor="middle" class="sk-call"><tspan x="336" dy="0">cooling plant</tspan></text>
-    </g></a>
+    </g></g>
       <path d="M432 197.0 C470 187.0 560 205.0 606 197.0" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="520" y="183.0" text-anchor="middle" class="sk-note">+ litho &amp; etch</text>
       <text x="520" y="227.0" text-anchor="middle" class="sk-note2">then diced into dies</text>
@@ -664,7 +664,7 @@
       <desc id="sk-tall-d">Six hand-drawn stages with labeled parts. 1 Silicon wafer, $3K to $30K per wafer: one 12-inch (300mm) wafer is cut into hundreds of dies. Plus lithography and etching, then diced into dies. 2 Chip die, about $100s to low $1,000s per die: a bare die with billions of transistors that still needs memory. Plus HBM memory and packaging. 3 GPU, $25K to $50K per chip: a compute die in the middle with HBM memory stacks right next to it, on a substrate. Times 8 GPUs plus CPUs and NVLink. 4 Server, about $300K to $350K per server: a board with 8 GPUs, NVLink links between them, 2 CPUs that manage them, and a network card (NIC). Times 18 trays plus a switch fabric. 5 Rack, about $3M to $8.8M per rack: stacked compute trays plus an NVLink switch, liquid cooled, 72 GPUs acting as one. Times thousands of racks plus power and cooling. 6 Data center, $30M to $45M per megawatt: rows of racks in a building, fed by a power substation and a cooling plant.</desc>
       <rect x="1" y="1" width="418" height="2268" rx="10" class="sk-bg"/>
       <rect x="1" y="1" width="418" height="2268" rx="10" fill="url(#sk-dots)"/>
-      <a href="#wafer" class="sk-link" aria-label="Jump to: Silicon wafer"><title>Read about the silicon wafer &#8595;</title><rect class="sk-hit" x="4" y="12" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="34" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#wafer" aria-label="Jump to: Silicon wafer"><title>Read about the silicon wafer &#8595;</title><rect class="sk-hit" x="4" y="12" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="34" r="15" class="sk-numring"/>
       <text x="26" y="43" text-anchor="middle" class="sk-num">1</text>
       <text x="50" y="45" class="sk-label sk-ttl">silicon wafer</text>
       <rect x="289" y="21" width="126" height="30" rx="4" class="hl-y" transform="rotate(-1.5 352 36)"/>
@@ -679,11 +679,11 @@
     </g>
       <g transform="translate(10 76)">
       <text x="288" y="60" text-anchor="start" class="sk-call"><tspan x="288" dy="0">one wafer</tspan><tspan x="288" dy="21">&#8594; hundreds</tspan><tspan x="288" dy="21">of dies</tspan></text><path d="M298 112 C300 126 270 120 246 108" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="98" y="150" text-anchor="end" class="sk-call2"><tspan x="98" dy="0">12-inch</tspan><tspan x="98" dy="21">(300mm)</tspan></text><path d="M100 156 C110 156 116 150 122 142" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
+    </g></g>
       <path d="M90 312 C84 338 96 364 90 390" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="116" y="348" text-anchor="start" class="sk-note">+ litho &amp; etch</text>
       <text x="116" y="372" text-anchor="start" class="sk-note2">then diced into dies</text>
-      <a href="#die" class="sk-link" aria-label="Jump to: Chip die"><title>Read about the chip die &#8595;</title><rect class="sk-hit" x="4" y="396" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="418" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#die" aria-label="Jump to: Chip die"><title>Read about the chip die &#8595;</title><rect class="sk-hit" x="4" y="396" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="418" r="15" class="sk-numring"/>
       <text x="26" y="427" text-anchor="middle" class="sk-num">2</text>
       <text x="50" y="429" class="sk-label sk-ttl">chip die</text>
       <rect x="248" y="405" width="166" height="30" rx="4" class="hl-g" transform="rotate(1.2 332 420)"/>
@@ -701,11 +701,11 @@
     </g>
       <g transform="translate(10 460)">
       <text x="330" y="120" text-anchor="middle" class="sk-call"><tspan x="330" dy="0">billions of</tspan><tspan x="330" dy="21">transistors</tspan></text><text x="126" y="74" text-anchor="end" class="sk-call2"><tspan x="126" dy="0">bare die:</tspan><tspan x="126" dy="21">still needs</tspan><tspan x="126" dy="21">memory!</tspan></text><path d="M118 128 C126 132 132 126 138 120" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
+    </g></g>
       <path d="M90 696 C84 722 96 748 90 774" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="116" y="732" text-anchor="start" class="sk-note">+ HBM &amp; packaging</text>
       <text x="116" y="756" text-anchor="start" class="sk-note2">die → sellable chip</text>
-      <a href="#gpu" class="sk-link" aria-label="Jump to: GPU"><title>Read about the gpu &#8595;</title><rect class="sk-hit" x="4" y="780" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="802" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#gpu" aria-label="Jump to: GPU"><title>Read about the gpu &#8595;</title><rect class="sk-hit" x="4" y="780" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="802" r="15" class="sk-numring"/>
       <text x="26" y="811" text-anchor="middle" class="sk-num">3</text>
       <text x="50" y="813" class="sk-label sk-ttl">GPU</text>
       <rect x="276" y="789" width="140" height="30" rx="4" class="hl-p" transform="rotate(-1.0 345 804)"/>
@@ -722,11 +722,11 @@
     </g>
       <g transform="translate(10 844)">
       <text x="200" y="22" text-anchor="middle" class="sk-call-a"><tspan x="200" dy="0">compute die</tspan></text><path d="M200 30 C206 50 196 64 200 80" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="98" y="98" text-anchor="end" class="sk-call"><tspan x="98" dy="0">HBM</tspan><tspan x="98" dy="21">memory</tspan></text><path d="M96 124 C106 128 112 124 120 118" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="302" y="92" text-anchor="start" class="sk-call2"><tspan x="302" dy="0">memory</tspan><tspan x="302" dy="21">right next</tspan><tspan x="302" dy="21">to it</tspan></text><path d="M306 140 C296 146 286 140 280 130" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="200" y="216" text-anchor="middle" class="sk-call2"><tspan x="200" dy="0">substrate</tspan></text><path d="M166 208 C152 206 146 198 144 190" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
+    </g></g>
       <path d="M90 1080 C84 1106 96 1132 90 1158" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="116" y="1116" text-anchor="start" class="sk-note">×8 GPUs</text>
       <text x="116" y="1140" text-anchor="start" class="sk-note2">+ CPUs &amp; NVLink</text>
-      <a href="#server" class="sk-link" aria-label="Jump to: Server"><title>Read about the server &#8595;</title><rect class="sk-hit" x="4" y="1164" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1186" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#server" aria-label="Jump to: Server"><title>Read about the server &#8595;</title><rect class="sk-hit" x="4" y="1164" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1186" r="15" class="sk-numring"/>
       <text x="26" y="1195" text-anchor="middle" class="sk-num">4</text>
       <text x="50" y="1197" class="sk-label sk-ttl">server</text>
       <rect x="235" y="1173" width="180" height="30" rx="4" class="hl-o" transform="rotate(1.6 325 1188)"/>
@@ -745,11 +745,11 @@
     </g>
       <g transform="translate(10 1228)">
       <text x="92" y="64" text-anchor="end" class="sk-call-a"><tspan x="92" dy="0">8&#215; GPU</tspan></text><path d="M94 70 C104 74 108 70 114 64" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="306" y="34" text-anchor="start" class="sk-call"><tspan x="306" dy="0">busy!</tspan></text><path d="M354 22 l6 -6 M358 32 l8 0 M350 14 l0 -7" class="sk-spark"/><text x="306" y="92" text-anchor="start" class="sk-call-a"><tspan x="306" dy="0">NVLink</tspan></text><path d="M304 86 C298 84 294 86 288 86" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="306" y="170" text-anchor="start" class="sk-call2"><tspan x="306" dy="0">NIC</tspan><tspan x="306" dy="21">(network)</tspan></text><path d="M304 164 C298 160 294 160 288 162" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="176" y="222" text-anchor="middle" class="sk-call"><tspan x="176" dy="0">2&#215; CPU (the manager)</tspan></text><path d="M150 206 C146 198 148 190 150 184" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
+    </g></g>
       <path d="M90 1464 C84 1490 96 1516 90 1542" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="116" y="1500" text-anchor="start" class="sk-note">×18 trays</text>
       <text x="116" y="1524" text-anchor="start" class="sk-note2">+ switch fabric</text>
-      <a href="#rack" class="sk-link" aria-label="Jump to: Rack"><title>Read about the rack &#8595;</title><rect class="sk-hit" x="4" y="1548" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1570" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#rack" aria-label="Jump to: Rack"><title>Read about the rack &#8595;</title><rect class="sk-hit" x="4" y="1548" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1570" r="15" class="sk-numring"/>
       <text x="26" y="1579" text-anchor="middle" class="sk-num">5</text>
       <text x="50" y="1581" class="sk-label sk-ttl">rack</text>
       <rect x="262" y="1557" width="153" height="30" rx="4" class="hl-y" transform="rotate(-1.3 338 1572)"/>
@@ -765,11 +765,11 @@
     </g>
       <g transform="translate(10 1612)">
       <text x="148" y="42" text-anchor="end" class="sk-call-a"><tspan x="148" dy="0">compute</tspan><tspan x="148" dy="21">trays</tspan></text><path d="M150 50 C156 52 160 48 166 42" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="148" y="150" text-anchor="end" class="sk-call2"><tspan x="148" dy="0">72 GPUs</tspan><tspan x="148" dy="21">act as one</tspan></text><text x="270" y="96" text-anchor="start" class="sk-call"><tspan x="270" dy="0">NVLink</tspan><tspan x="270" dy="21">switch</tspan></text><path d="M268 104 C254 108 246 104 236 104" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="270" y="178" text-anchor="start" class="sk-call-a"><tspan x="270" dy="0">liquid</tspan><tspan x="270" dy="21">cooling</tspan></text><path d="M268 186 C264 190 262 190 258 186" class="sk-carrow" marker-end="url(#sk-head-s)"/>
-    </g></a>
+    </g></g>
       <path d="M90 1848 C84 1874 96 1900 90 1926" class="sk-arrow" marker-end="url(#sk-head)" filter="url(#sk-wobble)"/>
       <text x="116" y="1884" text-anchor="start" class="sk-note">×1000s of racks</text>
       <text x="116" y="1908" text-anchor="start" class="sk-note2">+ power &amp; cooling</text>
-      <a href="#data-center" class="sk-link" aria-label="Jump to: Data center"><title>Read about the data center &#8595;</title><rect class="sk-hit" x="4" y="1932" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1954" r="15" class="sk-numring"/>
+      <g class="sk-link" role="link" tabindex="0" data-jump="#data-center" aria-label="Jump to: Data center"><title>Read about the data center &#8595;</title><rect class="sk-hit" x="4" y="1932" width="412" height="300" rx="12" fill="transparent" pointer-events="all"/><circle cx="26" cy="1954" r="15" class="sk-numring"/>
       <text x="26" y="1963" text-anchor="middle" class="sk-num">6</text>
       <text x="50" y="1965" class="sk-label sk-ttl">data center</text>
       <rect x="276" y="1941" width="140" height="30" rx="4" class="hl-g" transform="rotate(1.0 345 1956)"/>
@@ -794,7 +794,7 @@
     </g>
       <g transform="translate(10 1996)">
       <text x="102" y="40" text-anchor="end" class="sk-call-a"><tspan x="102" dy="0">rows of</tspan><tspan x="102" dy="21">racks</tspan></text><path d="M104 52 C114 58 118 70 124 82" class="sk-carrow" marker-end="url(#sk-head-s)"/><text x="57" y="218" text-anchor="middle" class="sk-call"><tspan x="57" dy="0">substation &#9889;</tspan></text><text x="336" y="218" text-anchor="middle" class="sk-call"><tspan x="336" dy="0">cooling plant</tspan></text>
-    </g></a>
+    </g></g>
       <text x="406" y="2256" text-anchor="end" class="sk-callout">⚡ power of a small city</text>
     </svg>
     <figcaption>The whole journey on one page &mdash; six stages from wafer to data center, what gets added at each step, and roughly what each one costs. Details for every stage follow below. Click or tap a title or picture in the sketch to jump to its section.</figcaption>
@@ -1300,5 +1300,42 @@
   </footer>
 
 </div>
+<!-- sketch-jump -->
+<style>
+  .sk-flash-on { animation: sk-flash 1.8s ease-out; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { .sk-flash-on { animation: none; } }
+</style>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function flash(el) {
+    [el, el.nextElementSibling].forEach(function (n) {
+      if (!n) return;
+      n.classList.remove("sk-flash-on");
+      void n.offsetWidth;
+      n.classList.add("sk-flash-on");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest(".sketch [data-jump]") : null;
+    if (!a) return;
+    var href = a.getAttribute("data-jump") || "";
+    if (href.charAt(0) !== "#") return;
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    flash(target);
+    try { history.replaceState(null, "", href); } catch (err) {}
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var a = e.target.closest ? e.target.closest(".sketch [data-jump]") : null;
+    if (!a) return;
+    e.preventDefault();
+    a.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+})();
+</script>
 </body>
 </html>
