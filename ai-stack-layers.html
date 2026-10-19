@@ -133,24 +133,6 @@
   footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
   footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
 
-  .stack-fig { margin: 0 0 40px; }
-  .stack-fig svg { width: 100%; height: auto; display: block; }
-  .stack-fig figcaption { font-size: 12.5px; color: var(--ink-faint); margin-top: 10px; max-width: 62ch; }
-  .sw-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
-  .hw-box { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 1.2; }
-  .bg-box { fill: var(--surface); }
-  .t-num-sw { fill: var(--accent); }
-  .t-num-hw { fill: var(--copper); }
-  .t-name { fill: var(--ink); }
-  .t-desc { fill: var(--ink-dim); }
-  .t-ex { fill: var(--ink-faint); }
-  .t-axis { fill: var(--ink-faint); }
-  .axis-line { stroke: var(--ink-faint); stroke-width: 1.5; }
-  @media (max-width: 560px) {
-    .stack-fig .t-desc, .stack-fig .t-ex { display: none; }
-    .stack-fig .t-name { font-size: 25px; transform: translateY(14px); }
-  }
-  .split-line { stroke: var(--ink-dim); stroke-width: 1; stroke-dasharray: 4 4; }
   /* ---------- Hand-drawn overview sketch ---------- */
   .sketch { margin: 0 0 40px; }
   .sketch-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -326,68 +308,9 @@
       <text x="368" y="874" text-anchor="middle" class="sk-call-c"><tspan x="368" dy="0">busy!</tspan></text></g></g>
       <g class="sk-link" role="link" tabindex="0" data-jump="#bottleneck" aria-label="Jump to: Where the bottleneck sits"><title>Read where the bottleneck sits &#8595;</title><rect class="sk-hit" x="46" y="684" width="376" height="36" rx="12" fill="transparent" pointer-events="all"/><g transform="translate(0 0)" filter="url(#sk-wobble)"></g><g transform="translate(0 0)"><rect x="50" y="687" width="326" height="29" rx="4" class="hl-o" transform="rotate(-1.2 213 702)"/><text x="58" y="710" text-anchor="start" class="sk-call sk-ttl">memory sets the speed limit</text></g></g>
     </svg>
-    <figcaption>One prompt&rsquo;s trip down the eight layers and back up. The stack diagram below has the full name and examples for each layer. Click or tap a title or picture in the sketch to jump to its section.</figcaption>
+    <figcaption>One prompt&rsquo;s trip down the eight layers and back up. Click or tap a title or picture in the sketch to jump to its section.</figcaption>
   </figure>
 
-  <figure class="stack-fig">
-<svg viewBox="0 0 760 704" role="img" aria-labelledby="stk-t stk-d" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans',system-ui,sans-serif">
-<title id="stk-t">The AI stack in eight layers</title>
-<desc id="stk-d">Eight stacked layers from application at the top to GPU at the bottom: application, orchestration and agents, model, inference serving, frameworks and drivers, then memory, CPU and GPU. Software is above and hardware below.</desc>
-<defs><marker id="stk-ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" style="fill:var(--ink-faint)"/></marker></defs>
-<line class="axis-line" x1="22" y1="16" x2="22" y2="678" marker-end="url(#stk-ar)"/>
-<text class="t-axis" transform="translate(12,347.0) rotate(-90)" text-anchor="middle" font-size="10.5" font-family="'IBM Plex Mono',monospace" letter-spacing="0.8">USER  →  SILICON</text>
-<rect class="bg-box" x="56" y="8" width="704" height="76" rx="3"/>
-<rect class="sw-box" x="56" y="8" width="704" height="76" rx="3"/>
-<text class="t-num-sw" x="74" y="54" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">1</text>
-<text class="t-name" x="112" y="35" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Application</text>
-<text class="t-desc" x="112" y="55" font-size="13">What people touch: chat, coding assistant, support bot</text>
-<text class="t-ex" x="112" y="73" font-size="11.5">ChatGPT · Claude · Copilot · Cursor</text>
-<rect class="bg-box" x="56" y="94" width="704" height="76" rx="3"/>
-<rect class="sw-box" x="56" y="94" width="704" height="76" rx="3"/>
-<text class="t-num-sw" x="74" y="140" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">2</text>
-<text class="t-name" x="112" y="121" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Orchestration &amp; agents</text>
-<text class="t-desc" x="112" y="141" font-size="13">Plans steps, calls tools, loops until done</text>
-<text class="t-ex" x="112" y="159" font-size="11.5">MCP · LangGraph · agent platforms</text>
-<rect class="bg-box" x="56" y="180" width="704" height="76" rx="3"/>
-<rect class="sw-box" x="56" y="180" width="704" height="76" rx="3"/>
-<text class="t-num-sw" x="74" y="226" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">3</text>
-<text class="t-name" x="112" y="207" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Model</text>
-<text class="t-desc" x="112" y="227" font-size="13">Weights + architecture; predicts the next token</text>
-<text class="t-ex" x="112" y="245" font-size="11.5">GPT · Claude · Gemini · Llama</text>
-<rect class="bg-box" x="56" y="266" width="704" height="76" rx="3"/>
-<rect class="sw-box" x="56" y="266" width="704" height="76" rx="3"/>
-<text class="t-num-sw" x="74" y="312" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">4</text>
-<text class="t-name" x="112" y="293" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Inference serving</text>
-<text class="t-desc" x="112" y="313" font-size="13">Batches users together, manages the KV cache</text>
-<text class="t-ex" x="112" y="331" font-size="11.5">vLLM · TensorRT-LLM · SGLang</text>
-<rect class="bg-box" x="56" y="352" width="704" height="76" rx="3"/>
-<rect class="sw-box" x="56" y="352" width="704" height="76" rx="3"/>
-<text class="t-num-sw" x="74" y="398" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">5</text>
-<text class="t-name" x="112" y="379" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Frameworks &amp; drivers</text>
-<text class="t-desc" x="112" y="399" font-size="13">Turns matrix math into chip instructions</text>
-<text class="t-ex" x="112" y="417" font-size="11.5">PyTorch · JAX · CUDA · XLA</text>
-<rect class="bg-box" x="56" y="438" width="704" height="76" rx="3"/>
-<rect class="hw-box" x="56" y="438" width="704" height="76" rx="3"/>
-<text class="t-num-hw" x="74" y="484" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">6</text>
-<text class="t-name" x="112" y="465" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">Memory</text>
-<text class="t-desc" x="112" y="485" font-size="13">HBM beside the GPU, then DRAM, then SSD</text>
-<text class="t-ex" x="112" y="503" font-size="11.5">SK hynix · Samsung · Micron</text>
-<rect class="bg-box" x="56" y="524" width="704" height="76" rx="3"/>
-<rect class="hw-box" x="56" y="524" width="704" height="76" rx="3"/>
-<text class="t-num-hw" x="74" y="570" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">7</text>
-<text class="t-name" x="112" y="551" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">CPU</text>
-<text class="t-desc" x="112" y="571" font-size="13">The manager: OS, networking, feeding the GPUs</text>
-<text class="t-ex" x="112" y="589" font-size="11.5">Intel · AMD · Nvidia Grace</text>
-<rect class="bg-box" x="56" y="610" width="704" height="76" rx="3"/>
-<rect class="hw-box" x="56" y="610" width="704" height="76" rx="3"/>
-<text class="t-num-hw" x="74" y="656" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="24">8</text>
-<text class="t-name" x="112" y="637" font-family="'IBM Plex Mono',monospace" font-weight="600" font-size="15">GPU / accelerator</text>
-<text class="t-desc" x="112" y="657" font-size="13">Does the matrix math, thousands of operations at once</text>
-<text class="t-ex" x="112" y="675" font-size="11.5">Nvidia · AMD · Google TPU</text>
-<line class="split-line" x1="56" y1="433.0" x2="760" y2="433.0"/>
-</svg>
-    <figcaption>Blue layers are software, copper layers are hardware. Names on each card are examples, not a complete list.</figcaption>
-  </figure>
 
   <div class="resource">
     <p class="section-label" id="layer-1">1. Application</p>
