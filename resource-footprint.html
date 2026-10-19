@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://farzanehorak.com/resource-footprint.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -30,6 +30,7 @@
     --line: #d7dae0;
     --line-strong: #b8bdc7;
     --radius: 3px;
+    --hl-yellow: #ffe45c80; --hl-green: #8ee59b80; --hl-pink: #ff9ccf80; --hl-orange: #ffb86b80;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -38,6 +39,7 @@
       --accent: #5fc2ff; --accent-soft: #5fc2ff22;
       --copper: #f0a35f; --copper-soft: #f0a35f22;
       --line: #262b34; --line-strong: #343b47;
+      --hl-yellow: #e6c22e4d; --hl-green: #3fbf5a4d; --hl-pink: #e0559d4d; --hl-orange: #e8853a4d;
     }
   }
   :root[data-theme="dark"] {
@@ -46,6 +48,7 @@
     --accent: #5fc2ff; --accent-soft: #5fc2ff22;
     --copper: #f0a35f; --copper-soft: #f0a35f22;
     --line: #262b34; --line-strong: #343b47;
+    --hl-yellow: #e6c22e4d; --hl-green: #3fbf5a4d; --hl-pink: #e0559d4d; --hl-orange: #e8853a4d;
   }
 
   * { box-sizing: border-box; }
@@ -129,6 +132,59 @@
   footer p { margin: 0 0 10px; max-width: 68ch; }
   footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; }
   footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--line-strong); }
+  /* ---------- Hand-drawn overview sketch ---------- */
+  .sketch { margin: 0 0 40px; }
+  .sketch-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .sketch-svg { display: block; width: 100%; height: auto; font-family: "Caveat", "Patrick Hand", "Comic Sans MS", cursive; }
+  .sketch-tall { display: none; max-width: 440px; margin: 0 auto; }
+  @media (max-width: 560px) {
+    .sketch-wide { display: none; }
+    .sketch-tall { display: block; }
+  }
+  .sketch figcaption { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-faint); margin-top: 10px; line-height: 1.5; max-width: 62ch; }
+  .sketch .sk-bg { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .sketch .sk-griddot { fill: var(--line-strong); }
+  .sketch .sk-paper { fill: var(--surface); }
+  .sketch .sk-paper-s { fill: var(--surface); stroke: var(--ink); stroke-width: 2.2; }
+  .sketch .sk-card { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.6; stroke-dasharray: 6 5; }
+  .sketch .sk-line { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-thin { fill: none; stroke: var(--ink-dim); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-ink { fill: var(--ink); }
+  .sketch .sk-acc-fill { fill: var(--accent-soft); stroke: none; }
+  .sketch .sk-acc-fill-s { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+  .sketch .sk-acc-stroke { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-acc-thin { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-linecap: round; opacity: 0.7; }
+  .sketch .sk-acc-dot { fill: var(--accent); }
+  .sketch .sk-cop { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 2; }
+  .sketch .sk-cop-line { fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-dot { fill: var(--copper); }
+  .sketch .sk-cool { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-spark { fill: none; stroke: var(--copper); stroke-width: 2; stroke-linecap: round; }
+  .sketch .sk-heat { fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; opacity: 0.85; }
+  .sketch .sk-bolt { fill: var(--hl-yellow); stroke: var(--copper); stroke-width: 2.2; stroke-linejoin: round; }
+  .sketch .sk-drop { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .sketch .sk-band-sw { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+  .sketch .sk-band-hw { fill: var(--copper-soft); stroke: var(--copper); stroke-width: 2; }
+  .sketch .sk-arrow { fill: none; stroke: var(--ink-dim); stroke-width: 2.4; stroke-linecap: round; }
+  .sketch .sk-arrow-a { fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; }
+  .sketch .sk-arrow-c { fill: none; stroke: var(--copper); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 7 6; }
+  .sketch .sk-headpath { fill: none; stroke: var(--ink-dim); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-headpath-s { fill: none; stroke: var(--copper); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-headpath-a { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .sk-carrow { fill: none; stroke: var(--copper); stroke-width: 1.8; stroke-linecap: round; }
+  .sketch .sk-numring { fill: var(--surface); stroke: var(--accent); stroke-width: 2.2; }
+  .sketch .sk-num { fill: var(--accent); font-size: 25px; font-weight: 700; }
+  .sketch .sk-label { fill: var(--ink); font-size: 31px; font-weight: 700; }
+  .sketch .sk-fig { fill: var(--ink); font-size: 27px; font-weight: 700; }
+  .sketch .sk-call { fill: var(--ink); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call-a { fill: var(--accent); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call-c { fill: var(--copper); font-size: 23px; font-weight: 700; }
+  .sketch .sk-call2 { fill: var(--ink-dim); font-size: 20px; font-weight: 500; }
+  .sketch .sk-small { fill: var(--ink-dim); font-size: 20px; font-weight: 500; }
+  .sketch .hl-y { fill: var(--hl-yellow); }
+  .sketch .hl-g { fill: var(--hl-green); }
+  .sketch .hl-p { fill: var(--hl-pink); }
+  .sketch .hl-o { fill: var(--hl-orange); }
 </style>
 </head>
 <body>
@@ -140,6 +196,104 @@
   <p class="eyebrow">Sustainability</p>
   <h1>What it takes to keep AI running</h1>
   <p class="lede">Every model in production depends on physical resources that rarely make it into the conversation &mdash; power, water, materials, and the hardware itself. A high-level look at what it actually takes to keep this running, and what that costs.</p>
+
+  <!-- Hand-drawn overview sketch -->
+  <figure class="sketch">
+  <svg class="sketch-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+    <pattern id="sk-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.3" class="sk-griddot"/>
+    </pattern>
+    <filter id="sk-wobble" filterUnits="userSpaceOnUse" x="-50" y="-50" width="1200" height="3200">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="sk-head" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M1 1 L10 6 L1 11" class="sk-headpath"/>
+    </marker>
+    <marker id="sk-head-s" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M2 2 L10 6 L2 10" class="sk-headpath-s"/>
+    </marker>
+    <marker id="sk-head-a" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2 2 L10 6 L2 10" class="sk-headpath-a"/>
+    </marker>
+    <symbol id="sk-campw" viewBox="0 0 900 640" overflow="visible"><rect x="340" y="300" width="220" height="110" class="sk-paper"/><path d="M334 302 L450 270 L566 302" class="sk-line"/><rect x="358" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="382" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="406" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="430" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="454" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="478" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="502" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="526" y="322" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="358" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="382" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="406" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="430" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="454" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="478" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="502" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="526" y="348" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="358" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="382" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="406" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="430" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="454" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="478" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="502" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="526" y="374" width="18" height="16" rx="1" class="sk-acc-fill-s"/><path d="M340 410 V300 H560 V410" class="sk-line"/><path d="M310 410 H590" class="sk-line"/><path d="M380 264 q4 -6 0 -12 q-4 -6 0 -12 M520 264 q4 -6 0 -12 q-4 -6 0 -12" class="sk-heat"/><path d="M58 90 L40 124 L54 124 L46 152 L74 112 L60 112 L70 90 Z" class="sk-bolt"/><path d="M580 84 C564 110 560 124 580 132 C600 124 596 110 580 84 Z" class="sk-drop"/><path d="M572 118 q4 6 10 4" class="sk-acc-stroke"/><ellipse cx="56" cy="362" rx="24" ry="22" class="sk-cop"/><ellipse cx="56" cy="362" rx="14" ry="12" class="sk-cop-line"/><ellipse cx="56" cy="362" rx="5" ry="4" class="sk-paper-s"/><path d="M78 366 q12 6 14 20" class="sk-cop-line"/><path d="M806 236 C826 226 840 252 866 240" class="sk-acc-stroke"/><path d="M806 246 C826 236 840 258 866 250" class="sk-acc-stroke"/><path d="M806 256 C826 246 840 264 866 260" class="sk-acc-stroke"/><circle cx="868" cy="240" r="3" class="sk-acc-dot"/><circle cx="868" cy="250" r="3" class="sk-acc-dot"/><circle cx="868" cy="260" r="3" class="sk-acc-dot"/><path d="M60 542 L78 506 L130 506 L120 542 Z" class="sk-acc-fill-s"/><path d="M80 524 h36 M98 506 v36" class="sk-acc-thin"/><path d="M786 524 h50 l-6 46 h-38 z" class="sk-paper-s"/><path d="M780 524 h62 M802 524 v-6 h18 v6 M802 536 l2 26 M820 536 l-2 26" class="sk-line"/><rect x="794" y="498" width="22" height="18" rx="2" class="sk-acc-fill-s" transform="rotate(-18 805 507)"/>
+    </symbol>
+    <symbol id="sk-campw-c" viewBox="0 0 900 640" overflow="visible">
+      <text x="450" y="40" text-anchor="middle" class="sk-label"><tspan x="450" dy="0">what one AI campus consumes</tspan></text>
+      <text x="450" y="442" text-anchor="middle" class="sk-call2"><tspan x="450" dy="0">one hyperscale campus</tspan></text>
+      <text x="90" y="106" text-anchor="start" class="sk-call-a"><tspan x="90" dy="0">power</tspan></text>
+      <text x="90" y="132" text-anchor="start" class="sk-call2"><tspan x="90" dy="0">hundreds of MW to multiple GW</tspan><tspan x="90" dy="21">&#8776; a mid-sized city, or more</tspan></text>
+      <rect x="82" y="180" width="193" height="28" rx="4" class="hl-y" transform="rotate(-1.2 178 194)"/><text x="90" y="202" text-anchor="start" class="sk-call">~945 TWh by 2030</text>
+      <text x="90" y="226" text-anchor="start" class="sk-small"><tspan x="90" dy="0">global data center demand (IEA)</tspan></text>
+      <path d="M240 238 C280 260 300 270 330 290" class="sk-arrow-a" marker-end="url(#sk-head-a)"/>
+      <text x="610" y="106" text-anchor="start" class="sk-call-a"><tspan x="610" dy="0">water</tspan></text>
+      <rect x="602" y="118" width="259" height="28" rx="4" class="hl-g" transform="rotate(-1.2 731 132)"/><text x="610" y="140" text-anchor="start" class="sk-call">up to 5M gallons / day</text>
+      <text x="610" y="166" text-anchor="start" class="sk-call2"><tspan x="610" dy="0">for cooling, at a large</tspan><tspan x="610" dy="21">hyperscale campus</tspan></text>
+      <path d="M640 214 C620 250 600 262 570 290" class="sk-arrow-a" marker-end="url(#sk-head-a)"/>
+      <text x="100" y="346" text-anchor="start" class="sk-call-c"><tspan x="100" dy="0">copper</tspan></text>
+      <rect x="92" y="358" width="204" height="28" rx="4" class="hl-o" transform="rotate(-1.2 194 372)"/><text x="100" y="380" text-anchor="start" class="sk-call">up to 50,000 tons</text>
+      <text x="100" y="406" text-anchor="start" class="sk-call2"><tspan x="100" dy="0">power + short links</tspan><tspan x="100" dy="21">inside the rack</tspan></text>
+      <path d="M270 372 C290 366 300 360 310 350" class="sk-carrow" marker-end="url(#sk-head-s)"/>
+      <text x="796" y="248" text-anchor="end" class="sk-call-a"><tspan x="796" dy="0">fiber</tspan></text>
+      <rect x="659" y="270" width="229" height="26" rx="4" class="hl-p" transform="rotate(-1.2 774 283)"/><text x="880" y="290" text-anchor="end" class="sk-call">213M more fiber miles</text>
+      <text x="880" y="316" text-anchor="end" class="sk-call2"><tspan x="880" dy="0">U.S. need by 2029,</tspan><tspan x="880" dy="21">to link AI campuses</tspan></text>
+      <path d="M700 360 C660 370 620 350 574 350" class="sk-arrow-a" marker-end="url(#sk-head-a)"/>
+      <text x="146" y="516" text-anchor="start" class="sk-call-a"><tspan x="146" dy="0">land</tspan></text>
+      <rect x="138" y="528" width="204" height="28" rx="4" class="hl-g" transform="rotate(-1.2 240 542)"/><text x="146" y="550" text-anchor="start" class="sk-call">hundreds of acres</text>
+      <text x="146" y="576" text-anchor="start" class="sk-call2"><tspan x="146" dy="0">near power + fiber</tspan></text>
+      <path d="M330 540 C360 520 360 470 340 394" class="sk-arrow-a" marker-end="url(#sk-head-a)"/>
+      <path d="M510 430 C490 640 760 640 800 584" class="sk-arrow-c" marker-end="url(#sk-head-s)"/>
+      <text x="560" y="486" text-anchor="start" class="sk-call-c"><tspan x="560" dy="0">out the back: e-waste</tspan></text>
+      <text x="560" y="512" text-anchor="start" class="sk-call2"><tspan x="560" dy="0">GPUs replaced every 2&#8211;4 years</tspan></text>
+      <rect x="552" y="526" width="215" height="28" rx="4" class="hl-o" transform="rotate(-1.2 659 540)"/><text x="560" y="548" text-anchor="start" class="sk-call">only ~22% recycled</text>
+      <text x="560" y="572" text-anchor="start" class="sk-small"><tspan x="560" dy="0">(global e-waste, UN/ITU)</tspan></text>
+    </symbol>
+    <symbol id="sk-campt" viewBox="0 0 440 1102" overflow="visible"><rect x="110" y="130" width="220" height="110" class="sk-paper"/><path d="M104 132 L220 100 L336 132" class="sk-line"/><rect x="128" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="152" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="176" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="200" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="224" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="248" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="272" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="296" y="152" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="128" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="152" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="176" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="200" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="224" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="248" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="272" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="296" y="178" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="128" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="152" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="176" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="200" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="224" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="248" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="272" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><rect x="296" y="204" width="18" height="16" rx="1" class="sk-acc-fill-s"/><path d="M110 240 V130 H330 V240" class="sk-line"/><path d="M80 240 H360" class="sk-line"/><path d="M150 94 q4 -6 0 -12 q-4 -6 0 -12 M290 94 q4 -6 0 -12 q-4 -6 0 -12" class="sk-heat"/><path d="M40 344 L22 378 L36 378 L28 406 L56 366 L42 366 L52 344 Z" class="sk-bolt"/><path d="M42 482 C26 508 22 522 42 530 C62 522 58 508 42 482 Z" class="sk-drop"/><path d="M34 516 q4 6 10 4" class="sk-acc-stroke"/><ellipse cx="48" cy="624" rx="24" ry="22" class="sk-cop"/><ellipse cx="48" cy="624" rx="14" ry="12" class="sk-cop-line"/><ellipse cx="48" cy="624" rx="5" ry="4" class="sk-paper-s"/><path d="M70 628 q12 6 14 20" class="sk-cop-line"/><path d="M22 724 C42 714 56 740 82 728" class="sk-acc-stroke"/><path d="M22 734 C42 724 56 746 82 738" class="sk-acc-stroke"/><path d="M22 744 C42 734 56 752 82 748" class="sk-acc-stroke"/><circle cx="84" cy="728" r="3" class="sk-acc-dot"/><circle cx="84" cy="738" r="3" class="sk-acc-dot"/><circle cx="84" cy="748" r="3" class="sk-acc-dot"/><path d="M22 874 L40 838 L92 838 L82 874 Z" class="sk-acc-fill-s"/><path d="M42 856 h36 M60 838 v36" class="sk-acc-thin"/><path d="M36 1006 h50 l-6 46 h-38 z" class="sk-paper-s"/><path d="M30 1006 h62 M52 1006 v-6 h18 v6 M52 1018 l2 26 M70 1018 l-2 26" class="sk-line"/><rect x="44" y="980" width="22" height="18" rx="2" class="sk-acc-fill-s" transform="rotate(-18 55 989)"/>
+    </symbol>
+    <symbol id="sk-campt-c" viewBox="0 0 440 1102" overflow="visible">
+      <text x="220" y="38" text-anchor="middle" class="sk-label"><tspan x="220" dy="0">what one AI</tspan><tspan x="220" dy="34">campus consumes</tspan></text>
+      <text x="220" y="278" text-anchor="middle" class="sk-call2"><tspan x="220" dy="0">one hyperscale campus</tspan></text>
+      <text x="220" y="314" text-anchor="middle" class="sk-call-a"><tspan x="220" dy="0">&#8595; goes in &#8595;</tspan></text>
+      <text x="110" y="362" text-anchor="start" class="sk-call-a"><tspan x="110" dy="0">power</tspan></text>
+      <rect x="102" y="372" width="193" height="28" rx="4" class="hl-y" transform="rotate(-1.2 198 386)"/><text x="110" y="394" text-anchor="start" class="sk-call">~945 TWh by 2030</text>
+      <text x="110" y="420" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">campus: hundreds of MW to GW,</tspan><tspan x="110" dy="21">&#8776; a mid-sized city</tspan></text>
+      <text x="110" y="500" text-anchor="start" class="sk-call-a"><tspan x="110" dy="0">water</tspan></text>
+      <rect x="102" y="510" width="259" height="28" rx="4" class="hl-g" transform="rotate(-1.2 231 524)"/><text x="110" y="532" text-anchor="start" class="sk-call">up to 5M gallons / day</text>
+      <text x="110" y="558" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">for cooling</tspan></text>
+      <text x="110" y="616" text-anchor="start" class="sk-call-c"><tspan x="110" dy="0">copper</tspan></text>
+      <rect x="102" y="626" width="204" height="28" rx="4" class="hl-o" transform="rotate(-1.2 204 640)"/><text x="110" y="648" text-anchor="start" class="sk-call">up to 50,000 tons</text>
+      <text x="110" y="674" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">power + in-rack links</tspan></text>
+      <text x="110" y="732" text-anchor="start" class="sk-call-a"><tspan x="110" dy="0">fiber</tspan></text>
+      <rect x="102" y="742" width="248" height="28" rx="4" class="hl-p" transform="rotate(-1.2 226 756)"/><text x="110" y="764" text-anchor="start" class="sk-call">213M more fiber miles</text>
+      <text x="110" y="790" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">U.S. need by 2029</tspan></text>
+      <text x="110" y="848" text-anchor="start" class="sk-call-a"><tspan x="110" dy="0">land</tspan></text>
+      <rect x="102" y="858" width="204" height="28" rx="4" class="hl-g" transform="rotate(-1.2 204 872)"/><text x="110" y="880" text-anchor="start" class="sk-call">hundreds of acres</text>
+      <text x="110" y="906" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">near power + fiber</tspan></text>
+      <text x="220" y="952" text-anchor="middle" class="sk-call-c"><tspan x="220" dy="0">&#8595; comes out &#8595;</tspan></text>
+      <text x="110" y="994" text-anchor="start" class="sk-call-c"><tspan x="110" dy="0">e-waste</tspan></text>
+      <text x="110" y="1020" text-anchor="start" class="sk-call2"><tspan x="110" dy="0">GPUs replaced every 2&#8211;4 yrs</tspan></text>
+      <rect x="102" y="1032" width="215" height="28" rx="4" class="hl-o" transform="rotate(-1.2 209 1046)"/><text x="110" y="1054" text-anchor="start" class="sk-call">only ~22% recycled</text>
+      <text x="110" y="1078" text-anchor="start" class="sk-small"><tspan x="110" dy="0">(global e-waste, UN/ITU)</tspan></text>
+    </symbol>
+    </defs>
+  </svg>
+    <svg class="sketch-svg sketch-wide" viewBox="0 0 900 640" role="img" aria-labelledby="sk-wide-t sk-wide-d">
+      <title id="sk-wide-t">What one AI campus consumes</title>
+      <desc id="sk-wide-d">A hand-drawn AI campus in the middle with what flows in and out. In: power, hundreds of megawatts to multiple gigawatts at the largest sites, comparable to a mid-sized city or more, with global data center demand heading to about 945 terawatt-hours by 2030 (IEA); water, up to 5 million gallons a day for cooling at a large hyperscale campus; copper, up to 50,000 tons for power and short links inside racks; fiber, about 213 million more U.S. fiber miles needed by 2029 to connect AI data centers; land, hundreds of acres near power and fiber. Out the back: e-waste, as GPUs are replaced every 2 to 4 years and only about 22% of e-waste globally is formally recycled.</desc>
+      <rect x="1" y="1" width="898" height="638" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="898" height="638" rx="10" fill="url(#sk-dots)"/>
+      <use href="#sk-campw" x="0" y="0" width="900" height="640" filter="url(#sk-wobble)"/><use href="#sk-campw-c" x="0" y="0" width="900" height="640"/>
+    </svg>
+    <svg class="sketch-svg sketch-tall" viewBox="0 0 440 1102" role="img" aria-labelledby="sk-tall-t sk-tall-d">
+      <title id="sk-tall-t">What one AI campus consumes</title>
+      <desc id="sk-tall-d">A hand-drawn AI campus in the middle with what flows in and out. In: power, hundreds of megawatts to multiple gigawatts at the largest sites, comparable to a mid-sized city or more, with global data center demand heading to about 945 terawatt-hours by 2030 (IEA); water, up to 5 million gallons a day for cooling at a large hyperscale campus; copper, up to 50,000 tons for power and short links inside racks; fiber, about 213 million more U.S. fiber miles needed by 2029 to connect AI data centers; land, hundreds of acres near power and fiber. Out the back: e-waste, as GPUs are replaced every 2 to 4 years and only about 22% of e-waste globally is formally recycled.</desc>
+      <rect x="1" y="1" width="438" height="1100" rx="10" class="sk-bg"/>
+      <rect x="1" y="1" width="438" height="1100" rx="10" fill="url(#sk-dots)"/>
+      <use href="#sk-campt" x="0" y="0" width="440" height="1102" filter="url(#sk-wobble)"/><use href="#sk-campt-c" x="0" y="0" width="440" height="1102"/>
+    </svg>
+    <figcaption>What goes into one large AI campus, and what comes out the back. Figures are the page&rsquo;s own estimates, explained in the sections below.</figcaption>
+  </figure>
 
   <div class="resource">
     <p class="section-label">Power</p>
