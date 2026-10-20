@@ -124,6 +124,28 @@
 
   .read-next { margin: 8px 0 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-size: 15px; max-width: 62ch; }
   .read-next span { display: block; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  /* At-a-glance table */
+  .gl-wrap { overflow-x: auto; margin-top: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table.gl { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13.5px; }
+  .gl thead th { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+  .gl tbody th, .gl td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; text-align: left; }
+  .gl tbody tr:last-child th, .gl tbody tr:last-child td { border-bottom: none; }
+  .gl .gl-group th { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 7px 12px; font-weight: 600; }
+  .gl-name { display: block; font-weight: 500; color: var(--ink); }
+  .gl-who { display: block; font-size: 12px; color: var(--ink-dim); font-weight: 400; }
+  .gl-gw { font-family: "IBM Plex Mono", monospace; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .gl-barcell { width: 30%; min-width: 170px; }
+  .gl-track { display: block; height: 10px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+  .gl-pct { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+  .gl tbody th { min-width: 190px; }
+  .gl-bar { display: block; height: 10px; min-width: 2px; border-radius: 2px; background: var(--accent); }
+  .gl-need .gl-bar { background: var(--ink); }
+  .gl-need .gl-gw { color: var(--ink); }
+  .gl-plan .gl-bar { background: var(--accent); opacity: .6; }
+  .gl-far .gl-bar { background: repeating-linear-gradient(135deg, var(--copper) 0 4px, transparent 4px 7px); border: 1px solid var(--copper); }
+  .gl-when { display: block; font-size: 12.5px; color: var(--ink); white-space: nowrap; }
+  .gl-note { display: block; font-size: 12px; color: var(--ink-dim); }
+  .gl-foot { font-size: 12.5px; color: var(--ink-faint); margin: 10px 0 0; max-width: 70ch; }
   footer {
     margin-top: 40px;
     padding-top: 20px;
@@ -274,6 +296,116 @@
   </div>
 
   <div class="resource">
+    <p class="section-label" id="at-a-glance">At a glance: need vs. supply</p>
+    <p class="body-text">Every option below is in the same unit, gigawatts (GW) of steady power, so you can compare them directly. What we need comes first, then who can supply what, from what's real today to what's still on paper, largest first in each group. Each bar shows that option as a share of what data centers worldwide will need by 2030, about 108 GW. A bar you can barely see means the option is tiny next to that need.</p>
+    <div class="gl-wrap">
+      <table class="gl">
+        <thead>
+          <tr><th scope="col">Option and who</th><th scope="col">Power</th><th scope="col">Share of AI&rsquo;s 2030 need (108 GW)</th><th scope="col">When and the catch</th></tr>
+        </thead>
+        <tbody>
+          <tr class="gl-group"><th colspan="4" scope="rowgroup">What AI needs</th></tr>
+          <tr class="gl-need">
+            <th scope="row"><span class="gl-name">All data centers worldwide, today</span><span class="gl-who">2024 average</span></th>
+            <td class="gl-gw">47 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:43.519%"></span></span><span class="gl-pct">44%</span></td>
+            <td><span class="gl-when">Using it now</span><span class="gl-note">415 TWh a year (IEA), about 1.5% of the world's electricity</span></td>
+          </tr>
+          <tr class="gl-need">
+            <th scope="row"><span class="gl-name">All data centers worldwide, 2030</span><span class="gl-who">IEA projection</span></th>
+            <td class="gl-gw">108 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:100.000%"></span></span><span class="gl-pct">100%</span></td>
+            <td><span class="gl-when">Needed by 2030</span><span class="gl-note">945 TWh a year, a little more than double today</span></td>
+          </tr>
+          <tr class="gl-need">
+            <th scope="row"><span class="gl-name">One giant AI campus</span><span class="gl-who">Cheyenne, Wyoming</span></th>
+            <td class="gl-gw">2.7 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:2.500%"></span></span><span class="gl-pct">2.5%</span></td>
+            <td><span class="gl-when">Planned</span><span class="gl-note">Nearly triple Wyoming's current electricity use</span></td>
+          </tr>
+          <tr class="gl-group"><th colspan="4" scope="rowgroup">Real today, or signed and being built</th></tr>
+          <tr class="gl-now">
+            <th scope="row"><span class="gl-name">Grid + 10 new gas plants</span><span class="gl-who">Entergy, for Meta's Hyperion campus</span></th>
+            <td class="gl-gw">7.5 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:6.944%"></span></span><span class="gl-pct">6.9%</span></td>
+            <td><span class="gl-when">Being built</span><span class="gl-note">3 plants approved, 7 awaiting approval</span></td>
+          </tr>
+          <tr class="gl-now">
+            <th scope="row"><span class="gl-name">Power from a running reactor</span><span class="gl-who">Talen, for Amazon</span></th>
+            <td class="gl-gw">1.92 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:1.778%"></span></span><span class="gl-pct">1.8%</span></td>
+            <td><span class="gl-when">Signed, through 2042</span><span class="gl-note">Susquehanna plant, Pennsylvania</span></td>
+          </tr>
+          <tr class="gl-now">
+            <th scope="row"><span class="gl-name">Restart a closed reactor</span><span class="gl-who">Constellation, for Microsoft</span></th>
+            <td class="gl-gw">835 MW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.773%"></span></span><span class="gl-pct">0.77%</span></td>
+            <td><span class="gl-when">Signed, 2027</span><span class="gl-note">Three Mile Island Unit 1, now Crane</span></td>
+          </tr>
+          <tr class="gl-group"><th colspan="4" scope="rowgroup">Planned for the 2030s</th></tr>
+          <tr class="gl-plan">
+            <th scope="row"><span class="gl-name">Upgrades + new reactors</span><span class="gl-who">Vistra, Oklo, TerraPower, for Meta</span></th>
+            <td class="gl-gw">6.6 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:6.111%"></span></span><span class="gl-pct">6.1%</span></td>
+            <td><span class="gl-when">Signed, by 2035</span><span class="gl-note">“Up to”; most new reactors land in the 2030s</span></td>
+          </tr>
+          <tr class="gl-plan">
+            <th scope="row"><span class="gl-name">Small modular reactors</span><span class="gl-who">X-energy, for Amazon</span></th>
+            <td class="gl-gw">5 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:4.630%"></span></span><span class="gl-pct">4.6%</span></td>
+            <td><span class="gl-when">Planned, by 2039</span><span class="gl-note">“More than 5 GW”; first 320 MW in Washington state</span></td>
+          </tr>
+          <tr class="gl-plan">
+            <th scope="row"><span class="gl-name">Small modular reactors</span><span class="gl-who">Kairos Power, for Google</span></th>
+            <td class="gl-gw">500 MW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.463%"></span></span><span class="gl-pct">0.46%</span></td>
+            <td><span class="gl-when">Planned, by 2035</span><span class="gl-note">First 50 MW plant in Tennessee in 2030</span></td>
+          </tr>
+          <tr class="gl-group"><th colspan="4" scope="rowgroup">Unproven, or on paper</th></tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">AI computing in orbit</span><span class="gl-who">SpaceX (plan)</span></th>
+            <td class="gl-gw">100 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:92.593%"></span></span><span class="gl-pct">93%</span></td>
+            <td><span class="gl-when">Plan: per year of launches</span><span class="gl-note">Needs 1M tonnes launched a year; the world launched ~3,000 tonnes in 2025</span></td>
+          </tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">Space solar, full size</span><span class="gl-who">NASA reference design (study)</span></th>
+            <td class="gl-gw">2 GW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:1.852%"></span></span><span class="gl-pct">1.9%</span></td>
+            <td><span class="gl-when">Paper study, assumes 2050</span><span class="gl-note">12–80× the cost of solar and wind on the ground</span></td>
+          </tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">Fusion</span><span class="gl-who">Commonwealth Fusion, for Google</span></th>
+            <td class="gl-gw">200 MW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.185%"></span></span><span class="gl-pct">0.19%</span></td>
+            <td><span class="gl-when">Planned, early 2030s</span><span class="gl-note">Unproven: no fusion plant has sent power to a grid yet</span></td>
+          </tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">Fusion</span><span class="gl-who">Helion, for Microsoft</span></th>
+            <td class="gl-gw">50 MW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.046%"></span></span><span class="gl-pct">0.05%</span></td>
+            <td><span class="gl-when">Target 2028</span><span class="gl-note">Unproven; full output may slip to 2030</span></td>
+          </tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">Space solar, beamed down</span><span class="gl-who">Space Solar, for Reykjavik Energy</span></th>
+            <td class="gl-gw">30 MW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.028%"></span></span><span class="gl-pct">0.03%</span></td>
+            <td><span class="gl-when">Letter of intent, 2030</span><span class="gl-note">About 1% of one giant campus</span></td>
+          </tr>
+          <tr class="gl-far">
+            <th scope="row"><span class="gl-name">Space solar, beamed down</span><span class="gl-who">Today's demo satellites</span></th>
+            <td class="gl-gw">1 kW</td>
+            <td class="gl-barcell"><span class="gl-track"><span class="gl-bar" style="width:0.000%"></span></span><span class="gl-pct">&lt;0.01%</span></td>
+            <td><span class="gl-when">Demos, 2026</span><span class="gl-note">About 1 kW each: one campus would need ~2.7 million</span></td>
+          </tr>
+          <tr class="gl-far gl-text"><th scope="row"><span class="gl-name">AI computing in orbit</span><span class="gl-who">Blue Origin (vision)</span></th><td class="gl-gw">“gigawatt”</td><td class="gl-barcell"><span class="gl-pct">no number yet</span></td><td><span class="gl-when">10–20 years</span><span class="gl-note">Bezos’s own timeline; Project Sunrise filed for ~51,600 satellites</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="gl-foot">Today&rsquo;s worldwide figure is the yearly total spread evenly over the year (415 TWh &divide; 8,760 hours &asymp; 47 GW), my arithmetic. Contract figures are what was announced, often &ldquo;up to.&rdquo; SpaceX&rsquo;s 100 GW is computing it hopes to add per year, not power sent to Earth.</p>
+  </div>
+
+  <div class="resource">
     <p class="section-label" id="space-solar">Space solar: the idea</p>
     <p class="body-text">Above the clouds, a solar panel in the right orbit gets sunlight almost all the time. Google&rsquo;s researchers estimate it can be up to 8 times more productive than the same panel on the ground.</p>
     <p class="body-text">There are two ways to use that. The old idea, from the 1960s onward, is to <strong>beam the power down</strong>: collect sunlight on a huge satellite, turn it into microwaves or a laser, and catch it with a big antenna on the ground. The new idea is to <strong>skip the beam</strong>: put the AI chips in orbit next to the panels, and send only the answers down. That second idea is the one Musk and Bezos are talking about.</p>
@@ -362,6 +494,8 @@
     <p>Figures above are from public reporting as of October 2026. Company targets are plans, not delivered results, and the comparisons marked &ldquo;my arithmetic&rdquo; are simple order-of-magnitude math, gathered here to make the power question easier to think about &mdash; not to draw a conclusion for you.</p>
     <p>Tickers next to each company are for identification only, not investment advice.</p>
     <ul>
+      <li><a href="https://scientificamerican.com/article/ai-will-drive-doubling-of-data-center-energy-demand-by-2030" target="_blank" rel="noopener">Data centers will use twice as much energy by 2030 &mdash; Scientific American</a></li>
+      <li><a href="https://thelensnola.org/2026/03/30/meta-triples-order-of-gas-fired-power-plants-for-its-ai-campus-in-louisiana/" target="_blank" rel="noopener">Meta triples gas plants for Hyperion (7.5 GW) &mdash; The Lens</a></li>
       <li><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank" rel="noopener">Energy demand from AI &mdash; IEA</a></li>
       <li><a href="https://cowboystatedaily.com/2026/01/08/huge-cheyenne-data-center-grows-to-2-7-gigawatts-nearly-triple-state-power-use" target="_blank" rel="noopener">Cheyenne Data Center Grows to 2.7 GW &mdash; Cowboy State Daily</a></li>
       <li><a href="https://fortune.com/2026/03/27/meta-hyperion-10-gas-power-plants-louisiana-entergy/" target="_blank" rel="noopener">Meta's Hyperion Campus &mdash; Fortune</a></li>
