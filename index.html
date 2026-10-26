@@ -77,135 +77,117 @@
 
   a { color: var(--accent); }
   a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  .wrap {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 56px 24px 80px;
-  }
-
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  main.shell { padding-top: 48px; padding-bottom: 72px; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: clamp(30px, 5vw, 40px); line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 16px; }
+  .lede { font-size: 16px; color: var(--ink-dim); max-width: 60ch; margin: 0; }
+  h2.section-title { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); margin: 0; }
 
-  header.page-head {
-    margin-bottom: 48px;
-  }
-  .eyebrow {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 14px;
-  }
-  h1 {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 600;
-    font-size: clamp(30px, 5vw, 40px);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0 0 16px;
-  }
-  .lede {
-    font-size: 16px;
-    color: var(--ink-dim);
-    max-width: 60ch;
-    margin: 0;
-  }
+  .entries { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); gap: 16px; }
+  .entry { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: background 0.12s ease, border-color 0.12s ease; }
+  .entry:hover { background: var(--surface-2); border-color: var(--line-strong); }
+  .entry:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .entry-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .entry-title { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 17px; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+  .entry-date { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
+  .entry-desc { font-size: 14px; color: var(--ink-dim); margin: 0; max-width: 62ch; }
+  .entry-tags { margin-top: auto; padding-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--radius); padding: 2px 7px; }
 
-  .entries {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  footer.site-foot { border-top: 1px solid var(--line); }
+  footer.site-foot .shell { padding-top: 20px; padding-bottom: 28px; font-size: 12.5px; color: var(--ink-faint); }
+  footer.site-foot p { margin: 0; }
 
-  .entry {
-    background: var(--surface);
-    padding: 22px 24px;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.12s ease;
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .bio-placeholder { margin-top: 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: var(--surface); padding: 20px 22px; max-width: 60ch; }
+  .bio-placeholder p { margin: 0; color: var(--ink-dim); font-size: 15px; }
+  .bio-placeholder .ph-label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--copper); margin-bottom: 8px; }
+  .bio-lines { margin-top: 16px; display: grid; gap: 9px; }
+  .bio-lines span { display: block; height: 9px; border-radius: 2px; background: var(--surface-2); }
+  .bio-lines span:nth-child(2) { width: 92%; } .bio-lines span:nth-child(3) { width: 78%; } .bio-lines span:nth-child(4) { width: 55%; }
+  .photos { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; aspect-ratio: 6 / 5; }
+  .photo { margin: 0; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: var(--surface-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.04em; text-align: center; padding: 10px; min-height: 0; overflow: hidden; }
+  .photo svg { width: 26px; height: 26px; opacity: 0.7; }
+  .photo.main { grid-row: 1 / span 2; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .latest { margin-top: clamp(48px, 7vw, 80px); }
+  .latest-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .latest-head a { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; text-decoration: none; }
+  .latest-head a:hover { text-decoration: underline; }
+  .latest .entries { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+  @media (max-width: 860px) {
+    .about { grid-template-columns: 1fr; }
+    .photos { max-width: 560px; }
   }
-  .entry:hover { background: var(--surface-2); }
-  .entry:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-
-  .entry-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 6px;
-  }
-  .entry-title {
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 600;
-    font-size: 17px;
-    color: var(--ink);
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-  .entry-date {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11.5px;
-    color: var(--ink-faint);
-    white-space: nowrap;
-  }
-  .entry-desc {
-    font-size: 14px;
-    color: var(--ink-dim);
-    margin: 0;
-    max-width: 62ch;
-  }
-  .entry-tags {
-    margin-top: 10px;
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .tag {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
-    border-radius: var(--radius);
-    padding: 2px 7px;
-  }
-
-  .empty-note {
-    font-size: 14px;
-    color: var(--ink-faint);
-    padding: 20px 24px;
-    background: var(--surface);
-  }
-
-  footer {
-    margin-top: 56px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
-    font-size: 12.5px;
-    color: var(--ink-faint);
+</style>
+<!-- site-shell -->
+<style>
+  /* Shared site shell: full-width header band with tabs + research sub-tabs. Identical on every page. */
+  .shell { max-width: 1200px; margin: 0 auto; padding-left: clamp(16px, 4vw, 48px); padding-right: clamp(16px, 4vw, 48px); }
+  .site-top { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .site-top-in { display: flex; align-items: stretch; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .brand svg { width: 20px; height: 20px; flex: none; color: var(--accent); }
+  .brand:hover { color: var(--accent); }
+  .tabs { display: flex; align-items: stretch; gap: 4px; }
+  .tab { display: flex; align-items: center; padding: 0 14px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; font-weight: 500; color: var(--ink-dim); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; transition: color 0.12s ease, border-color 0.12s ease; }
+  .tab:hover { color: var(--ink); border-bottom-color: var(--line-strong, var(--line)); }
+  .tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab:focus-visible, .brand:focus-visible, .subtab:focus-visible, .crumb:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .subnav { border-bottom: 1px solid var(--line); }
+  .subnav-in { display: flex; align-items: center; gap: 10px; min-height: 46px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; overflow-x: auto; }
+  .crumb { color: var(--ink-faint); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; font-size: 11px; white-space: nowrap; }
+  .crumb:hover { color: var(--accent); }
+  .crumb-sep { color: var(--ink-faint); }
+  .subtabs { display: flex; gap: 6px; }
+  .subtab { padding: 3px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-dim); text-decoration: none; white-space: nowrap; }
+  .subtab:hover { color: var(--ink); border-color: var(--ink-faint); }
+  .subtab.is-active { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+  @media (max-width: 480px) {
+    .site-top-in { gap: 8px; min-height: 54px; }
+    .brand { font-size: 14px; gap: 8px; }
+    .brand svg { width: 18px; height: 18px; }
+    .tab { padding: 0 9px; font-size: 12.5px; }
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<header class="site-top">
+  <div class="shell site-top-in">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="currentColor"/><rect x="7" y="7" width="8" height="8" fill="#fff" fill-opacity=".92"/><rect x="17" y="7" width="8" height="8" fill="#fff" fill-opacity=".92"/><rect x="7" y="17" width="8" height="8" fill="#fff" fill-opacity=".92"/><rect x="17" y="17" width="8" height="8" fill="#fff" fill-opacity=".92"/></svg><span>AI, As I Go</span></a>
+    <nav class="tabs" aria-label="Site">
+      <a class="tab is-active" href="index.html" aria-current="page">About me</a>
+      <a class="tab" href="research.html">Research</a>
+    </nav>
+  </div>
+</header>
 
-  <header class="page-head">
-    <p class="eyebrow">Learning log</p>
-    <h1>AI, As I Go</h1>
-    <p class="lede">A running record of what I'm learning about AI &mdash; models, infrastructure, tooling, and everything underneath. New entries get added here as I go.</p>
-  </header>
+<main class="shell">
+  <section class="about" aria-labelledby="about-title">
+    <div class="about-text">
+      <p class="eyebrow">Farzaneh</p>
+      <h1 id="about-title">About me</h1>
+      <div class="bio-placeholder">
+        <p class="ph-label">Placeholder</p>
+        <p>Bio coming soon &mdash; Farzaneh will add this.</p>
+        <div class="bio-lines" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="photos">
+      <figure class="photo main" role="img" aria-label="Portrait photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.6"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><span>Photo coming soon</span></figure>
+      <figure class="photo" role="img" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.6"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><span>Photo coming soon</span></figure>
+      <figure class="photo" role="img" aria-label="Photo placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.6"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><span>Photo coming soon</span></figure>
+    </div>
+  </section>
 
-  <div class="entries">
+  <section class="latest" aria-labelledby="latest-title">
+    <div class="latest-head">
+      <h2 class="section-title" id="latest-title">Latest from Research</h2>
+      <a href="research.html">All research &rarr;</a>
+    </div>
+    <div class="entries">
     <a class="entry" href="power-from-space.html">
       <div class="entry-top">
         <h2 class="entry-title">Power from space, and the nuclear backup plan</h2>
@@ -238,45 +220,15 @@
         <span class="tag">Hardware</span>
       </div>
     </a>
-    <a class="entry" href="ai-data-centers.html">
-      <div class="entry-top">
-        <h2 class="entry-title">How AI Data Centers Get Built</h2>
-        <span class="entry-date mono">Oct 2026</span>
-      </div>
-      <p class="entry-desc">What makes an AI data center physically different, who actually owns these facilities, and why they keep ending up in places you wouldn't expect.</p>
-      <div class="entry-tags">
-        <span class="tag">Infrastructure</span>
-      </div>
-    </a>
-    <a class="entry" href="resource-footprint.html">
-      <div class="entry-top">
-        <h2 class="entry-title">What It Takes to Keep AI Running</h2>
-        <span class="entry-date mono">Sep 2026</span>
-      </div>
-      <p class="entry-desc">A high-level look at the power, water, materials, and hardware churn behind running AI at scale &mdash; and what that actually costs.</p>
-      <div class="entry-tags">
-        <span class="tag">Sustainability</span>
-        <span class="tag">Infrastructure</span>
-      </div>
-    </a>
-    <a class="entry" href="silicon-to-supercluster.html">
-      <div class="entry-top">
-        <h2 class="entry-title">Silicon to Supercluster</h2>
-        <span class="entry-date mono">Aug 2026</span>
-      </div>
-      <p class="entry-desc">The AI hardware supply chain in six stages &mdash; wafer, die, GPU, server, rack, data center &mdash; with what each stage is, who builds it, and what it costs.</p>
-      <div class="entry-tags">
-        <span class="tag">Infrastructure</span>
-        <span class="tag">Hardware</span>
-      </div>
-    </a>
-  </div>
+    </div>
+  </section>
+</main>
 
-  <footer>
+<footer class="site-foot">
+  <div class="shell">
     <p>&copy; 2026 Farzaneh. Tickers and figures are for information only, not investment advice.</p>
-  </footer>
-
-</div>
+  </div>
+</footer>
 
 </body>
 </html>
