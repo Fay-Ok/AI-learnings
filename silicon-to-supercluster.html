@@ -1095,7 +1095,7 @@
             </div>
             <div class="field">
               <span class="label">What it is</span>
-              <p>Eight GPUs, host CPUs (Nvidia's own Grace chip, in Nvidia's own systems), fast networking cards, and NVLink connections between every GPU are assembled onto one chassis.</p>
+              <p>Eight GPUs, two host CPUs, fast networking cards, and NVLink connections between every GPU are assembled onto one chassis. In these 8-GPU servers the host CPUs are standard x86 chips: Nvidia's own DGX B200 uses two Intel Xeons. Nvidia's Grace CPU shows up one stage later, in the rack-scale GB200 and GB300 systems.</p>
             </div>
             <div class="field">
               <span class="label">The process</span>
@@ -1154,7 +1154,7 @@
                 <line x1="126" y1="83" x2="130" y2="83"></line>
               </g>
             </svg>
-            <figcaption>Nvidia's GB200 NVL72: 72 GPUs and 36 CPUs, wired as one liquid-cooled unit.</figcaption>
+            <figcaption>An Nvidia NVL72 rack (GB200 shown): 72 GPUs and 36 CPUs, wired as one liquid-cooled unit.</figcaption>
           </figure>
           </div>
           <div class="stage-text">
@@ -1164,7 +1164,7 @@
             </div>
             <div class="field">
               <span class="label">What it is</span>
-              <p>Multiple compute trays plus dedicated NVLink switch trays combine into one rack. Nvidia's current flagship, the GB200 NVL72, packs 72 GPUs and 36 Grace CPUs into one liquid-cooled rack.</p>
+              <p>Multiple compute trays plus dedicated NVLink switch trays combine into one rack. Nvidia's GB200 and GB300 NVL72 racks, the ones most widely deployed today, pack 72 GPUs and 36 Grace CPUs into one liquid-cooled rack. Their successor, the Vera Rubin NVL72 (72 Rubin GPUs, 36 Vera CPUs and 20.7 TB of HBM4 memory per rack), started shipping in 2026.</p>
             </div>
             <div class="field">
               <span class="label">The process</span>
@@ -1181,8 +1181,8 @@
             <div class="field">
               <span class="label">Price</span>
               <div class="price-tags">
-                <span class="ptag">GB200 NVL72 (now) &mdash; ~$3M</span>
-                <span class="ptag">Vera Rubin NVL72 (next-gen) &mdash; up to $8.8M</span>
+                <span class="ptag">GB200 NVL72 &mdash; ~$3M</span>
+                <span class="ptag">Vera Rubin NVL72 &mdash; up to $8.8M</span>
               </div>
             </div>
           </div>
@@ -1259,7 +1259,7 @@
               <span class="label">Price</span>
               <div class="price-tags">
                 <span class="ptag">Per megawatt &mdash; $30M&ndash;$45M</span>
-                <span class="ptag">Meta Hyperion &mdash; $50B&ndash;$60B</span>
+                <span class="ptag">Meta Hyperion &mdash; $50B+</span>
                 <span class="ptag">MSFT Fairwater &mdash; ~$7.3B</span>
               </div>
             </div>
@@ -1313,7 +1313,10 @@
     <p>Pricing across the semiconductor and AI-infrastructure market moves fast and varies by contract, volume, and region &mdash; treat every figure above as a directional estimate rather than a quote, gathered from public reporting as of October 2026.</p>
     <ul>
       <li><a href="https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide" target="_blank" rel="noopener">Nvidia GPU pricing &mdash; IntuitionLabs</a></li>
+      <li><a href="https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html" target="_blank" rel="noopener">DGX B200: 8 GPUs, 2 Intel Xeon CPUs &mdash; NVIDIA user guide</a></li>
       <li><a href="https://www.spheron.network/blog/nvidia-gb200-nvl72-guide/" target="_blank" rel="noopener">GB200 NVL72 guide &mdash; Spheron</a></li>
+      <li><a href="https://ir.supermicro.com/news/news-details/2026/Supermicro-Now-Shipping-NVIDIA-Vera-Rubin-NVL72-Racks/default.aspx" target="_blank" rel="noopener">Now shipping Vera Rubin NVL72 racks (Sep 2026) &mdash; Supermicro</a></li>
+      <li><a href="https://www.globaldatacenterhub.com/p/meta-scales-hyperion-to-5gw-and-over" target="_blank" rel="noopener">Meta takes Hyperion to 5 GW, $50B+ (Jul 2026) &mdash; Global Data Center Hub</a></li>
       <li><a href="https://axis-intelligence.com/ai-data-center-cost-per-mw/" target="_blank" rel="noopener">Data center cost per MW &mdash; Axis Intelligence</a></li>
       <li><a href="https://averroes.ai/blog/top-10-semiconductor-foundries" target="_blank" rel="noopener">Top semiconductor foundries &mdash; Averroes</a></li>
       <li><a href="https://siliconanalysts.com/data/wafer-pricing" target="_blank" rel="noopener">Wafer pricing by node &mdash; Silicon Analysts</a></li>
