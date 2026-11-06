@@ -102,8 +102,12 @@
   .about { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 5vw, 64px); align-items: start; }
   .bio { margin-top: 20px; max-width: 64ch; }
   .bio p { margin: 0 0 14px; font-size: 16px; line-height: 1.65; color: var(--ink); }
-  .portrait { margin: 0; width: clamp(160px, 18vw, 220px); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface-2); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
-  .portrait img { display: block; width: 100%; height: auto; }
+  .trips { width: clamp(280px, 28vw, 340px); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .trip { margin: 0; min-width: 0; }
+  .trip.wide { grid-column: 1 / -1; }
+  .trip img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); }
+  .trip.wide img { aspect-ratio: 4 / 3; }
+  .trip figcaption { margin-top: 6px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-faint); text-align: center; }
   .bio-placeholder { margin-top: 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: var(--surface); padding: 20px 22px; max-width: 60ch; }
   .bio-placeholder p { margin: 0; color: var(--ink-dim); font-size: 15px; }
   .bio-placeholder .ph-label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--copper); margin-bottom: 8px; }
@@ -122,7 +126,7 @@
   .latest .entries { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
   @media (max-width: 860px) {
     .about { grid-template-columns: 1fr; }
-    .portrait { order: -1; width: 180px; }
+    .trips { width: 100%; max-width: 360px; }
   }
 </style>
 <!-- site-shell -->
@@ -181,9 +185,20 @@
         <p>Outside of tech, what I care about most is people and growing as a leader. I&rsquo;ve worked with both good and bad leaders (the bad ones turned out to be excellent teachers), and I&rsquo;m determined to be a good one, so I read a lot and keep expanding my horizons. When I&rsquo;m not at a keyboard or reading books, you&rsquo;ll find me traveling or on my yoga mat; yoga and mindfulness keep me grounded. Most days.</p>
       </div>
     </div>
-    <figure class="portrait">
-      <img src="img/about-farzaneh.jpg" width="480" height="640" alt="Farzaneh at the Matterhorn, Switzerland">
-    </figure>
+    <div class="trips">
+      <figure class="trip">
+        <img src="img/about-farzaneh.jpg" width="480" height="640" alt="Farzaneh at the Matterhorn, Switzerland">
+        <figcaption>Matterhorn, Switzerland</figcaption>
+      </figure>
+      <figure class="trip">
+        <img src="img/about-machu-picchu.jpg" width="480" height="640" alt="Farzaneh at Machu Picchu, Peru">
+        <figcaption>Machu Picchu, Peru</figcaption>
+      </figure>
+      <figure class="trip wide">
+        <img src="img/about-iceland.jpg" width="640" height="480" alt="Farzaneh beside a waterfall in Iceland">
+        <figcaption>Iceland</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="latest" aria-labelledby="latest-title">
